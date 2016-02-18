@@ -2,7 +2,7 @@
 title: cf Command Line Interface (CLI)
 ---
 
-When deploying and managing your applications on Cloud Foundry, you'll use the cf command line interface (CLI).
+Use the cf Command Line Interface (cf CLI) to deploy and manage your applications on Cloud Foundry.
 
 Contents in this section:
 
@@ -12,4 +12,3 @@ Contents in this section:
 * [Using cf CLI Plugins](./use-cli-plugins.html)
 * [Developing cf CLI Plugins](./develop-cli-plugins.html)
 * [Scaling an Application Using cf scale](../deploy-apps/cf-scale.html)
-
