@@ -11,3 +11,4 @@ Contents in this section:
 * [Using the cf CLI with an HTTP Proxy Server](./http-proxy.html)
 * [Using cf CLI Plugins](./use-cli-plugins.html)
 * [Developing cf CLI Plugins](./develop-cli-plugins.html)
+* [About Starting Applications](../devguide/deploy-apps/app-startup.html)
