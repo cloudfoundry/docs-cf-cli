@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>[environment variables] cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.15.0+fa1bfe2-2016-01-13</p>
+<p>6.16.0+ee4d916-2016-02-24</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -182,7 +182,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>create-app-manifest</td>
-      <td>Create an app manifest for an app that has been pushed successfully.</td>
+      <td>Create an app manifest for an app that has been pushed successfully</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -190,19 +190,19 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>get-health-check</td>
-      <td>get the health_check_type value of an app</td>
+      <td>Get the health_check_type value of an app</td>
     </tr>
     <tr>
       <td>set-health-check</td>
-      <td>set health_check_type flag to either 'port' or 'none'</td>
+      <td>Set health_check_type flag to either 'port' or 'none'</td>
     </tr>
     <tr>
       <td>enable-ssh</td>
-      <td>enable ssh for the application</td>
+      <td>Enable ssh for the application</td>
     </tr>
     <tr>
       <td>disable-ssh</td>
-      <td>disable ssh for the application</td>
+      <td>Disable ssh for the application</td>
     </tr>
     <tr>
       <td>ssh-enabled</td>
@@ -297,12 +297,24 @@ title: Cloud Foundry CLI Reference Guide
       <td></td>
     </tr>
     <tr>
+      <td>bind-route-service</td>
+      <td>Bind a service instance to a route</td>
+    </tr>
+    <tr>
+      <td>unbind-route-service</td>
+      <td>Unbind a service instance from a route</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td>create-user-provided-service</td>
-      <td>Make a user-provided service instance available to cf apps</td>
+      <td>Make a user-provided service instance available to CF apps</td>
     </tr>
     <tr>
       <td>update-user-provided-service</td>
-      <td>Update user-provided service instance name value pairs</td>
+      <td>Update user-provided service instance</td>
     </tr>
   </tbody>
 </table>
@@ -462,7 +474,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>check-route</td>
-      <td>Perform a simple check to determine whether a route currently exists or not.</td>
+      <td>Perform a simple check to determine whether a route currently exists or not</td>
     </tr>
     <tr>
       <td>map-route</td>
@@ -478,27 +490,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>delete-orphaned-routes</td>
-      <td>Delete all orphaned routes (e.g.: those that are not mapped to an app)</td>
-    </tr>
-  </tbody>
-</table>
-
-## <a id='router-groups'></a> Router Groups
-<table>
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>router-groups</td>
-      <td>List router groups</td>
+      <td>Delete all orphaned routes (i.e. those that are not mapped to an app)</td>
     </tr>
   </tbody>
 </table>
@@ -678,7 +670,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>update-space-quota</td>
-      <td>update an existing space quota</td>
+      <td>Update an existing space quota</td>
     </tr>
     <tr>
       <td>delete-space-quota</td>
@@ -914,11 +906,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>enable-feature-flag</td>
-      <td>Enable the use of a feature so that users have access to and can use the feature.</td>
+      <td>Enable the use of a feature so that users have access to and can use the feature</td>
     </tr>
     <tr>
       <td>disable-feature-flag</td>
-      <td>Disable the use of a feature so that users have access to and can use the feature.</td>
+      <td>Disable the use of a feature so that users have access to and can use the feature</td>
     </tr>
   </tbody>
 </table>
@@ -938,11 +930,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>curl</td>
-      <td>Executes a raw request, content-type set to application/json by default</td>
+      <td>Executes a request to the targeted API endpoint</td>
     </tr>
     <tr>
       <td>config</td>
-      <td>write default values to the config</td>
+      <td>Write default values to the config</td>
     </tr>
     <tr>
       <td>oauth-token</td>
@@ -978,11 +970,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>list-plugin-repos</td>
-      <td>list all the added plugin repository</td>
+      <td>List all the added plugin repositories</td>
     </tr>
     <tr>
       <td>repo-plugins</td>
-      <td>List all available plugins in all added repositories</td>
+      <td>List all available plugins in specified repository or in all added repositories</td>
     </tr>
   </tbody>
 </table>
@@ -1002,11 +994,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td>plugins</td>
-      <td>list all available plugin commands</td>
+      <td>List all available plugin commands</td>
     </tr>
     <tr>
       <td>install-plugin</td>
-      <td>Install the plugin defined in command argument</td>
+      <td>Install CLI plugin</td>
     </tr>
     <tr>
       <td>uninstall-plugin</td>
@@ -1057,7 +1049,7 @@ title: Cloud Foundry CLI Reference Guide
       <td>Append API request diagnostics to a log file</td>
     </tr>
     <tr>
-      <td>HTTP_PROXY=proxy.example.com:8080</td>
+      <td>https_proxy=proxy.example.com:8080</td>
       <td>Enable HTTP proxying for API requests</td>
     </tr>
   </tbody>
