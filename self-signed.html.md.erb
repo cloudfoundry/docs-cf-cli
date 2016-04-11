@@ -1,0 +1,74 @@
+---
+title: Using the cf CLI with a Self-Signed Certificate
+owner: CLI
+---
+
+<strong><%= modified_date %></strong>
+
+This topic describes how to use the cf CLI to communicate securely with a Cloud Foundry deployment without specifying `--skip-ssl-validation` when running `cf login` or `cf api`. Follow the procedure below to generate a self-signed certificate, insert the certificate into the router properties of your manifest, and install the certificate on your local machine. 
+
+## <a id="generate"></a>Step 1: Generate the Certificate ##
+
+1. Use `openssl genrsa` with the `-out` flag to generate a new private key. For example, run the following command to generate a 2048-bit private key named `privkey.pem`:
+
+    <pre class="terminal">
+    $ openssl genrsa -out privkey.pem 2048
+    </pre>
+
+1. Use `openssl req` to generate a new certificate signing request  based on your private key.
+
+    <pre class="terminal">
+    $ openssl req -new -key privkey.pem -out server.csr
+    </pre>
+
+1. Use the command below to create a self-signed certificate, `server.crt`, from the existing private key, `privkey.pem` and the existing certificate signing request, `server.csr`:
+
+    <pre class="terminal">
+    $ openssl x509 -req -days 365 -in server.csr -signkey privkey.pem -out server.crt
+    </pre>
+
+## <a id="edit-manifest"></a>Step 2: Add the Certificate to Your Manifest ##
+
+You must insert the self-signed certificate into your deployment manifest for the CF router to use it to terminate SSL/TLS. 
+
+1. Use `bosh edit deployment` to open your release manifest for editing.
+
+1. Copy the contents of your self-signed certificate file `server.crt` into the `properties.router.ssl_cert` field and the contents of your private key file `privkey.pem` into the `properties.router.ssl_key` field. Set `enable_ssl` to `true`.
+
+	```
+	properties:
+	  router:
+	    ssl_cert: |
+	      -----BEGIN CERTIFICATE-----
+	      SSL_CERTIFICATE_SIGNED_BY_PRIVATE_KEY
+	      -----END CERTIFICATE-----
+	    ssl_key: |
+	      -----BEGIN RSA PRIVATE KEY-----
+	      RSA_PRIVATE_KEY
+	      -----END RSA PRIVATE KEY-----
+	    enable_ssl: true
+	```
+
+## <a id="install-local"></a>Step 3: Install the Certificate on Your Machine ##
+
+To use the cf CLI to communicate securely with a deployment using a self-signed certificate, users must insert the certificate into their local truststore.
+
+### Installing the Certificate on Mac OS X
+
+Enter the following command to place the self-signed certificate file `server.crt` into your local truststore.
+
+<pre class="terminal">$ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain server.crt</pre>
+
+### Installing the Certificate on Linux
+
+Open your local truststore file and add the contents of the self-signed certificate file `server.crt`. The location of the truststore file varies depending on your Linux distribution.
+<UL>
+<li>Debian/Ubuntu/Gentoo: `/etc/ssl/certs/ca-certificates.crt`</li>
+<li>Fedora/RHEL: `/etc/pki/tls/certs/ca-bundle.crt`</li>
+</ul>
+
+### Installing the Certificate on Windows
+
+1. Right-click on the self-signed certificate file `server.crt` and click **Install Certificate**. 
+
+1. Choose to install the certificate as the **Current User** or **Local Machine**. Choose the **Trusted Root Certification Authorities** as the destination for the certificate.
