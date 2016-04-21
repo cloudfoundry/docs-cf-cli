@@ -6,10 +6,10 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf - A command line tool to interact with Cloud Foundry</p>
 
 ## <a id='usage'></a> Usage
-<p>[environment variables] cf [global options] command [arguments...] [command options]</p>
+<p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.16.1+924508c-2016-02-26</p>
+<p>6.17.0+5d0be0a-2016-04-15</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -27,6 +27,10 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/help.html' target='_blank'>help</a></td>
       <td>Show help</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/version.html' target='_blank'>version</a></td>
+      <td>Print the version</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/login.html' target='_blank'>login</a></td>
@@ -298,11 +302,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/bind-route-service.html' target='_blank'>bind-route-service</a></td>
-      <td>Bind a service instance to a route</td>
+      <td>Bind a service instance to an HTTP route</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/unbind-route-service.html' target='_blank'>unbind-route-service</a></td>
-      <td>Unbind a service instance from a route</td>
+      <td>Unbind a service instance from an HTTP route</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -447,6 +451,14 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/delete-shared-domain.html' target='_blank'>delete-shared-domain</a></td>
       <td>Delete a shared domain</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/router-groups.html' target='_blank'>router-groups</a></td>
+      <td>List router groups</td>
     </tr>
   </tbody>
 </table>
@@ -1069,16 +1081,12 @@ title: Cloud Foundry CLI Reference Guide
       <td></td>
     </tr>
     <tr>
-      <td>--version, -v</td>
-      <td>Print the version</td>
-    </tr>
-    <tr>
-      <td>--build, -b</td>
-      <td>Print the version of Go the CLI was built against</td>
-    </tr>
-    <tr>
       <td>--help, -h</td>
       <td>Show help</td>
+    </tr>
+    <tr>
+      <td>-v</td>
+      <td>Print API request diagnostics to stdout</td>
     </tr>
   </tbody>
 </table>
