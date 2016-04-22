@@ -5,33 +5,37 @@ owner: CLI
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use the cf CLI to communicate securely with a Cloud Foundry deployment using a self-signed certificate without specifying `--skip-ssl-validation`.
+This topic describes how developers can use the cf CLI to communicate securely with a Cloud Foundry (CF) deployment without specifying `--skip-ssl-validation` under the following circumstances:
 
-Before following the procedure below, you must generate a self-signed certificate and insert the certificate into the router properties of your manifest. Review the [Securing Traffic into Cloud Foundry](../adminguide/securing-traffic.html) topic for more information.
+* The deployment uses a self-signed certificate.
+* The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA.
+
+Before following the procedure below, the developer must obtain either the self-signed certificate or the intermediate and CA certificate(s) used to sign the deployment’s certificate. The developer can obtain these certificates from the CF operator or from the deployment manifest. Review the [Securing Traffic into Cloud Foundry](../adminguide/securing-traffic.html) topic for more information on how to retrieve certificates from the deployment manifest.
 
 ## <a id="install-local"></a>Install the Certificate on Local Machines ##
 
-All users who want to use the cf CLI to communicate securely with a deployment using a self-signed certificate must insert the certificate into their local truststore.
+The certificates that developers must insert into their local truststore vary depending on the configuration of the deployment. 
+
+* If the deployment uses a self-signed certificate, the developer must insert the self-signed certificate into their local truststore.
+* If the deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA, the developer must insert the self-signed certificate and any intermediate certificates into their local truststore.
 
 ### <a id="macosx"></a>Installing the Certificate on Mac OS X
 
-Enter the following command to place the self-signed certificate file `server.crt` into your local truststore.
+Enter the following command to place a certificate file `server.crt` into your local truststore:
 
 <pre class="terminal">$ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain server.crt</pre>
 
 ### <a id="linux"></a>Installing the Certificate on Linux
 
-Open your local truststore file and add the contents of the self-signed certificate file `server.crt`. The location of the truststore file varies depending on your Linux distribution. 
-
-Perform the following steps specific to your distribution to display the contents of your truststore file in the terminal.
+Perform the following steps specific to your distribution to place the certificate file `server.crt` into your truststore:
 
 <ul>
-<li>Debian/Ubuntu/Gentoo: <pre class="terminal">$ cat /etc/ssl/certs/ca-certificates.crt</pre></li>
-<li>Fedora/RHEL: <pre class="terminal">/etc/pki/tls/certs/ca-bundle.crt</pre></li>
+<li>Debian/Ubuntu/Gentoo: <pre class="terminal">$ cat server.crt >> /etc/ssl/certs/ca-certificates.crt</pre></li>
+<li>Fedora/RHEL: <pre class="terminal">$ cat server.crt >> /etc/pki/tls/certs/ca-bundle.crt</pre></li>
 </ul>
 
 ### <a id="windows"></a>Installing the Certificate on Windows
 
-1. Right-click on the self-signed certificate file `server.crt` and click **Install Certificate**. 
+1. Right-click on the certificate file and click **Install Certificate**. 
 
 1. Choose to install the certificate as the **Current User** or **Local Machine**. Choose the **Trusted Root Certification Authorities** as the certification store.
