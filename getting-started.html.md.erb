@@ -5,17 +5,12 @@ owner: CLI
 
 <strong><%= modified_date %></strong>
 
-This topic covers how to get started with and configure the cf CLI. This page assumes you have the latest version of the cf CLI. See the [Installing the cf Command Line Interface](./install-go-cli.html) topic for installation instructions.
+This topic covers how to configure and get started with the cf CLI. This page assumes you have the latest version of the cf CLI. 
+See the [Installing the cf Command Line Interface](./install-go-cli.html) topic for installation instructions.
 
-##<a id='i18n'></a>Localization ##
+##<a id='i18n'></a>Localize ##
 
-The cf CLI translates terminal output into the language that you select. The default language is <code>en\_US</code>. Run <code>cf config --locale YOUR_LANGUAGE </code> to set the language.  For example:
-
-<pre class="terminal">
-cf config --locale pt_BR
-</pre>
-
-The cf CLI currently supports the following languages:
+The cf CLI translates terminal output into the language that you select. The default language is <code>en\_US</code>. The cf CLI supports the following languages:
 
 *  Chinese (simplified): <code>zh\_Hans</code>
 *  Chinese (traditional): <code>zh\_Hant</code>
@@ -28,206 +23,230 @@ The cf CLI currently supports the following languages:
 *  Portuguese (Brazil): <code>pt\_BR</code>
 *  Spanish: <code>es\_ES</code>
 
-<p class='note'><strong>Note</strong>: Localization affects only messages that the cf CLI generates. </p>
+Use [cf config](./cf-help.html#advanced) to set the language. To set the language with `cf config`, use the syntax: <code>$ cf config --locale YOUR_LANGUAGE </code>.  
+
+For example, to set the language to Portuguese and confirm the change by running `cf help`:
+
+<pre class="terminal">
+$ cf config --locale pt_BR
+$ cf help
+NOME:
+   cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
+
+USO:
+   [variáveis de ambiente] cf [opções globais] comando [argumentos...] [opções de comando]
+
+VERSÃO:
+   6.14.1+dc6adf6-2015-12-22
+   ...
+</pre>
+
+<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
 
 ## <a id='login'></a>Login ##
 
-The `cf login` command allows you to specify a target API endpoint, [organization](#domains-etc), and [space](#domains-etc):
+Use [cf login](./cf-help.html#getting-started) to log in to <%= vars.product_short %>. The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: <code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.  
+
+* `API_URL`: This is your API endpoint, <%=vars.api_endpoint%>.
+* `USERNAME`: Your username.
+* `PASSWORD`: Your password. <%=vars.pcf_rec%> discourages using the `-p` option, which may record your password in your shell history. 
+* `ORG`: The org where you want to deploy your apps.
+* `SPACE`: The space in the org where you want to deploy your apps.
+
+The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically.
 
 <pre class="terminal">
-$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
+$ cf login -a http://api.example.com -u username<span>@</span>example.com
+API endpoint: https://api.example.com
+
+Password>
+Authenticating...
+OK
+
+Select an org (or press enter to skip):
+1. example-org
+2. example-other-org
+
+Org> 1
+Targeted org example-org
+
+Select a space (or press enter to skip):
+1. development
+2. staging
+3. production
+
+Space> 1
+Targeted space development
+
 </pre>
 
-* **API endpoint**: This is <%=vars.api_endpoint%>.
-* **Username**: Your username.
-* **Password**: Your password.
-* **Org**: The organization where you want to deploy your application.
-* **Space**: The space in the organization where you want to deploy your application.
+Alternatively, you can write a script to log in and set your target using the non-interactive [cf api](./cf-help.html#getting-started), [cf auth](./cf-help.html#getting-started), and [cf target](./cf-help.html#getting-started) commands.
 
-If you have only one organization and one space, you can omit them because `cf login` targets them automatically.
-
-Alternatively, you can write a script to log in and set your target, using the non-interactive `cf api`, `cf auth`, and `cf target` commands.
-
-Upon successful login, the cf CLI saves a `config.json` file containing your API endpoint, organization, space values, and access token. If you change these settings, the `config.json` file is updated accordingly.
+Upon successful login, the cf CLI saves a `config.json` file containing your API endpoint, org, space values, and access token. 
+If you change these settings, the `config.json` file is updated accordingly.
 
 By default, `config.json` is located in your `~/.cf` directory. The `CF_HOME` environment variable allows you to locate the `config.json` file wherever you like.
 
-
 ## <a id='user-roles'></a> Users and Roles ##
 
-<p class="note"><strong>Note</strong>: You cannot perform certain tasks in the CLI because these are commands that only a <%=vars.product_short%> administrator can run. If you are not a <%=vars.product_short%> administrator, the following message displays for these types of commands:
+The cf CLI includes commands that list users and assign roles in orgs and spaces. See the [Orgs, Spaces, Roles, and Permissions](../concepts/roles.html) topic.
 
-<code>error code: 10003, message: You are not authorized to perform the requested action</code>
+<strong>Commands for listing users.</strong> These commands take an org or space as an argument:
 
-</p>
+* [cf org-users](./cf-help.html#user-admin)
 
-Commands for listing users:
+* [cf space-user](./cf-help.html#user-admin)
 
-* `cf org-users` --- List users in the organization by role.
-* `cf space-users` --- List users in the space by role.
-
-Commands for managing roles (admin-only):
-
-* `cf set-org-role` --- Assign an organization role to a user. The available roles are "OrgManager", "BillingManager", and "OrgAuditor".
-* `cf unset-org-role` --- Remove an organization role from a user.
-* `cf set-space-role` --- Assign a space role to a user. The available roles are "SpaceManager", "SpaceDeveloper", and "SpaceAuditor".
-* `cf unset-space-role` --- Remove a space role from a user.
-
-## <a id='domains-etc'></a> Domains, Routes, Organizations, and Spaces ##
-
-cf CLI treats domains, routes, organizations, and spaces such that:
-
-* All domains are mapped to an org.
-* Routes are scoped to spaces and apps.
-
-A route is a URL of the form `HOSTNAME.DOMAIN`.
-If you do not provide a hostname (also known as subdomain), the URL takes the form `APPNAME.DOMAIN`.
-
-The cf CLI separates between management of private domains and management of shared domains. Only administrators can manage shared domains.
-
-In terms of domains, cf CLI is designed to work with both new and older versions of `cf_release`.
-
-Commands for managing domains:
-
-* `cf create-domain` --- Create a domain.
-* `cf delete-domain` --- Delete a domain.
-* `cf create-shared-domain` --- Share a domain with all organizations. Admin only.
-* `cf delete-shared-domain` --- Delete a domain that was shared with all organizations. Admin only.
-
-Commands for managing routes:
-
-* `cf create-route` --- Create a route.
-* `cf map-route` --- Map a route to an application. If the route does not exist, this command creates it and then maps it.
-* `cf unmap-route` --- Remove a route from an application.
-* `cf delete-route` --- Delete a route.
-
-### <a id='domains-example'></a> Mapping a Route ###
-
-1. Create a domain in the desired organization using `cf create-domain`, unless the domain already exists in (or has been shared with) the organization.
-1. Map the domain to an application using `cf map-route`. Specify a unique hostname for each route that uses the same domain with `-n HOSTNAME`.
-
-<p class ="note"><strong>Note</strong>: You can map a single route to multiple applications in the same space.
-See <a href="../devguide/deploy-apps/blue-green.html">Blue-Green Deployment</a> to learn about an important extension of this technique.</p>
-
-## <a id='push'></a>Push ##
-
-The `cf push` command allows you to push an app or sync changes to an existing app:
+For example, to list the users who are members of an org:
 
 <pre class="terminal">
-$ cf push APP [-b URL] [-c COMMAND] [-d DOMAIN] [-i NUM_INSTANCES] [-m MEMORY] /
-[-n HOST] [-p PATH] [-s STACK] [--no-hostname] [--no-route] [--no-start]
+$ cf org-users example-org
+Getting users in org example-org as username<span>@</span>example.com...
+
+ORG MANAGER
+  username<span>@</span>example.com
+
+BILLING MANAGER
+  huey<span>@</span>example.com
+  dewey<span>@</span>example.com
+
+ORG AUDITOR
+  louie<span>@</span>example.com
 </pre>
 
-* `APP` --- The name of the application to push is the only required argument, and the only argument that has no flag. Even `APP` can be omitted when you provide the application name in a manifest.
+<strong>Commands for managing roles.</strong> These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
 
-* `-b` --- Custom buildpack by name (e.g. `my-buildpack`), Git URL (For example, https://github.com/cloudfoundry/java-buildpack.git), or Git URL with a branch or tag: https://github.com/cloudfoundry/java-buildpack.git#v3.3.0 to select `v3.3.0`.
+* [cf set-org-role](./cf-help.html#user-admin)
 
-* `-m` --- Memory limit requires a unit of measurement: `M`,`MB`,`G`, or `GB`, in upper case or lower case.
-* `-t` --- Timeout allows you to give your application more time to start, up to 180 seconds.
-* `--no-manifest` -- Forces the cf CLI to ignore any existing manifest.
-* `--no-hostname` -- Makes it possible to specify a route with a domain but no hostname.
-* `--no-route` -- Removes existing and suppresses new external routes to your application. Use this flag when pushing worker apps.
+* [cf unset-org-role](./cf-help.html#user-admin)
 
-Other arguments include:
+* [cf set-space-role](./cf-help.html#user-admin)
 
-* `-c` --- Start command for the application.
-* `-d` --- Domain, for example, example.com.
-* `-f` --- Path to manifest.
-* `-i` --- Number of instances of the application to run.
-* `-m` --- Memory limit, for example, 256, 1G, 1024M, and so on.
-* `-n` --- Hostname, for example, `my-subdomain`.
-* `-p` --- Path to application directory or archive.
-* `-s` --- Stack to use.
-* `-t` --- Timeout to start in seconds.
-* `--no-hostname` --- Map the root domain to this application.
-* `--no-manifest` --- Ignore manifests if they exist.
-* `--no-route` --- Do not map a route to this application. Also removes existing routes from previous pushes of this app.
-* `--no-start` --- Do not start the application after pushing.
+* [cf unset-space-role](./cf-help.html#user-admin)
 
-<p class ="note"><strong>Note</strong>: To push a sample app, see the <a href="../buildpacks/">Buildpacks</a> topic.</p>
+Available roles are "OrgManager", "BillingManager", "OrgAuditor", "SpaceManager", "SpaceDeveloper", and "SpaceAuditor". For example, to grant the Org Manager role to a user within an org:
+
+<pre class="terminal">
+$ cf set-org-role huey@example.com example-org OrgManager
+
+Assigning role OrgManager to user huey<span>@</span>example.com in org example-org as username<span>@</span>example.com...
+OK
+</pre>
+
+<p class="note"><strong>Note</strong>: If you are not a <%=vars.product_short%> admin, you see this message when you try to run these commands:
+<code>error code: 10003, message: You are not authorized to perform the requested action</code></p>
+
+
+## <a id='push'></a>Push
+
+The [cf push](./cf-help.html#apps) command pushes a new app or syncs changes to an existing app.
+
+If you do not provide a hostname (also known as subdomain), `cf push` routes your app to a URL of the form `APPNAME.DOMAIN` based on the name of your app and your default domain. 
+If you want to map a different route to your app, see the [Routes and Domains](../devguide/deploy-apps/routes-domains.html) topic for information about creating routes. 
+
+The `cf push` command supports many options that determine how and where the app instances are deployed. For details about the `cf push` command, see the [push](./cf-help.html#apps) entry in the Apps section of the Cloud Foundry CLI Reference Guide.
+
+The following example pushes an application called `my-awesome-app` using the Ruby buildpack to the URL `http://my-awesome-app.example.com`: 
+
+<pre class="terminal">
+$ cf push my-awesome-app -b ruby_buildpack
+Creating app my-awesome-app in org example-org / space development as username@example.com...
+OK
+
+Creating route my-awesome-app.example.com...
+OK
+...
+
+1 of 1 instances running
+
+App started
+...
+
+requested state: started
+instances: 1/1
+usage: 1G x 1 instances
+urls: example-deleteme.cfapps.io
+last uploaded: Wed Jun 8 23:43:15 UTC 2016
+stack: cflinuxfs2
+buildpack: ruby_buildpack
+
+     state     since                    cpu    memory    disk      details
+#0   running   2016-06-08 04:44:07 PM   0.0%   0 of 1G   0 of 1G
+</pre>
+
+For more information about available buildpacks, see the <a href="../buildpacks/">Buildpacks</a> topic.
 
 ## <a id='user-provided'></a> User-Provided Service Instances ##
 
-The cf CLI has three ways of creating and updating user-provided service instances: interactively, non-interactively, and in conjunction with third-party log management software as described in [RFC 6587](http://tools.ietf.org/html/rfc6587). When used with third-party logging, the cf CLI sends data formatted according to [RFC 5424](http://tools.ietf.org/html/rfc5424).
+To create or update a user-provided service instance, you need to supply basic parameters. For example a database service might require a username, password, host, port, and database name.
 
-Once created, user-provided service instances can be bound to an application with `cf bind-service`, unbound with `cf unbind-service`, renamed with `cf rename-service`, and deleted with `cf delete-service`.
+The cf CLI has three ways of supplying these parameters to create or update an instance of a service: interactively, non-interactively, and in conjunction with 
+third-party log management software as described in [RFC 6587](http://tools.ietf.org/html/rfc6587). When used with third-party logging, the cf CLI sends data formatted according to [RFC 5424](http://tools.ietf.org/html/rfc5424).
 
-### <a id='user-cups'></a>The cf create-user-provided-service Command ###
+You create a service instance with `cf cups` and update one with `cf uups` as described below. 
 
-The alias for `create-user-provided-service` is `cups`.
+### <a id='user-cups'></a>The cf create-user-provided-service (cups) Command ###
 
-To create a service instance in interactive mode, use the `-p` option with a comma-separated list of parameter names.
-The cf CLI then prompts you for each parameter in turn.
+Use [cf create-user-provided-service](./cf-help.html#services) (alias `cf cups`) creates a new service instance.
 
-  <pre class="terminal">cf cups SERVICE_INSTANCE -p host, port, dbname, username, password</pre>
+**Interactive** --- For example, to create a service instance for a database service, 
+this command prompts for the parameters specified in a comma-separated list after the `-p` flag.  
 
-To create a service instance non-interactively, use the `-p` option with a JSON hash of parameter keys and values.
+  <pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
+host> mysql.example.com
+port> 1433
+dbname> mysqldb
+username> admin
+password> Pa55w0rd
+Creating user provided service sql-service-instance in org example-org / space development as username@example.com...
+OK
+</pre>
 
-  <pre class="terminal">cf cups SERVICE_INSTANCE -p '{"username":"admin","password":"pa55woRD"}'</pre>
+**Non-interactive** --- This example resembles the one above except that you pass in parameters and their values as a JSON hash, bound by single quotes.
 
-To create a service instance that drains information to third-party log management software, use the `-l SYSLOG_DRAIN_URL` option.
+  <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
+  Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
+OK
+</pre>
 
-  <pre class="terminal">cf cups SERVICE_INSTANCE -l syslog://example.com:514</pre>
+**Third-party** --- This example creates a service instance that drains information to third-party log management software using the `-l SYSLOG_DRAIN_URL` option. 
+For specific log service instructions, see the [Service-Specific Instructions for Streaming Application Logs](../devguide/services/log-management-thirdparty-svc.html) topic.
 
-### <a id='user-uups'></a> The cf update-user-provided-service Command ###
+  <pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
+Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
+OK
+</pre>
 
-The alias for `update-user-provided-service` is `uups`.
-Use `cf update-user-provided-service` to update one or more of the attributes for a user-provided service instance.
-Attributes that you do not supply are not updated.
+After you create a user-provided service instance, you bind it to an app with [cf bind-service](./cf-help.html#services), 
+unbind it with [cf unbind-service](./cf-help.html#services), rename it with [cf rename-service](./cf-help.html#services), and delete it with [cf delete-service](./cf-help.html#services).
 
-To update a service instance non-interactively, use the `-p` option with a JSON hash of parameter keys and values.
+### <a id='user-uups'></a> The cf update-user-provided-service (uups) Command ###
 
-  <pre class="terminal">cf uups SERVICE_INSTANCE -p '{"username":"USERNAME","password":"PASSWORD"}'</pre>
-
-To update a service instance that drains information to third-party log management software, use the `-l SYSLOG_DRAIN_URL` option.
-
-  <pre class="terminal">cf uups SERVICE_INSTANCE -l syslog://example.com:514</pre>
-
+Use [cf update-user-provided-service](./cf-help.html#services) (alias `cf uups`) to update one or more of the parameters for an existing user-provided service instance. 
+The `cf uups` command uses the same syntax as `cf cups` [above](#user-cups) to set parameter values. The `cf uups` command does not update any parameter values that you do not supply.
 
 ## <a id='return-codes'></a> cf CLI Return Codes ##
 
-The cf CLI uses exit codes, which is helpful for scripting and for confirming that a command has run successfully. For example, run `echo $?` in the terminal. If the return code is `0`, the command was successful.
+The cf CLI uses exit codes, which help with scripting and confirming that a command has run successfully. For example, after you run a cf CLI command, you can retrieve its return code by running `echo $?`. If the return code is `0`, the command was successful.
 
-## <a id='help'></a> Run cf help ##
+## <a id='help'></a> The cf help Command ##
 
-Run `cf help` to view a list of all cf CLI commands and a brief description of each.
-Run `cf COMMAND -h` to view detailed help, including any alias, for any command. For example, the output below shows all the commands, and the alias, related to `push`:
+The `cf help` command lists the cf CLI commands and a brief description of each.
+Passing the `-h` flag to any command lists detailed help, including any aliases. For example, to see detailed help for `cf delete`, run:
 
 <pre class="terminal">
-	$ cf p -h
-	NAME:
-	   push - Push a new app or sync changes to an existing app
+$ cf delete -h
+NAME:
+   delete - Delete an app
 
-	ALIAS:
-	   p
+USAGE:
+   cf delete APP_NAME [-f -r]
 
-	USAGE:
-	   Push a single app (with or without a manifest):
-	   cf push APP [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH]
-	   [-i NUM_INSTANCES] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT]
-	   [--no-hostname] [--no-manifest] [--no-route] [--no-start]
+ALIAS:
+   d
 
-	   Push multiple apps with a manifest:
-	   cf push [-f MANIFEST_PATH]
-
-	OPTIONS:
-	   -b             Custom buildpack by name (e.g. my-buildpack) or GIT URL
-	                  (e.g. https://github.com/cloudfoundry/java-buildpack.git)
-	   -c             Startup command, set to null to reset to default start command
-	   -d             Domain (e.g. example.com)
-	   -f             Path to manifest
-	   -i             Number of instances
-	   -m             Memory limit (e.g. 256M, 1024M, 1G)
-	   -n             Hostname (e.g. my-subdomain)
-	   -p             Path of app directory or zip file
-	   -s             Stack to use
-	   -t             Start timeout in seconds
-	   --no-hostname    Map the root domain to this app
-	   --no-manifest    Ignore manifest file
-	   --no-route        Do not map a route to this app
-	   --no-start        Do not start an app after pushing
-
+OPTIONS:
+   -f       Force deletion without confirmation
+   -r       Also delete any mapped routes
 </pre>
-
-
 
