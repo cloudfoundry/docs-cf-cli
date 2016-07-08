@@ -146,7 +146,9 @@ If you want to map a different route to your app, see the [Routes and Domains](.
 
 The `cf push` command supports many options that determine how and where the app instances are deployed. For details about the `cf push` command, see the [push](http://cli.cloudfoundry.org/en-US/cf/push.html) page in the Cloud Foundry CLI Reference Guide.
 
-The following example pushes an application called `my-awesome-app` using the Ruby buildpack to the URL `http://my-awesome-app.example.com`: 
+The following example pushes an app called `my-awesome-app` to the URL `http://my-awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag.
+
+<p class="note"><strong>Note</strong>: When you push an app and specify a buildpack with the <code>-b</code> flag, the app remains permanently linked to that buildpack. To use the app with a different buildpack, you must delete the app and re-push it.</p>
 
 <pre class="terminal">
 $ cf push my-awesome-app -b ruby_buildpack
