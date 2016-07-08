@@ -23,7 +23,7 @@ The cf CLI translates terminal output into the language that you select. The def
 *  Portuguese (Brazil): <code>pt-BR</code>
 *  Spanish: <code>es-ES</code>
 
-Use [cf config](./cf-help.html#advanced) to set the language. To set the language with `cf config`, use the syntax: <code>$ cf config --locale YOUR_LANGUAGE </code>.  
+Use [cf config](http://cli.cloudfoundry.org/en-US/cf/config.html) to set the language. To set the language with `cf config`, use the syntax: <code>$ cf config --locale YOUR_LANGUAGE </code>.  
 
 For example, to set the language to Portuguese and confirm the change by running `cf help`:
 
@@ -45,7 +45,7 @@ VERSÃO:
 
 ## <a id='login'></a>Login ##
 
-Use [cf login](./cf-help.html#getting-started) to log in to <%= vars.product_short %>. The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: <code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.  
+Use [cf login](http://cli.cloudfoundry.org/en-US/cf/login.html) to log in to <%= vars.product_short %>. The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: <code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.  
 
 * `API_URL`: This is your API endpoint, <%=vars.api_endpoint%>.
 * `USERNAME`: Your username.
@@ -80,7 +80,7 @@ Targeted space development
 
 </pre>
 
-Alternatively, you can write a script to log in and set your target using the non-interactive [cf api](./cf-help.html#getting-started), [cf auth](./cf-help.html#getting-started), and [cf target](./cf-help.html#getting-started) commands.
+Alternatively, you can write a script to log in and set your target using the non-interactive [cf api](http://cli.cloudfoundry.org/en-US/cf/api.html), [cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html), and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands.
 
 Upon successful login, the cf CLI saves a `config.json` file containing your API endpoint, org, space values, and access token. 
 If you change these settings, the `config.json` file is updated accordingly.
@@ -93,9 +93,9 @@ The cf CLI includes commands that list users and assign roles in orgs and spaces
 
 <strong>Commands for listing users.</strong> These commands take an org or space as an argument:
 
-* [cf org-users](./cf-help.html#user-admin)
+* [cf org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html)
 
-* [cf space-users](./cf-help.html#user-admin)
+* [cf space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html)
 
 For example, to list the users who are members of an org:
 
@@ -116,13 +116,13 @@ ORG AUDITOR
 
 <strong>Commands for managing roles.</strong> These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
 
-* [cf set-org-role](./cf-help.html#user-admin)
+* [cf set-org-role](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html)
 
-* [cf unset-org-role](./cf-help.html#user-admin)
+* [cf unset-org-role](http://cli.cloudfoundry.org/en-US/cf/unset-org-role.html)
 
-* [cf set-space-role](./cf-help.html#user-admin)
+* [cf set-space-role](http://cli.cloudfoundry.org/en-US/cf/set-space-role.html)
 
-* [cf unset-space-role](./cf-help.html#user-admin)
+* [cf unset-space-role](http://cli.cloudfoundry.org/en-US/cf/unset-space-role.html)
 
 Available roles are "OrgManager", "BillingManager", "OrgAuditor", "SpaceManager", "SpaceDeveloper", and "SpaceAuditor". For example, to grant the Org Manager role to a user within an org:
 
@@ -139,7 +139,7 @@ OK
 
 ## <a id='push'></a>Push
 
-The [cf push](./cf-help.html#apps) command pushes a new app or syncs changes to an existing app.
+The [cf push](http://cli.cloudfoundry.org/en-US/cf/push.html) command pushes a new app or syncs changes to an existing app.
 
 If you do not provide a hostname (also known as subdomain), `cf push` routes your app to a URL of the form `APPNAME.DOMAIN` based on the name of your app and your default domain. 
 If you want to map a different route to your app, see the [Routes and Domains](../devguide/deploy-apps/routes-domains.html) topic for information about creating routes. 
@@ -187,7 +187,7 @@ You create a service instance with `cf cups` and update one with `cf uups` as de
 
 ### <a id='user-cups'></a>The cf create-user-provided-service (cups) Command ###
 
-Use [cf create-user-provided-service](./cf-help.html#services) (alias `cf cups`) creates a new service instance.
+Use [cf create-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) (alias `cf cups`) creates a new service instance.
 
 **Interactive** --- For example, to create a service instance for a database service, 
 this command prompts for the parameters specified in a comma-separated list after the `-p` flag.  
@@ -217,12 +217,12 @@ Creating user provided service mylog in org example-org / space development as u
 OK
 </pre>
 
-After you create a user-provided service instance, you bind it to an app with [cf bind-service](./cf-help.html#services), 
-unbind it with [cf unbind-service](./cf-help.html#services), rename it with [cf rename-service](./cf-help.html#services), and delete it with [cf delete-service](./cf-help.html#services).
+After you create a user-provided service instance, you bind it to an app with [cf bind-service](http://cli.cloudfoundry.org/en-US/cf/bind-service.html), 
+unbind it with [cf unbind-service](http://cli.cloudfoundry.org/en-US/cf/unbind-service.html), rename it with [cf rename-service](http://cli.cloudfoundry.org/en-US/cf/rename-service.html), and delete it with [cf delete-service](http://cli.cloudfoundry.org/en-US/cf/delete-service.html).
 
 ### <a id='user-uups'></a> The cf update-user-provided-service (uups) Command ###
 
-Use [cf update-user-provided-service](./cf-help.html#services) (alias `cf uups`) to update one or more of the parameters for an existing user-provided service instance. 
+Use [cf update-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html) (alias `cf uups`) to update one or more of the parameters for an existing user-provided service instance. 
 The `cf uups` command uses the same syntax as `cf cups` [above](#user-cups) to set parameter values. The `cf uups` command does not update any parameter values that you do not supply.
 
 ## <a id='return-codes'></a> cf CLI Return Codes ##
@@ -231,7 +231,7 @@ The cf CLI uses exit codes, which help with scripting and confirming that a comm
 
 ## <a id='help'></a> The cf help Command ##
 
-The `cf help` command lists the cf CLI commands and a brief description of each.
+The [cf help](http://cli.cloudfoundry.org/en-US/cf) command lists the cf CLI commands and a brief description of each.
 Passing the `-h` flag to any command lists detailed help, including any aliases. For example, to see detailed help for `cf delete`, run:
 
 <pre class="terminal">
