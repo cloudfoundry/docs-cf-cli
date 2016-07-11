@@ -91,7 +91,9 @@ By default, `config.json` is located in your `~/.cf` directory. The `CF_HOME` en
 
 The cf CLI includes commands that list users and assign roles in orgs and spaces. See the [Orgs, Spaces, Roles, and Permissions](../concepts/roles.html) topic.
 
-<strong>Commands for listing users.</strong> These commands take an org or space as an argument:
+### <a id='listing-users'></a>Commands for Listing Users ###
+
+These commands take an org or space as an argument:
 
 * [cf org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html)
 
@@ -114,7 +116,9 @@ ORG AUDITOR
   louie<span>@</span>example.com
 </pre>
 
-<strong>Commands for managing roles.</strong> These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
+### <a id='managing-roles'></a>Commands for Managing Roles ###
+
+These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
 
 * [cf set-org-role](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html)
 
@@ -191,8 +195,7 @@ You create a service instance with `cf cups` and update one with `cf uups` as de
 
 Use [cf create-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) (alias `cf cups`) creates a new service instance.
 
-**Interactive** --- For example, to create a service instance for a database service, 
-this command prompts for the parameters specified in a comma-separated list after the `-p` flag.  
+**To supply service instance parameters interactively:** Specify parameters in a comma-separated list after the `-p` flag. This example command-line session creates a service instance for a database service.  
 
   <pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
 host> mysql.example.com
@@ -204,15 +207,14 @@ Creating user provided service sql-service-instance in org example-org / space d
 OK
 </pre>
 
-**Non-interactive** --- This example resembles the one above except that you pass in parameters and their values as a JSON hash, bound by single quotes.
+**To supply service instance parameters to `cf cups` non-interactively:** Pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag. This example is a non-interactive version of the `cf cups` session above.
 
   <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
   Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
 OK
 </pre>
 
-**Third-party** --- This example creates a service instance that drains information to third-party log management software using the `-l SYSLOG_DRAIN_URL` option. 
-For specific log service instructions, see the [Service-Specific Instructions for Streaming Application Logs](../devguide/services/log-management-thirdparty-svc.html) topic.
+**To create a service instance that sends data to a third-party:** Use the `-l` option followed by the external destination URL. This example creates a service instance that sends log information to the syslog drain URL of a third-party log management service. For specific log service instructions, see the [Service-Specific Instructions for Streaming Application Logs](../devguide/services/log-management-thirdparty-svc.html) topic.
 
   <pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
 Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
