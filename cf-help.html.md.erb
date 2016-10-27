@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.22.1+6b7af9c-2016-09-24</p>
+<p>6.22.2+a95e24c-2016-10-27</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -118,11 +118,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart.html' target='_blank'>restart</a></td>
-      <td>Restart an app</td>
+      <td>Stop all instances of the app, then start them again. This may cause downtime.</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restage.html' target='_blank'>restage</a></td>
-      <td>Restage an app</td>
+      <td>Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.)</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart-app-instance.html' target='_blank'>restart-app-instance</a></td>
@@ -1039,6 +1039,10 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td>CF_COLOR=false</td>
       <td>Do not colorize output</td>
+    </tr>
+    <tr>
+      <td>CF_DIAL_TIMEOUT=5</td>
+      <td>Max wait time to establish a connection, including name resolution, in seconds</td>
     </tr>
     <tr>
       <td>CF_HOME=path/to/dir/</td>
