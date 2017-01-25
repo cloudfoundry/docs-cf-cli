@@ -16,7 +16,7 @@ Refer to the [Installing the Cloud Foundry Command Line Interface](./install-go-
 ### Installing the Architecture ###
 
 1. Implement the [predefined plugin interface](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go).
-1. Clone the [template repo](https://github.com/cloudfoundry/cli). You will need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin_examples/basic_plugin.go).
+1. Clone the [template repo](https://github.com/cloudfoundry/cli). You will need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
 
 ### Initializing the Plugin ###
 
@@ -34,7 +34,7 @@ The `cliConnection.CliCommand([]args)` returns the output printed by the command
 The output is returned as a slice of strings.
 The error will be present if the call to the CLI command fails.
 
-For more information, see the [calling CLI commands example](https://github.com/cloudfoundry/cli/blob/master/plugin_examples/call_cli_cmd/main/call_cli_cmd.go).
+For more information, see the [calling CLI commands example](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/call_cli_cmd/main/call_cli_cmd.go).
 
 ### Installing a Plugin ###
 
