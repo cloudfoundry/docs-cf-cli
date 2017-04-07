@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.25.0+787326d.2017-02-28</p>
+<p>6.26.0+9c9a261.2017-04-06</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -911,6 +911,50 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-running-environment-variable-group.html' target='_blank'>set-running-environment-variable-group</a></td>
       <td>Pass parameters as JSON to create a running environment variable group</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='isolation-segments'></a> Isolation Segments
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/isolation-segments.html' target='_blank'>isolation-segments</a></td>
+      <td>List all isolation segments</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/create-isolation-segment.html' target='_blank'>create-isolation-segment</a></td>
+      <td>Create an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/delete-isolation-segment.html' target='_blank'>delete-isolation-segment</a></td>
+      <td>Delete an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/enable-org-isolation.html' target='_blank'>enable-org-isolation</a></td>
+      <td>Entitle an organization to an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/disable-org-isolation.html' target='_blank'>disable-org-isolation</a></td>
+      <td>Revoke an organization's entitlement to an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-space-isolation-segment.html' target='_blank'>set-space-isolation-segment</a></td>
+      <td>Assign the isolation segment that apps in a space are started in</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/reset-space-isolation-segment.html' target='_blank'>reset-space-isolation-segment</a></td>
+      <td>Reset the isolation segment assignment of a space to the org's default</td>
     </tr>
   </tbody>
 </table>
