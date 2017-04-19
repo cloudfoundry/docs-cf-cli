@@ -28,7 +28,7 @@ For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plugins 
     <p class="note"><strong>Note</strong>: The cf CLI requires a binary file compiled from source code written in Go. If you
 download source code, you must compile the code to create a binary.</p>
 
-1. Run `cf install-plugin BINARY_FILENAME` to install a plugin. Replace `BINARY_FILENAME` with the path to and name of your binary file.
+1. Run `cf install-plugin BINARY-FILENAME` to install a plugin. Replace `BINARY-FILENAME` with the path to and name of your binary file.
 
     <p class="note"><strong>Note</strong>:
     You cannot install a plugin that has the same name or that uses the             same command as an existing plugin. You must first uninstall the                existing plugin.
@@ -41,18 +41,18 @@ download source code, you must compile the code to create a binary.</p>
 Use the contents of the `cf help` **PLUGIN** and **PLUGIN COMMANDS** sections to manage plugins and run plugin commands.
 
 1. Run `cf plugins` to list all installed plugins and all commands that the plugins provide.
-1. Run `cf PLUGIN_COMMAND` to execute a plugin command.
+1. Run `cf PLUGIN-COMMAND` to execute a plugin command.
 
 ## <a id="plugin-uninstall"></a>Uninstalling a Plugin ##
 
-Use the `PLUGIN_NAME` to remove a plugin, not the `BINARY_FILENAME`.
+Use the `PLUGIN-NAME` to remove a plugin, not the `BINARY-FILENAME`.
 
 1. Run `cf plugins` to view the names of all installed plugins.
-1. Run `cf uninstall-plugin PLUGIN_NAME` to remove a plugin.
+1. Run `cf uninstall-plugin PLUGIN-NAME` to remove a plugin.
 
-## <a id="adding-plugin-repo"></a>Adding a Plugin Repo ##
+## <a id="adding-plugin-repo"></a>Adding a Plugin Repository ##
 
-Run `cf add-plugin-repo REPO_NAME URL` to add a plugin repo.
+Run `cf add-plugin-repo REPO-NAME-URL` to add a plugin repository.
 
 Example:
 <pre class="terminal">
@@ -61,9 +61,9 @@ OK
 https:/<span>/</span>plugins.cloudfoundry.org/list added as 'CF-Community'
 </pre>
 
-## <a id="listing-plugin-repo"></a>Listing Available Plugin Repos ##
+## <a id="listing-plugin-repo"></a>Listing Available Plugin Repositories ##
 
-Run [cf list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) to view your available plugin repos.
+Run [cf list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) to view your available plugin repositories.
 
 Example:
 <pre class="terminal">
@@ -73,9 +73,9 @@ Repo Name      Url
 CF-Community   https:/<span>/</span>plugins.cloudfoundry.org
 </pre>
 
-## <a id="listing-plugin-repo"></a>Listing All Plugins by Repo ##
+## <a id="listing-plugin-repo"></a>Listing All Plugins by Repository ##
 
-Run [cf repo-plugins](http://cli.cloudfoundry.org/en-US/cf/repo-plugins.html) to show all plugins from all available repos.
+Run [cf repo-plugins](http://cli.cloudfoundry.org/en-US/cf/repo-plugins.html) to show all plugins from all available repositories.
 
 ## <a id="troubleshoot"></a>Troubleshooting ##
 

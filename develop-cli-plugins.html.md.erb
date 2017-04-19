@@ -6,7 +6,7 @@ owner: CLI
 <strong><%= modified_date %></strong>
 
 Users can create and install Cloud Foundry Command Line Interface (cf CLI) plugins to provide custom commands.
-These plugins can be submitted and shared to the [CF Community repo](http://plugins.cloudfoundry.org/ui/).
+These plugins can be submitted and shared to the [CF Community repository](http://plugins.cloudfoundry.org/ui/).
 
 ### Requirements ###
 
@@ -16,25 +16,25 @@ Refer to the [Installing the Cloud Foundry Command Line Interface](./install-go-
 ### Installing the Architecture ###
 
 1. Implement the [predefined plugin interface](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go).
-1. Clone the [template repo](https://github.com/cloudfoundry/cli). You will need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
+1. Clone the [template repository](https://github.com/cloudfoundry/cli). You will need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
 
 ### Initializing the Plugin ###
 
 To initialize a plugin, call `plugin.Start(new(MyPluginStruct))` from within
 the `main()` method of your plugin.
-The `plugin.Start(...)` function requires a new reference to the struct that
+The `plugin.Start(...)` function requires a new reference to the `struct` that
 implements the defined interface.
 
-### Invoking CLI Commands ###
+### Invoking cf CLI Commands ###
 
-Invoke CLI commands with `cliConnection.CliCommand([]args)` from within a plugin's `Run(...)` method.
+Invoke cf CLI commands with `cliConnection.CliCommand([]args)` from within a plugin's `Run(...)` method.
 `The Run(...)` method receives the `cliConnection` as its first argument.
 The `cliConnection.CliCommand([]args)` returns the output printed by the command and an error.
 
 The output is returned as a slice of strings.
-The error will be present if the call to the CLI command fails.
+The error will be present if the call to the cf CLI command fails.
 
-For more information, see the [calling CLI commands example](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/call_cli_cmd/main/call_cli_cmd.go).
+For more information, see the [calling cf CLI commands example](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/call_cli_cmd/main/call_cli_cmd.go).
 
 ### Installing a Plugin ###
 
