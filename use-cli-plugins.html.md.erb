@@ -39,6 +39,21 @@ Use the contents of the `cf help` **PLUGIN** and **PLUGIN COMMANDS** sections to
 1. Run `cf plugins` to list all installed plugins and all commands that the plugins provide.
 1. Run `cf PLUGIN-COMMAND` to execute a plugin command.
 
+## <a id="plugins-outdated"></a>Checking for Plugin Updates ##
+
+Run [cf plugins --outdated](http://cli.cloudfoundry.org/en-US/cf/plugins.html) to check all registered plugin repositories for newer versions of currently installed plugins.
+
+Example:
+<pre class="terminal">
+$ cf plugins --outdated
+Searching CF-Community, company-repo for newer versions of installed plugins...
+
+plugin          version   latest version
+coffeemaker     1.1.2     1.2.0
+
+Use 'cf install-plugin' to update a plugin to the latest version.
+</pre>
+
 ## <a id="plugin-uninstall"></a>Uninstalling a Plugin ##
 
 Use the `PLUGIN-NAME` to remove a plugin, not the `BINARY-FILENAME`.
