@@ -11,10 +11,6 @@ The cf CLI identifies a plugin by its binary filename, its developer-defined plu
 
 <p class="note"><strong>Note</strong>: The cf CLI uses case-sensitive commands, but plugin management commands accept plugin and repository names irrespective of their casing.</p>
 
-## <a id="prereqs"></a>Prerequisites ##
-
-Using plugins requires cf CLI v.6.7 or higher. Refer to the [Installing the cf CLI](./install-go-cli.html) topic for information about downloading, installing, and uninstalling the cf CLI.
-
 ## <a id="plugin-directory"></a>Changing the Plugin Directory ##
 
 By default, the cf CLI stores plugins on your workstation in `$CF_HOME/.cf/plugins` (which defaults to `$HOME/.cf/plugins`). To change the root directory of this path from `$CF_HOME`, set the `CF_PLUGIN_HOME` environment variable. The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plugins in that location.
