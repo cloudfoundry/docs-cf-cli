@@ -31,7 +31,7 @@ download source code, you must compile the code to create a binary.</p>
 1. Run `cf install-plugin BINARY-FILENAME` to install a plugin. Replace `BINARY-FILENAME` with the path to and name of your binary file.
 
     <p class="note"><strong>Note</strong>:
-    You cannot install a plugin that has the same name or that uses the             same command as an existing plugin. You must first uninstall the                existing plugin.
+    You cannot install a plugin that has the same name or that uses the             same command as an existing plugin. You will be prompted to                uninstall the existing plugin.
 </p>
     <p class="note"><strong>Note</strong>:
     The cf CLI prohibits you from implementing any plugin that uses a               native cf CLI command name or alias. For example, if you attempt to             install a third-party plugin that includes the command <code>cf                 push</code>, the cf CLI halts the installation.</p>
