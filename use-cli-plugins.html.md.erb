@@ -27,10 +27,10 @@ download source code, you must compile the code to create a binary.</p>
 1. Run `cf install-plugin BINARY-FILENAME` to install a plugin. Replace `BINARY-FILENAME` with the path to and name of your binary file.
 
     <p class="note"><strong>Note</strong>:
-    You cannot install a plugin that has the same name or that uses the             same command as an existing plugin. You will be prompted to                uninstall the existing plugin.
+    You cannot install a plugin that has the same name or that uses the same command as an existing plugin. You will be prompted to uninstall the existing plugin.
 </p>
     <p class="note"><strong>Note</strong>:
-    The cf CLI prohibits you from implementing any plugin that uses a               native cf CLI command name or alias. For example, if you attempt to             install a third-party plugin that includes the command <code>cf                 push</code>, the cf CLI halts the installation.</p>
+    The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the command <code>cf push</code>, the cf CLI halts the installation.</p>
 
 ## <a id="plugin-run-cmd"></a>Running a Plugin Command ##
 
@@ -41,18 +41,18 @@ Use the contents of the `cf help` **CLI plugin management** and **Commands offer
 
 ## <a id="plugins-outdated"></a>Checking for Plugin Updates ##
 
-Run [cf plugins --outdated](http://cli.cloudfoundry.org/en-US/cf/plugins.html) to check all registered plugin repositories for newer versions of currently installed plugins.
+Run `cf plugins --outdated` to check all registered plugin repositories for newer versions of currently installed plugins.
 
 Example:
 <pre class="terminal">
 $ cf plugins --outdated
 Searching CF-Community, company-repo for newer versions of installed plugins...
-
 plugin          version   latest version
 coffeemaker     1.1.2     1.2.0
-
 Use 'cf install-plugin' to update a plugin to the latest version.
 </pre>
+
+For more information on the `cf plugins` command, see [cf plugins](http://cli.cloudfoundry.org/en-US/cf/plugins.html).
 
 ## <a id="plugin-uninstall"></a>Uninstalling a Plugin ##
 
