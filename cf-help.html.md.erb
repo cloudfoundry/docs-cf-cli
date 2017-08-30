@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.28.0+9e024bd.2017-06-27</p>
+<p>6.29.2+c66d0f3.2017-08-25</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -82,7 +82,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/app.html' target='_blank'>app</a></td>
-      <td>Display health and status for app</td>
+      <td>Display health and status for an app</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -949,12 +949,20 @@ title: Cloud Foundry CLI Reference Guide
       <td>Revoke an organization's entitlement to an isolation segment</td>
     </tr>
     <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-org-default-isolation-segment.html' target='_blank'>set-org-default-isolation-segment</a></td>
+      <td>Set the default isolation segment used for apps in spaces in an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/reset-org-default-isolation-segment.html' target='_blank'>reset-org-default-isolation-segment</a></td>
+      <td>Reset the default isolation segment used for apps in spaces of an org</td>
+    </tr>
+    <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-space-isolation-segment.html' target='_blank'>set-space-isolation-segment</a></td>
-      <td>Assign the isolation segment that apps in a space are started in</td>
+      <td>Assign the isolation segment for a space</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/reset-space-isolation-segment.html' target='_blank'>reset-space-isolation-segment</a></td>
-      <td>Reset the isolation segment assignment of a space to the org's default</td>
+      <td>Reset the space's isolation segment to the org default</td>
     </tr>
   </tbody>
 </table>
@@ -982,11 +990,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/enable-feature-flag.html' target='_blank'>enable-feature-flag</a></td>
-      <td>Enable the use of a feature so that users have access to and can use the feature</td>
+      <td>Allow use of a feature</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/disable-feature-flag.html' target='_blank'>disable-feature-flag</a></td>
-      <td>Disable the use of a feature so that users have access to and can use the feature</td>
+      <td>Prevent use of a feature</td>
     </tr>
   </tbody>
 </table>
