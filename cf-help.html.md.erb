@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.31.0+b35df905d.2017-09-15</p>
+<p>6.32.0+0191c33d9.2017-09-26</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -118,7 +118,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart.html' target='_blank'>restart</a></td>
-      <td>Stop all instances of the app, then start them again. This may cause downtime.</td>
+      <td>Stop all instances of the app, then start them again. This causes downtime.</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restage.html' target='_blank'>restage</a></td>
@@ -1183,6 +1183,122 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td>-v</td>
       <td>Print API request diagnostics to stdout</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='v3-apps-(experimental)'></a> V3 Apps (experimental)
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-apps.html' target='_blank'>v3-apps</a></td>
+      <td>List all apps in the target space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-app.html' target='_blank'>v3-app</a></td>
+      <td>Display health and status for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-app.html' target='_blank'>v3-create-app</a></td>
+      <td>Create a V3 App</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-push.html' target='_blank'>v3-push</a></td>
+      <td>Push a new app or sync changes to an existing app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-scale.html' target='_blank'>v3-scale</a></td>
+      <td>Change or view the instance count, disk space limit, and memory limit for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-delete.html' target='_blank'>v3-delete</a></td>
+      <td>Delete a V3 App</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-start.html' target='_blank'>v3-start</a></td>
+      <td>Start an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-stop.html' target='_blank'>v3-stop</a></td>
+      <td>Stop an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-restart.html' target='_blank'>v3-restart</a></td>
+      <td>Stop all instances of the app, then start them again. This causes downtime.</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-stage.html' target='_blank'>v3-stage</a></td>
+      <td>Create a new droplet for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-restart-app-instance.html' target='_blank'>v3-restart-app-instance</a></td>
+      <td>Terminate, then instantiate an app instance</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-droplets.html' target='_blank'>v3-droplets</a></td>
+      <td>List droplets of an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-droplet.html' target='_blank'>v3-set-droplet</a></td>
+      <td>Set the droplet used to run an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-env.html' target='_blank'>v3-set-env</a></td>
+      <td>Set an env variable for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-unset-env.html' target='_blank'>v3-unset-env</a></td>
+      <td>Remove an env variable from an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-get-health-check.html' target='_blank'>v3-get-health-check</a></td>
+      <td>Show the type of health check performed on an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-health-check.html' target='_blank'>v3-set-health-check</a></td>
+      <td>Change type of health check performed on an app's process</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-packages.html' target='_blank'>v3-packages</a></td>
+      <td>List packages of an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-package.html' target='_blank'>v3-create-package</a></td>
+      <td>Uploads a V3 Package</td>
     </tr>
   </tbody>
 </table>
