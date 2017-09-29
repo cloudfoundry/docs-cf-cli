@@ -34,6 +34,14 @@ Perform the following steps specific to your distribution to place the certifica
 <li>Fedora/RHEL: <pre class="terminal">$ cat server.crt >> /etc/pki/tls/certs/ca-bundle.crt</pre></li>
 </ul>
 
+The above example will set certificate permanently on your machine accross all users and requires sudo permissions. You can also run the following command to set certificate in your current terminal/script:
+
+<pre class="terminal">$ export SSL_CERT_FILE=/path/to/server.crt</pre>
+
+or
+
+<pre class="terminal">$ export SSL_CERT_DIR=/path/to/server/dir</pre>
+
 ### <a id="windows"></a>Installing the Certificate on Windows
 
 1. Right-click on the certificate file and click **Install Certificate**. 
