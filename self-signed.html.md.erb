@@ -5,12 +5,12 @@ owner: CLI
 
 <strong><%= modified_date %></strong>
 
-This topic describes how developers can use the cf CLI to communicate securely with a Cloud Foundry (CF) deployment without specifying `--skip-ssl-validation` under the following circumstances:
+This topic describes how developers can use the cf CLI to communicate securely with a <%= vars.first_product_name  %> deployment without specifying `--skip-ssl-validation` under the following circumstances:
 
 * The deployment uses a self-signed certificate.
 * The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA.
 
-Before following the procedure below, the developer must obtain either the self-signed certificate or the intermediate and CA certificate(s) used to sign the deployment’s certificate. The developer can obtain these certificates from the CF operator or from the deployment manifest. <%= vars.self_signed %>
+<%= vars.self_signed %>
 
 ## <a id="install-local"></a>Install the Certificate on Local Machines ##
 
