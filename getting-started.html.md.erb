@@ -129,7 +129,7 @@ These commands require <%=vars.product_short%> admin permissions and take userna
 
 * [cf unset-space-role](http://cli.cloudfoundry.org/en-US/cf/unset-space-role.html)
 
-Available roles are "OrgManager", "BillingManager", "OrgAuditor", "SpaceManager", "SpaceDeveloper", and "SpaceAuditor". For example, to grant the Org Manager role to a user within an org:
+Available roles are `OrgManager`, `BillingManager`, `OrgAuditor`, `SpaceManager`, `SpaceDeveloper`, and `SpaceAuditor`. For example, to grant the Org Manager role to a user within an org:
 
 <pre class="terminal">
 $ cf set-org-role huey@example.com example-org OrgManager
@@ -141,6 +141,12 @@ OK
 <p class="note"><strong>Note</strong>: If you are not a <%=vars.product_short%> admin, you see this message when you try to run these commands:
 <code>error code: 10003, message: You are not authorized to perform the requested action</code></p>
 
+#### <a id='multi-origin'></a>Identical Usernames in Multiple Origins
+
+If a username corresponds to multiple accounts from different user stores, such as both the internal UAA store and an external SAML or LDAP store, the `set` and `unset` role commands above return an error:
+`The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’`
+
+To resolve this ambiguity, the operator can construct a `curl` command that uses the CF API to perform the desired role-management function. For an example, see the [PUT v2/organizations/:guid/auditors](http://apidocs.cloudfoundry.org/280/organizations/associate_auditor_with_the_organization_by_username.html) API function.
 
 ## <a id='push'></a>Push
 
