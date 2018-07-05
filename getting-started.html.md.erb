@@ -54,7 +54,7 @@ Use [cf login](http://cli.cloudfoundry.org/en-US/cf/login.html) to log in to <%=
 * `ORG`: The org where you want to deploy your apps.
 * `SPACE`: The space in the org where you want to deploy your apps.
 
-The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically.
+The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically. If using 2FA use option `--sso` check [Two-Factor Authentication](https://docs.developer.swisscom.com/devguide-sc/cf-cli/two-factor.html) for more information.
 
 <pre class="terminal">
 $ cf login -a https://api.example.com -u username<span>@</span>example.com
