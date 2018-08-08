@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.37.0+a40009753.2018-05-25</p>
+<p>6.38.0+7ddf0aadd.2018-08-07</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -1157,8 +1157,12 @@ title: Cloud Foundry CLI Reference Guide
       <td>Append API request diagnostics to a log file</td>
     </tr>
     <tr>
+      <td>all_proxy=proxy.example.com:8080</td>
+      <td>Specify a proxy server to enable proxying for all requests</td>
+    </tr>
+    <tr>
       <td>https_proxy=proxy.example.com:8080</td>
-      <td>Enable HTTP proxying for API requests</td>
+      <td>Enable proxying for HTTP requests</td>
     </tr>
   </tbody>
 </table>
@@ -1205,10 +1209,6 @@ title: Cloud Foundry CLI Reference Guide
       <td>List all apps in the target space</td>
     </tr>
     <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-app.html' target='_blank'>v3-app</a></td>
-      <td>Display health and status for an app</td>
-    </tr>
-    <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-app.html' target='_blank'>v3-create-app</a></td>
       <td>Create a V3 App</td>
     </tr>
@@ -1252,6 +1252,10 @@ title: Cloud Foundry CLI Reference Guide
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-restart-app-instance.html' target='_blank'>v3-restart-app-instance</a></td>
       <td>Terminate, then instantiate an app instance</td>
     </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-apply-manifest.html' target='_blank'>v3-apply-manifest</a></td>
+      <td>Applies manifest properties to an application</td>
+    </tr>
     <tr class='separator'>
       <td></td>
       <td></td>
@@ -1267,6 +1271,10 @@ title: Cloud Foundry CLI Reference Guide
     <tr class='separator'>
       <td></td>
       <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-env.html' target='_blank'>v3-env</a></td>
+      <td>Show all env variables for an app</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-env.html' target='_blank'>v3-set-env</a></td>
@@ -1299,6 +1307,14 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-package.html' target='_blank'>v3-create-package</a></td>
       <td>Uploads a V3 Package</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-ssh.html' target='_blank'>v3-ssh</a></td>
+      <td>SSH to an application container instance</td>
     </tr>
   </tbody>
 </table>
