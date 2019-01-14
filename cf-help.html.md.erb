@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.41.0+dd4c76cdd.2018-11-28</p>
+<p>6.42.0+0cba12168.2019-01-10</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -122,7 +122,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restage.html' target='_blank'>restage</a></td>
-      <td>Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.)</td>
+      <td>Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.). This action will cause app downtime.</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart-app-instance.html' target='_blank'>restart-app-instance</a></td>
@@ -174,7 +174,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/unset-env.html' target='_blank'>unset-env</a></td>
-      <td>Remove an env variable</td>
+      <td>Remove an env variable from an app</td>
     </tr>
     <tr class='separator'>
       <td></td>
