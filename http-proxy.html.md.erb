@@ -31,8 +31,7 @@ If the proxy server is a SOCKS5 proxy, specify the SOCKS5 protocol in the URL:
 ## <a id="v3-ssh-socks5"></a> Using SOCKS5 with v3-ssh ##
 
 The `cf v3-ssh` command supports SOCKS5 proxies. To specify the SOCKS5  proxy server, 
-set the `ALL_PROXY` environment variable:
-format: `ALL_PROXY=socks5://socks_proxy.example.com`
+set the `ALL_PROXY` environment variable using the following format:  `ALL_PROXY=socks5://socks_proxy.example.com`. 
 
 <p class="note"><strong>Note</strong>: <code>cf ssh</code> does not work through a SOCKS5 proxy.</p>
 
