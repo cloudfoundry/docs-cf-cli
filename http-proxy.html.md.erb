@@ -28,6 +28,11 @@ If the proxy server uses a port other than 80, include the port number:
 If the proxy server is a SOCKS5 proxy, specify the SOCKS5 protocol in the URL: 
 `https_proxy=socks5://socks_proxy.example.com`
 
+## <a id="v3-ssh-socks5"></a> Using SOCKS5 with v3-ssh ##
+
+The `cf v3-ssh` command supports SOCKS5 proxies. To specify the SOCKS5  proxy server, 
+set the `ALL_PROXY` environment variable using the following format:  `ALL_PROXY=socks5://socks_proxy.example.com`. 
+
 <p class="note"><strong>Note</strong>: <code>cf ssh</code> does not work through a SOCKS5 proxy.</p>
 
 ## <a id="mac-linux"></a>Setting https_proxy in Mac OS or Linux ##
