@@ -14,19 +14,67 @@ Follow the instructions in this topic to install the cf CLI on your operating sy
 
 For more information about how to use the cf CLI, see [Getting Started with cf CLI](./getting-started.html).
 
-Review the [CLI releases page](https://github.com/cloudfoundry/cli/releases) to learn when updates are released, and download a new binary or a new installer when you want to update to the latest version.
+To learn when updates are released and to download a new binary or installer, see the [CLI releases page](https://github.com/cloudfoundry/cli/releases) on GitHub.
 
 
 ## <a id="prerequisites"></a> Prerequisites
 
-If you previously used the cf CLI Ruby gem, you must uninstall the gem before installing the cf CLI. To uninstall the gem, run  `gem uninstall cf`.
+If you previously used the cf CLI Ruby gem, you must uninstall the gem before installing the cf CLI. 
 
-<p class="note"><strong>Note</strong>: To ensure that your Ruby environment manager registers the change, close and reopen your terminal.</p>
+To uninstall the gem, do the following:
+
+1. Run  `gem uninstall cf`.
+
+1. Verify that your Ruby environment manager uninstalled the gem by closing and reopening your terminal.
 
 
 ## <a id="pkg"></a> Install the cf CLI Using a Package Manager
 
 This section describes how to install the cf CLI using a package manager. You can install the cf CLI using a package manager on Mac OS X and Linux operating systems.
+
+
+### <a id='pkg-linux'></a> Linux Installation
+
+There are two ways to install the cf CLI using a package manager, depending on your Linux distribution.
+
+To install the cf CLI on Debian and Ubuntu-based Linux distributions, do the following:
+
+1. Add the Cloud Foundry Foundation public key and package repository to your system:
+
+	```
+	wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+	```
+
+	```
+	echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+	```
+
+1. Update your local package index:
+
+	```
+	sudo apt-get update
+	```
+
+1. Install the cf CLI:
+
+	```
+	sudo apt-get install cf-cli
+	```
+
+To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later distributions, do the following:
+
+1. Configure the Cloud Foundry Foundation package repository:
+	
+	```
+	sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo
+	```
+
+1. Install the cf CLI. The following command also downloads and adds the public key to your system.
+
+	```
+	sudo yum install cf-cli
+	```
+
 
 ### <a id='pkg-mac'></a> Mac OS X Installation
 
@@ -37,57 +85,42 @@ To install the cf CLI for Mac OS X using Homebrew, do the following:
 1. Install Homebrew. For instructions, see [Homebrew](http://brew.sh/).
 
 1. Install the Cloud Foundry Homebrew package:
-	<pre class="terminal">$ brew tap cloudfoundry/tap</pre>
+
+	```
+	brew tap cloudfoundry/tap
+	```
 
 1. Install the cf CLI:
-	<pre class="terminal">$ brew install cf-cli</pre>
 
-### <a id='pkg-linux'></a> Linux Installation
-
-There are two ways to install the cf CLI using a package manager, depending on your Linux distribution.
-
-To install the cf CLI on Debian and Ubuntu-based Linux distributions, do the following:
-
-1. Add the Cloud Foundry Foundation public key and package repository to your system:
-	<pre class="terminal">$ wget -q -O - https<span>:</span>//packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -</pre>
-	<pre class="terminal">$ echo "deb https<span>:</span>//packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list</pre>
-
-1. Update your local package index:
-	<pre class="terminal">$ sudo apt-get update</pre>
-
-1. Install the cf CLI:
-	<pre class="terminal">$ sudo apt-get install cf-cli</pre>
-
-To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later distributions, do the following:
-
-1. Configure the Cloud Foundry Foundation package repository:
-	<pre class="terminal">$ sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https<span>:</span>//packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo</pre>
-
-1. Install the cf CLI. The following command also downloads and adds the public key to your system.
-	<pre class="terminal">$ sudo yum install cf-cli</pre>
+	```
+	brew install cf-cli
+	```
 
 
 ## <a id="installer"></a> Install the cf CLI Using an Installer
 
 This section describes how to install the cf CLI using an installer. You can install the cf CLI using an installer on Windows, Mac OS X, and Linux operating systems.
 
-### <a id="windows"></a> Windows Installation
 
-This section describes how to install the cf CLI for use on the Windows command line. For instructions on how to install the cf CLI for use on the Windows Subsystem for Linux (WSL), also known as Bash on Windows, see [Linux Installation](#pkg-linux) above.
+### <a id="linux"></a> Linux Installation
 
-To install the cf CLI for Windows, do the following:
+To install the cf CLI for Linux using an installer, do the following:
 
-1. Download the Windows installer by clicking on the following link: [https://cli.run.pivotal.io/stable?release=windows64&source=github](https://cli.run.pivotal.io/stable?release=windows64&source=github)
+1. Download the Linux installer for Debian or Ubuntu distributions by clicking on [https://cli.run.pivotal.io/stable?release=debian64&source=github](https://cli.run.pivotal.io/stable?release=debian64&source=github), or the installer for Red Hat distributions by clicking on [https://cli.run.pivotal.io/stable?release=redhat64&source=github](https://cli.run.pivotal.io/stable?release=redhat64&source=github).
 
-1. Unzip the zip file.
+1. Install the cf CLI using your system's package manager.
+	<p class="note"><b>Note:</b> The following commands may require `sudo`.</p> 
+    * For Debian/Ubuntu Linux distributions, run the following command:
 
-1. Right-click on the `cf_installer` executable and select **Run as Administrator**.
+    ```
+	dpkg -i path/to/cf-cli-*.deb && apt-get install -f
+	```
+    * For Red Hat Linux distributions, run the following command:
 
-1. When prompted, click **Install**, then **Finish**.
-
-1. To verify your installation, open a command prompt and type `cf`.
-
-If your installation was successful, the cf CLI help listing appears. You may need to restart the command prompt to see the cf CLI help listing appear. 
+    ```
+	rpm -i path/to/cf-cli-*.rpm
+	```
+ 
 
 ### <a id="mac"></a> Mac OS X Installation
 
@@ -105,44 +138,76 @@ To install the cf CLI for Mac OS X using an installer, do the following:
 
 1. Click **Install**.
 
-To verify your installation, open a terminal window and type `cf`. If your installation was successful, the cf CLI help listing appears.
 
-### <a id="linux"></a> Linux Installation
+### <a id="windows"></a> Windows Installation
 
-To install the cf CLI for Linux using an installer, do the following:
+This section describes how to install the cf CLI for use on the Windows command line. For instructions on how to install the cf CLI for use on the Windows Subsystem for Linux (WSL), also known as Bash, see [Linux Installation](#pkg-linux) above.
 
-1. Download the Linux installer for Debian or Ubuntu distributions by clicking on [https://cli.run.pivotal.io/stable?release=debian64&source=github](https://cli.run.pivotal.io/stable?release=debian64&source=github), or the installer for Red Hat distributions by clicking on [https://cli.run.pivotal.io/stable?release=redhat64&source=github](https://cli.run.pivotal.io/stable?release=redhat64&source=github).
+To install the cf CLI for Windows using an installer, do the following:
 
-1. Install using your system's package manager. These commands may require `sudo`.
-    * For Debian/Ubuntu, run the following command: 
-    <pre class="terminal">$ dpkg -i path/to/cf-cli-*.deb && apt-get install -f</pre>
-    * For Red Hat, run the following command: 
-    <pre class="terminal">rpm -i path/to/cf-cli-*.rpm</pre>
+1. Download the Windows installer by clicking on the following link: [https://cli.run.pivotal.io/stable?release=windows64&source=github](https://cli.run.pivotal.io/stable?release=windows64&source=github).
 
-To verify your installation, open a terminal window and type `cf`. If your installation was successful, the cf CLI help listing appears.
+1. Unzip the file.
+
+1. Right-click on the `cf_installer` executable and select **Run as Administrator**.
+
+1. When prompted, click **Install**. Then, click **Finish**.
+
 
 
 ## <a id="bin"></a> Install the cf CLI Using a Compressed Binary
 
 This section describes how to install the cf CLI using a compressed binary. You can install the cf CLI using a compressed binary on Windows, Mac OS X, and Linux operating systems.
 
-For more information about downloading and installing a compressed binary, see [Installers and compressed binaries](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries) section of the cf CLI repository on GitHub.
+For more information about downloading and installing a compressed binary, see the [Installers and compressed binaries](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries) section of the cf CLI repository on GitHub.
+
+
+## <a id="verify"></a> Verify Installation
+
+To verify the installation of the cf CLI, do the following:
+
+1. Close and reopen the command prompt. Or, open a new tab in the command prompt.
+
+1. Run the following command:
+
+	```
+	cf
+	``` 
+	If your installation was successful, the cf CLI help listing appears.
 
 
 ## <a id="uninstall"></a> Uninstall the cf CLI
 
+This section describes how to uninstall the cf CLI. There are different methods for uninstalling the cf CLI depending on the installtion method.
+
 ### <a id="uninstall-pkg"></a> Package Manager
 
-Follow the instructions specific to your package manager to uninstall the cf CLI.
+This section describes how to uninstall the cf CLI if you installed the cf CLI with a package manager.
+
+To uninstall the cf CLI, follow the instructions specific to your package manager.
 
 ### <a id="uninstall-installer"></a> Installer
 
-Follow the instructions specific to your operating system to uninstall the cf CLI:
+This section describes how to uninstall the cf CLI if you installed the cf CLI with an installer. Follow the instructions in this section that are specific to your operating system.
 
-* For Mac OS, delete the binary `/usr/local/bin/cf`, and the directory `/usr/local/share/doc/cf-cli`.
+To uninstall the cf CLI on Mac OS X, do the following:
 
-* For Windows, navigate to the **Control Panel**, click **Programs and Features**, select `Cloud Foundry CLI VERSION` and click **Uninstall**.
+1. Delete the binary `/usr/local/bin/cf`.
+
+1. Delete the directory `/usr/local/share/doc/cf-cli`.
+
+To uninstall the cf CLI on Windows, do the following:
+
+1. Navigate to the **Control Panel** and click **Programs and Features**.
+
+1. Select `Cloud Foundry CLI VERSION` and click **Uninstall**.
 
 ### <a id="uninstall-binary"></a> Binary
 
-If you previously installed a cf CLI binary, remove the binary from where you copied it.
+This section describes how to uninstall the cf CLI if you installed the cf CLI with a binary.
+
+To uninstall the cf CLI, do the following:
+
+1. Navigate to the location where you copied the binary.
+
+1. Delete the binary.
