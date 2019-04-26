@@ -96,7 +96,6 @@ To install the cf CLI for Mac OS X using Homebrew, do the following:
 	brew install cf-cli
 	```
 
-
 ## <a id="installer"></a> Install the cf CLI Using an Installer
 
 This section describes how to install the cf CLI using an installer. You can install the cf CLI using an installer on Windows, Mac OS X, and Linux operating systems.
@@ -104,23 +103,35 @@ This section describes how to install the cf CLI using an installer. You can ins
 
 ### <a id="linux"></a> Linux Installation
 
+This section describes how to install the cf CLI using an installer on the Debian, Ubuntu, and Red Hat Linux distributions. 
+
 To install the cf CLI for Linux using an installer, do the following:
 
-1. Download the Linux installer for Debian or Ubuntu distributions by clicking on [https://cli.run.pivotal.io/stable?release=debian64&source=github](https://cli.run.pivotal.io/stable?release=debian64&source=github), or the installer for Red Hat distributions by clicking on [https://cli.run.pivotal.io/stable?release=redhat64&source=github](https://cli.run.pivotal.io/stable?release=redhat64&source=github).
+1. Download the Linux installer.
+  - **Debian or Ubuntu**: Paste the following URL in a browser to download the installer:
+
+		```
+		<%= vars.cf_cli_installer_linux_debian %>
+		```
+  - **Red Hat**: Paste the following URL in a browser to download the installer:
+
+		```
+	  	<%= vars.cf_cli_installer_linux_redhat %>
+	  	```
 
 1. Install the cf CLI using your system's package manager.
 	<p class="note"><b>Note:</b> The following commands may require `sudo`.</p> 
-    * For Debian/Ubuntu Linux distributions, run the following command:
+    * **Debian or Ubuntu**: Run the following command:
 
-    ```
-	dpkg -i path/to/cf-cli-*.deb && apt-get install -f
-	```
-    * For Red Hat Linux distributions, run the following command:
+	    ```
+		dpkg -i path/to/cf-cli-*.deb && apt-get install -f
+		```
+	* **Red Hat**: Run the following command:
 
-    ```
-	rpm -i path/to/cf-cli-*.rpm
-	```
- 
+	    ```
+		rpm -i path/to/cf-cli-*.rpm
+		```
+
 
 ### <a id="mac"></a> Mac OS X Installation
 
@@ -128,7 +139,11 @@ This section describes how to install the cf CLI on Mac OS X operating systems u
 
 To install the cf CLI for Mac OS X using an installer, do the following:
 
-1. Download the OS X installer by clicking on the following link: [https://cli.run.pivotal.io/stable?release=macosx64&source=github](https://cli.run.pivotal.io/stable?release=macosx64&source=github)
+1. Paste the following URL in a browser to download the installer:
+
+	```	
+	<%= vars.cf_cli_installer_macosx %>
+	```
 
 1. Open the `.pkg` file.
 
@@ -145,13 +160,18 @@ This section describes how to install the cf CLI for use on the Windows command 
 
 To install the cf CLI for Windows using an installer, do the following:
 
-1. Download the Windows installer by clicking on the following link: [https://cli.run.pivotal.io/stable?release=windows64&source=github](https://cli.run.pivotal.io/stable?release=windows64&source=github).
+1. Paste the following URL in a browser to download the installer:
+
+	```
+	<%= vars.cf_cli_installer_windows %>
+	```
 
 1. Unzip the file.
 
 1. Right-click on the `cf_installer` executable and select **Run as Administrator**.
 
 1. When prompted, click **Install**. Then, click **Finish**.
+
 
 
 
