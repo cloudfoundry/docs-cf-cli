@@ -3,10 +3,38 @@ title: Installing the cf CLI
 owner: CLI
 ---
 
+<div class="quick-links">
+	<ul>
+		<li><a href="#overview">Overview</a></li>
+		<li><a href="#prerequisites">Prerequisites</a></li>
+		<li><a href="#pkg">Install the cf CLI Using a Package Manager</a></li>
+			<ul>
+				<li><a href="#pkg-linux">Linux Installation</a></li>
+				<li><a href="#pkg-mac">Mac OS X Installation</a></li>
+			</ul>	
+		<% if not vars.product_name == 'CF' %>
+		<li><a href="#installer">Install the cf CLI Using an Installer</a></li>
+			<ul>
+			<li><a href="#installer-linux">Linux Installation</a></li>
+			<li><a href="#installer-mac">Mac OS X Installation</a></li>
+			<li><a href="#installer-windows">Windows Installation</a></li>
+			</ul>	
+		<% end %>
+		<li><a href="#bin">Install the cf CLI Using a Compressed Binary</a></li>
+		<li><a href="#verify">Verify Installation</a></li>
+		<li><a href="#uninstall">Uninstall the cf CLI</a></li>
+			<ul>
+				<li><a href="#uninstall-pkg">Package Manager</a></li>
+				<li><a href="#uninstall-installer">Installer</a></li>
+				<li><a href="#uninstall-binary">Binary</a></li>
+			</ul>	
+	</ul>
+</div>
+
 This topic describes how to install and uninstall the Cloud Foundry Command Line Interface (cf CLI). 
 
 
-## <a id="overview"></a> Overview
+## <a name="overview"></a> Overview
 
 The cf CLI is the official command line client for Cloud Foundry. 
 
@@ -17,7 +45,7 @@ For more information about how to use the cf CLI, see [Getting Started with cf C
 To learn when updates are released and to download a new binary or installer, see the [CLI releases page](https://github.com/cloudfoundry/cli/releases) on GitHub.
 
 
-## <a id="prerequisites"></a> Prerequisites
+## <a name="prerequisites"></a> Prerequisites
 
 If you previously used the cf CLI Ruby gem, you must uninstall the gem before installing the cf CLI. 
 
@@ -28,12 +56,12 @@ To uninstall the gem, do the following:
 1. Verify that your Ruby environment manager uninstalled the gem by closing and reopening your terminal.
 
 
-## <a id="pkg"></a> Install the cf CLI Using a Package Manager
+## <a name="pkg"></a> Install the cf CLI Using a Package Manager
 
 This section describes how to install the cf CLI using a package manager. You can install the cf CLI using a package manager on Mac OS X and Linux operating systems.
 
 
-### <a id='pkg-linux'></a> Linux Installation
+### <a name='pkg-linux'></a> Linux Installation
 
 There are two ways to install the cf CLI using a package manager, depending on your Linux distribution.
 
@@ -76,7 +104,7 @@ To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later dis
 	```
 
 
-### <a id='pkg-mac'></a> Mac OS X Installation
+### <a name='pkg-mac'></a> Mac OS X Installation
 
 You can install the cf CLI on Mac OS X operating systems using the Homebrew package manager.
 
@@ -96,15 +124,20 @@ To install the cf CLI for Mac OS X using Homebrew, do the following:
 	brew install cf-cli
 	```
 
+<% if not vars.product_name == 'CF' %>
 
-## <a id="bin"></a> Install the cf CLI Using a Compressed Binary
+<%= partial '../console/cf_cli_installer' %>
+
+<% end %>
+
+## <a name="bin"></a> Install the cf CLI Using a Compressed Binary
 
 This section describes how to install the cf CLI using a compressed binary. You can install the cf CLI using a compressed binary on Windows, Mac OS X, and Linux operating systems.
 
 For more information about downloading and installing a compressed binary, see the [Installers and compressed binaries](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries) section of the cf CLI repository on GitHub.
 
 
-## <a id="verify"></a> Verify Installation
+## <a name="verify"></a> Verify Installation
 
 To verify the installation of the cf CLI, do the following:
 
@@ -118,17 +151,17 @@ To verify the installation of the cf CLI, do the following:
 	If your installation was successful, the cf CLI help listing appears.
 
 
-## <a id="uninstall"></a> Uninstall the cf CLI
+## <a name="uninstall"></a> Uninstall the cf CLI
 
 This section describes how to uninstall the cf CLI. There are different methods for uninstalling the cf CLI depending on the installtion method.
 
-### <a id="uninstall-pkg"></a> Package Manager
+### <a name="uninstall-pkg"></a> Package Manager
 
 This section describes how to uninstall the cf CLI if you installed the cf CLI with a package manager.
 
 To uninstall the cf CLI, follow the instructions specific to your package manager.
 
-### <a id="uninstall-installer"></a> Installer
+### <a name="uninstall-installer"></a> Installer
 
 This section describes how to uninstall the cf CLI if you installed the cf CLI with an installer. Follow the instructions in this section that are specific to your operating system.
 
@@ -144,7 +177,7 @@ To uninstall the cf CLI on Windows, do the following:
 
 1. Select `Cloud Foundry CLI VERSION` and click **Uninstall**.
 
-### <a id="uninstall-binary"></a> Binary
+### <a name="uninstall-binary"></a> Binary
 
 This section describes how to uninstall the cf CLI if you installed the cf CLI with a binary.
 
