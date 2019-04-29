@@ -15,9 +15,9 @@ owner: CLI
 		<% if not vars.product_name == 'CF' %>
 		<li><a href="#installer">Install the cf CLI Using an Installer</a></li>
 			<ul>
-			<li><a href="#installer-linux">Linux Installation</a></li>
-			<li><a href="#installer-mac">Mac OS X Installation</a></li>
-			<li><a href="#installer-windows">Windows Installation</a></li>
+				<li><a href="#installer-linux">Linux Installation</a></li>
+				<li><a href="#installer-mac">Mac OS X Installation</a></li>
+				<li><a href="#installer-windows">Windows Installation</a></li>
 			</ul>	
 		<% end %>
 		<li><a href="#bin">Install the cf CLI Using a Compressed Binary</a></li>
@@ -125,9 +125,8 @@ To install the cf CLI for Mac OS X using Homebrew, do the following:
 	```
 
 <% if not vars.product_name == 'CF' %>
-
 <%= partial '../console/cf_cli_installer' %>
-
+<% else %>
 <% end %>
 
 ## <a name="bin"></a> Install the cf CLI Using a Compressed Binary
