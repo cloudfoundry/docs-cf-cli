@@ -28,31 +28,6 @@ To install cf CLI v7, do the following:
 
 ## <a id="changes"></a> Changes in cf CLI v7
 
-### <a id="removed-commands"></a> Removed Commands
-
-The following list contains commands that were supported in cf CLI v6 but are not supported by cf CLI v7:
-
-* `cf create-service-auth-token`: For interacting with service brokers on the v1 Service Broker API, which is not supported by CAPI v3. 
-* `cf delete-service-auth-token`: For interacting with service brokers on the v1 Service Broker API, which is not supported by CAPI v3.
-* `cf files`: Exclusive to the pre-Diego, Droplet Execution Agent (DEA) architecture of Cloud Foundry. 
-* `cf update-service-auth-token`: For interacting with service brokers on the v1 Service Broker API, which is not supported by CAPI v3.
-* `cf service-auth-tokens`: For interacting with service brokers on the v1 Service Broker API, which is not supported by CAPI v3.
-* `cf migrate-service-instances`: For interacting with service brokers on the v1 Service Broker API, which is not supported by CAPI v3.
-
-### <a id="modified-v3-commands"></a> v3-Prefixed Commands Modified
-
-cf CLI v6 included several commands that used CAPI v3. These commands were prefixed with `v3-`, such as `v3-push`. For more information and a full list of the commands, see [Using Experimental cf CLI Commands](https://docs.cloudfoundry.org/devguide/v3-commands.html).
-
-cf CLI v7 modifies these commands in the following ways:
-
-* Removes the `v3-` prefix, as the cf CLI now exclusively uses CAPI v3. 
-* Removes experimental text and warnings. 
-* Updates command output to be consistent with the CF CLI Style Guide](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide).
-* Reduces or removes polling information for certain commands to provide a cleaner user experience.
-
-### <a id="additional arguments"></a> Additional Arguments No Longer Ignored
-
-When additional arguments are provided to CLI commands, the CLI exits `1` and provides a useful error message. For additional background regarding this change, see the release notes for CLI [v6.42.0](https://github.com/cloudfoundry/cli/releases/tag/v6.42.0). 
 
 
 
