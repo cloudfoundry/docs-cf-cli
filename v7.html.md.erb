@@ -28,6 +28,101 @@ To install cf CLI v7, do the following:
 
 ## <a id="changes"></a> Changes in cf CLI v7
 
-
+<table>
+<tr>
+<th>Command in cf CLI v6</th>
+<th>Command in cf CLI v7</th>
+</tr>
+<tr>
+<td><code>cf create-buildpack</code></td>
+<td><code>cf create-buildpack</code><br><br>
+<strong>Removed flags: <code>enable</code></strong><br>
+<strong>Notes:</strong> Creating a buildpack enables it by default. 
+</td>
+</tr>
+<tr>
+<td><code>cf create-service-auth-token</code></td>
+<td><i>Removed</i> 
+</td>
+</tr>
+<tr>
+<td><code>cf create-shared-domain</code></td>
+<td><code>cf create-shared-domain</code><br><br>
+<strong>Notes:</strong> No longer Supports <code>router-groups</code>. 
+</td>
+</tr>
+<tr>
+<td><code>cf delete-service-auth-token</code></td>
+<td><i>Removed</i> 
+</td>
+</tr>
+<tr>
+<td><code>cf files</code></td>
+<td><i>Removed</i> 
+</td>
+</tr>
+<tr>
+<td><code>cf push</code></td>
+<td><code>cf push</code><br><br>
+<strong>New flags:</strong> <code>endpoint</code> (Now required if you set health check type to http when pushing an app)<br>
+<strong>Notes:</strong> <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>
+</td>
+</tr>
+<tr>
+<td><code>cf migrate-services-instances</code></td>
+<td><i>Removed</i> 
+</td>
+</tr>
+<tr>
+<td><code>cf rename-buildpack</code></td>
+<td><i>Removed</i><br>
+<strong>Notes:</strong> Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>
+</td>
+</tr>
+<tr>
+<td><code>cf set-health-check</code></td>
+<td><code>cf set-health-check</code><br><br>
+<strong>New flags:</strong> <code>process</code>, <code>invocation-timeout</code>
+</td>
+</tr>
+<tr>
+<td><code>cf scale</code></td>
+<td><code>cf scale</code><br><br>
+<strong>New flags:</strong> <code>process</code>
+</td>
+</tr>
+<tr>
+<td><code>cf service-auth-tokens</code></td>
+<td>
+<i>Removed</i>
+</td>
+</tr>
+<tr>
+<td><code>cf ssh</code></td>
+<td><code>cf ssh</code><br><br>
+<strong>New flags:</strong> <code>process</code><br>
+<strong>Notes:</strong> Supports a new environment variable <code>all_proxy</code> to specify a proxy server for all requests.
+</td>
+</tr>
+<tr>
+<td><code>cf update-buildpack</code></td>
+<td><code>cf update-buildpack</code><br><br>
+<strong>New flags:</strong> <code>path</code>, <code>unlock</code>
+</td>
+</tr>
+<tr>
+<td><code>cf update-service-auth-token</code></td>
+<td>
+<i>Removed</i>
+</td>
+</tr>
+<tr>
+<td><code>cf v3-COMMAND</code></td>
+<td>
+<code>cf COMMAND</code><br><br>
+<strong>Notes:</strong> <code>v3</code> prefixes have been removed as the commands now use CAPI v3 by default. 
+</td>
+</tr>
+</table>
 
 
