@@ -30,14 +30,15 @@ To install cf CLI v7, do the following:
 
 <table>
 <tr>
-<th>Command in cf CLI v6</th>
+<th style="width:40%">Command in cf CLI v6</th>
 <th>Command in cf CLI v7</th>
 </tr>
 <tr>
-<td><code>cf create-buildpack</code></td>
-<td><code>cf create-buildpack</code><br><br>
-<strong>Removed flags: <code>enable</code></strong><br>
-<strong>Notes:</strong> Creating a buildpack enables it by default. 
+<td style="vertical-align:top"><code>cf create-buildpack</code></td>
+<td><code>cf create-buildpack</code><hr>
+	<ul>
+		<li><strong>[Removed flag]</strong>: <code>--enable</code>. Creating a buildpack enables it by default.</li>
+	</ul> 
 </td>
 </tr>
 <tr>
@@ -46,13 +47,15 @@ To install cf CLI v7, do the following:
 </td>
 </tr>
 <tr>
-<td><code>cf create-shared-domain</code></td>
-<td><code>cf create-shared-domain</code><br><br>
-<strong>Notes:</strong> No longer Supports <code>router-groups</code>. 
+<td style="vertical-align:top"><code>cf create-shared-domain</code></td>
+<td><code>cf create-shared-domain</code><hr>
+<ul>
+		<li><strong>[Removed flag]</strong>: <code>--router-group</code>. This removes support for TCP routing.</li>
+	</ul> 
 </td>
 </tr>
 <tr>
-<td><code>cf delete-service-auth-token</code></td>
+<td ><code>cf delete-service-auth-token</code></td>
 <td><i>Removed</i> 
 </td>
 </tr>
@@ -62,10 +65,14 @@ To install cf CLI v7, do the following:
 </td>
 </tr>
 <tr>
-<td><code>cf push</code></td>
-<td><code>cf push</code><br><br>
-<strong>New flags:</strong> <code>endpoint</code> (Now required if you set health check type to http when pushing an app)<br>
-<strong>Notes:</strong> <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>
+<td style="vertical-align:top"><code>cf push</code></td>
+<td><code>cf push</code><hr>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
+		<li><strong>[Update]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
+		<li><strong>[Update]</strong>: <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
+
+	</ul>
 </td>
 </tr>
 <tr>
@@ -74,21 +81,28 @@ To install cf CLI v7, do the following:
 </td>
 </tr>
 <tr>
-<td><code>cf rename-buildpack</code></td>
-<td><i>Removed</i><br>
-<strong>Notes:</strong> Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>
+<td style="vertical-align:top"><code>cf rename-buildpack</code></td>
+<td><i>Removed</i><hr>
+<ul>
+		<li><strong>[Update]</strong>: Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code></li>
+</ul> 
 </td>
 </tr>
 <tr>
-<td><code>cf set-health-check</code></td>
-<td><code>cf set-health-check</code><br><br>
-<strong>New flags:</strong> <code>process</code>, <code>invocation-timeout</code>
+<td style="vertical-align:top"><code>cf set-health-check</code></td>
+<td><code>cf set-health-check</code><hr>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+		<li><strong>[Added flag]</strong>: <code>--invocation-timeout</code></li>
+	</ul>
 </td>
 </tr>
 <tr>
-<td><code>cf scale</code></td>
-<td><code>cf scale</code><br><br>
-<strong>New flags:</strong> <code>process</code>
+<td style="vertical-align:top"><code>cf scale</code></td>
+<td><code>cf scale</code><hr>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+	</ul>
 </td>
 </tr>
 <tr>
@@ -98,16 +112,21 @@ To install cf CLI v7, do the following:
 </td>
 </tr>
 <tr>
-<td><code>cf ssh</code></td>
-<td><code>cf ssh</code><br><br>
-<strong>New flags:</strong> <code>process</code><br>
-<strong>Notes:</strong> Supports a new environment variable <code>all_proxy</code> to specify a proxy server for all requests.
+<td style="vertical-align:top"><code>cf ssh</code></td>
+<td><code>cf ssh</code><hr>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+		<li><strong>[Added environment variable]</strong>: <code>all_proxy</code>. Specifies a proxy server for all requests. </li>
+	</ul>
 </td>
 </tr>
 <tr>
-<td><code>cf update-buildpack</code></td>
-<td><code>cf update-buildpack</code><br><br>
-<strong>New flags:</strong> <code>path</code>, <code>unlock</code>
+<td style="vertical-align:top"><code>cf update-buildpack</code></td>
+<td><code>cf update-buildpack</code><hr>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--path</code></li>
+		<li><strong>[Added flag]</strong>: <code>--unlock</code></li>
+	</ul>
 </td>
 </tr>
 <tr>
@@ -117,10 +136,12 @@ To install cf CLI v7, do the following:
 </td>
 </tr>
 <tr>
-<td><code>cf v3-COMMAND</code></td>
+<td style="vertical-align:top"><code>cf v3-COMMAND</code></td>
 <td>
-<code>cf COMMAND</code><br><br>
-<strong>Notes:</strong> <code>v3</code> prefixes have been removed as the commands now use CAPI v3 by default. 
+<code>cf COMMAND</code><hr>
+<ul>
+		<li><strong>[Update]</strong>: <code>v3</code> prefixes have been removed as the commands now use CAPI v3 by default.</li>
+</ul> 
 </td>
 </tr>
 </table>
