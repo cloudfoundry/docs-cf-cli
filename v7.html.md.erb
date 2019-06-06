@@ -29,10 +29,12 @@ To install cf CLI v7, do the following:
 ## <a id="changes"></a> Changes in cf CLI v7
 
 ### Style Changes
-The CLI embarked on an effort to apply consistency to output, table display, and working closely with the CAPI team to return the server error directly. 
+The CLI embarked on an effort to apply consistency to output, table display, and working closely with the CAPI team to return the server error directly.
+Changes to the CLI conform to the style guide. 
+- table names 
+- ...
 
 
-### Changes to `cf push`
 
 ### Differences between the v6 CLI and v7
 
@@ -89,6 +91,7 @@ The CLI embarked on an effort to apply consistency to output, table display, and
 		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 		<li><strong>[Updated flag]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
 		<li><strong>[Updated flag]</strong>: <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
+	        <li><strong>[Updated flag]</strong>: <code>-t</code> now has a long form <code>--app-start-timeout</code> </li>
 
 	</ul>
 </td>
