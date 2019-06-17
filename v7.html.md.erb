@@ -80,6 +80,12 @@ Changes to the CLI conform to the style guide.
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015.</i> 
 </td>
 </tr>
+<td ><code>cf create-domain</code></td>
+<td><ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
+		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing.</li>
+	</ul> 
+</td>
 <tr>
 <td style="vertical-align:top"><code>cf create-shared-domain</code></td>
 <td>
@@ -99,6 +105,15 @@ Changes to the CLI conform to the style guide.
 <tr>
 <td ><code>cf delete-service-auth-token</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
+</td>
+</tr>
+<tr>
+<td ><code>cf domains</code></td>
+<td><ul>
+		<li><strong>[Update]</strong>: <code>status</code> column renamed to <code>availability</code>.</li>
+		<li><strong>[Update]</strong>: Refers to private domains with <code>private</code> instead of <code>own</code>.</li>
+		<li><strong>[Update]</strong>: Removed <code>type</code> column.</li>
+	</ul> 
 </td>
 </tr>
 <tr>
