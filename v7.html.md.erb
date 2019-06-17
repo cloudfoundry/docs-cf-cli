@@ -45,6 +45,17 @@ Changes to the CLI conform to the style guide.
 <th>Changes</th>
 </tr>
 <tr>
+<td style="vertical-align:top"><code>cf create-apps</code></td>
+<td>
+	<ul>
+		<li><strong>[Update]</strong>: Displays information about <code>processes</code>.</li>
+		<li><strong>[Update]</strong>: <code>url</code> field renamed to <code>routes</code>.</li>
+		<li><strong>[Update]</strong>: Removes information about <code>instances</code>, <code>memory</code>, and <code>disk</code>.</li>
+		<li><strong>[Update]</strong>: Apps listed alphabetically.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf create-buildpack</code></td>
 <td>
 	<ul>
@@ -58,6 +69,9 @@ Changes to the CLI conform to the style guide.
 <td>
 	<ul>
 		<li><strong>[Update]</strong>: <code>SPACE</code> is no longer a required argument. The command creates a route in the space you are targeting.</li>
+		<li><strong>[Update]</strong>: Support for TCP routing removed.</li>
+		<li><strong>[Removed flag]</strong>: <code>--random-port</code>.</li>
+		<li><strong>[Removed flag]</strong>: <code>port</code>.</li>
 	</ul> 
 </td>
 </tr>
@@ -75,6 +89,14 @@ Changes to the CLI conform to the style guide.
 </td>
 </tr>
 <tr>
+<td ><code>cf delete-domain</code></td>
+<td><ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf delete-private-domain</code>.</li>
+		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
 <td ><code>cf delete-service-auth-token</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
 </td>
@@ -85,10 +107,19 @@ Changes to the CLI conform to the style guide.
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top"><code>cf packages</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: Displays packages from most recent to least recent.</li>
+	</ul>
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf push</code></td>
 <td>
 <ul>
 		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
+		<li><strong>[Added flag]</strong>: <code>--droplet</code>.</li>
 		<li><strong>[Updated flag]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
 		<li><strong>[Updated flag]</strong>: <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
 	        <li><strong>[Updated flag]</strong>: <code>-t</code> now has a long form <code>--app-start-timeout</code> </li>
@@ -102,6 +133,13 @@ Changes to the CLI conform to the style guide.
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top"><code>cf restart-app-instance</code></td>
+<td><ul>
+		<li><strong>[Added Flag]</strong>: <code>--process</code>.</li>
+	</ul>
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf rename-buildpack</code></td>
 <td><i>Removed command. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code></i> 
 </td>
@@ -110,15 +148,6 @@ Changes to the CLI conform to the style guide.
 <td style="vertical-align:top"><code>cf routes</code></td>
 <td><ul>
 		<li><strong>[Updated output]</strong>: <code>port</code> and <code>type</code> no longer appear in the table.</li>
-	</ul>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top"><code>cf set-health-check</code></td>
-<td>
-<ul>
-		<li><strong>[Added flag]</strong>: <code>--process</code></li>
-		<li><strong>[Added flag]</strong>: <code>--invocation-timeout</code></li>
 	</ul>
 </td>
 </tr>
@@ -137,11 +166,28 @@ Changes to the CLI conform to the style guide.
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top"><code>cf set-health-check</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+		<li><strong>[Added flag]</strong>: <code>--invocation-timeout</code></li>
+	</ul>
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf ssh</code></td>
 <td>
 <ul>
 		<li><strong>[Added flag]</strong>: <code>--process</code></li>
 		<li><strong>[Added environment variable]</strong>: <code>all_proxy</code>. Specifies a proxy server for all requests. </li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf start</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: No longer stages an app.</li>
 	</ul>
 </td>
 </tr>
