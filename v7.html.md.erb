@@ -60,6 +60,7 @@ Changes to the CLI conform to the style guide.
 <td>
 	<ul>
 		<li><strong>[Update]</strong>: <code>HOST</code> is no longer a required argument.</li>
+		<li><strong>[Update]</strong>: No longer requires a backslash.</li>
 		<li><strong>[Added flag]</strong>: Use <code>--hostname</code> to specify a hostname.</li>
 	</ul> 
 </td>
@@ -89,12 +90,22 @@ Changes to the CLI conform to the style guide.
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015.</i> 
 </td>
 </tr>
+<tr>
+<td><code>cf create-service-broker</code></td>
+<td>
+<ul>
+<li><strong>[Added flag]</strong>: <code>--space-scoped</code>. You can create space-scoped service brokers.</li>
+</ul>
+</td>
+</tr>
+<tr>
 <td ><code>cf create-domain</code></td>
 <td><ul>
 		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
 		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing.</li>
 	</ul> 
 </td>
+</tr>
 <tr>
 <td style="vertical-align:top"><code>cf create-shared-domain</code></td>
 <td>
@@ -142,6 +153,8 @@ Changes to the CLI conform to the style guide.
 <td style="vertical-align:top"><code>cf push</code></td>
 <td>
 <ul>
+		<li><strong>[Added flag]</strong>: <code>--strategy</code>. You can deploy an app without down time using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+		<li><strong>[Added flag]</strong>: <code>--no-wait</code>. When used, the command exits when the one instance of one process becomes healthy.</li>
 		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 		<li><strong>[Updated flag]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
 		<li><strong>[Updated flag]</strong>: <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
@@ -242,6 +255,31 @@ Changes to the CLI conform to the style guide.
 <td>
 <ul>
 		<li><strong>[Update]</strong>: <code>v3</code> prefixes have been removed as the commands now use CAPI v3 by default.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-apply-manifest</code></td>
+<td>
+<ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf apply-manifest</code>.</li>
+		<li><strong>[Update]</strong>: If no flags are passed, the command defaults to using the manifest located in your <code>pwd</code>.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-cancel-zdt-push</code></td>
+<td>
+<ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf cancel-deployment</code>.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-zdt-push</code></td>
+<td>
+<ul>
+		<li><td><i>Removed command. Instead, use <code>--strategy rolling</code> flag with <code>cf push</code></i></td></li>
 </ul> 
 </td>
 </tr>
