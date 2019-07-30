@@ -153,7 +153,11 @@ Changes to the CLI conform to the style guide.
 <td style="vertical-align:top"><code>cf push</code></td>
 <td>
 <ul>
-		<li><strong>[Added flag]</strong>: <code>--strategy</code>. You can deploy an app without down time using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+	        <li><strong>[Removed flag]</strong>: <code>--routh-path</code> You can use the <code>routes</code> property in the manifest instead. </li>
+		<li><strong>[Removed flag]</strong>: <code>-d</code> for `domain`. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Removed flag]</strong>: <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Removed flag]</strong>: <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Added flag]</strong>: <code>--strategy</code>. You can deploy an app without down time using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
 		<li><strong>[Added flag]</strong>: <code>--no-wait</code>. When used, the command exits when the one instance of one process becomes healthy.</li>
 		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 		<li><strong>[Updated flag]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
