@@ -1,9 +1,9 @@
 ---
-title: Upgrading to cf CLI v7
+title: Upgrading to cf CLI v7 (Beta)
 owner: VAT
 ---
 
-This topic describes the major changes in cf CLI v7 and provides guidance for upgrading from cf CLI v6. 
+This topic describes the major changes in cf CLI v7 and provides guidance for upgrading from cf CLI v6. cf CLI v7 is currently in Beta. 
 
 ## <a id="overview"></a> Overview
 
@@ -11,16 +11,13 @@ cf CLI v7 updates all commands to use [Cloud Foundry API (CAPI) v3](https://v3-a
 
 ### <a id="new-features"></a> New Workflows Supported by CAPI v3 and cf CLI v7
 
-The following list provides an overview of the new features available through the cf CLI now that it is backed by CAPI v3. Each item includes a link to additional documentation:
+The following list provides an overview of key new features available through the cf CLI now that it is backed by CAPI v3. Each item includes a link to additional documentation:
 
-* [Deploying Apps with Zero Downtime](https://docs.cloudfoundry.org/devguide/deploy-apps/zero-downtime.html)
-	* Push updates to apps without incurring downtime.
-* [Pushing an App with Multiple Processes](https://docs.cloudfoundry.org/devguide/multiple-processes.html)
-	* Use a single command to push apps that run multiple processes, such as a web app that has a UI process and a worker process. 
-* [Running cf push Sub-Step Commands](http://docs.cloudfoundry.org/devguide/push-sub-commands.html)
-	* Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
-* [Running Tasks](https://docs.cloudfoundry.org/devguide/using-tasks.html)
-	* Run tasks in Cloud Foundry. A task is an app or script whose code is included as part of a deployed app, but runs independently in its own container.
+* [Rolling App Deployments (Beta)](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
+* [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
+* [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes, such as a web app that has a UI process and a worker process. 
+* [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.  
+* [Using Metadata](../adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
 
 ## <a id="install"></a> Install cf CLI v7
 
@@ -28,7 +25,13 @@ To install cf CLI v7, do the following:
 
 ## <a id="changes"></a> Changes in cf CLI v7
 
-### Style Changes
+This section describes changes in cf CLI v7. 
+
+### <a id="release-notes"></a>  Release Notes
+
+To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) in the cf CLI GitHub repository. 
+
+### <a id="style-changes"></a>  Style Changes
 The CLI embarked on an effort to apply consistency to output, table display, and working closely with the CAPI team to return the server error directly.
 Changes to the CLI conform to the style guide. 
 - table names 
@@ -36,7 +39,7 @@ Changes to the CLI conform to the style guide.
 
 
 
-### Differences between the v6 CLI and v7
+### <a id="differences"></a> Table of Differences between the v6 CLI and v7
 
 
 <table>
