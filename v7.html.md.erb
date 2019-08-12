@@ -3,44 +3,41 @@ title: Upgrading to cf CLI v7 (Beta)
 owner: VAT
 ---
 
-This topic describes the major changes in cf CLI v7 and provides guidance for upgrading from cf CLI v6. cf CLI v7 is currently in Beta. 
+This topic describes the major changes in cf CLI v7, which is currently in Beta. 
 
 ## <a id="overview"></a> Overview
 
-cf CLI v7 updates all commands to use [Cloud Foundry API (CAPI) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of [CAPI v2](http://apidocs.cloudfoundry.org/). 
+cf CLI v7 updates all commands to use [Cloud Foundry API (CAPI) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of [CAPI v2](http://apidocs.cloudfoundry.org/). cf CLI v7 is meant to implement CAPI v3 with minimal changes from previous cf CLI v6 commands. However, cf CLI v7 also supports new functionality provided by CAPI v3.
 
-### <a id="new-features"></a> New Workflows Supported by CAPI v3 and cf CLI v7
+To understand the differences in specific commands, see [Command Differences](#differences). 
 
-The following list provides an overview of key new features available through the cf CLI now that it is backed by CAPI v3. Each item includes a link to additional documentation:
+To learn about new functionality, see [New Workflows Supported](#new-workflows). 
+
+<p class="note"><strong>Note</strong>: As of Beta, not all cf CLI v7 commands use CAPI v3.</p>
+
+### <a id="install"></a> Install cf CLI v7
+
+To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the `cloudfoundry/cli` GitHub repository. 
+
+
+## <a id="new-workflows"></a> New Workflows Supported 
+
+CAPI v3 offers developers more granular control over their apps and enables new workflows by exposing the following resources, which existed in CAPI v2: packages, droplets, builds, and processes. Additionally, CAPI v3 includes new resources such as sidecars, manifests, deployments.
+
+The following list provides an overview of key new features available through the cf CLI v7 because it is backed by CAPI v3: 
 
 * [Rolling App Deployments (Beta)](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 * [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
 * [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes, such as a web app that has a UI process and a worker process. 
 * [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.  
-* [Using Metadata](../adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
+* [Using Metadata](https://docs.cloudfoundry.org/adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
 
-## <a id="install"></a> Install cf CLI v7
 
-To install cf CLI v7, do the following: 
+## <a id="differences"></a> Command Differences 
 
-## <a id="changes"></a> Changes in cf CLI v7
-
-This section describes changes in cf CLI v7. 
-
-### <a id="release-notes"></a>  Release Notes
+This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, be aware of removal of flags, arguments no longer required, and updated output style. 
 
 To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) in the cf CLI GitHub repository. 
-
-### <a id="style-changes"></a>  Style Changes
-The CLI embarked on an effort to apply consistency to output, table display, and working closely with the CAPI team to return the server error directly.
-Changes to the CLI conform to the style guide. 
-- table names 
-- ...
-
-
-
-### <a id="differences"></a> Table of Differences between the v6 CLI and v7
-
 
 <table>
 <tr>
