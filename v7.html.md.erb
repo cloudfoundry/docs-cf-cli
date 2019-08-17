@@ -3,7 +3,7 @@ title: Upgrading to cf CLI v7 (Beta)
 owner: VAT
 ---
 
-This topic describes the major changes in cf CLI v7.
+This topic describes the major changes in from cf CLI v6 to cf CLI v7.
 
 cf CLI v7 is in beta and is subject to change. Additionally, it is only tested against the latest CAPI release candidate. 
 
@@ -23,20 +23,20 @@ To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#
 
 ## <a id="new-workflows"></a> New Workflows Supported 
 
-CAPI v3 offers developers more granular control over their apps and enables new workflows by exposing the following resources, which existed in CAPI v2: packages, droplets, builds, and processes. Additionally, CAPI v3 includes new resources such as sidecars, manifests, deployments.
+cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CAPI v3 also includes new resources such as sidecars, manifests, deployments.
 
-The following list provides an overview of key new features available through the cf CLI v7 because it is backed by CAPI v3: 
+The following list provides an overview of key new features available through the cf CLI v7: 
 
 * [Rolling App Deployments (Beta)](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 * [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
-* [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes, such as a web app that has a UI process and a worker process. 
+* [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process. 
 * [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.  
 * [Using Metadata](https://docs.cloudfoundry.org/adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
 
 
 ## <a id="differences"></a> Command Differences 
 
-This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, be aware of removal of flags, arguments no longer required, and updated output style. 
+This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, you may need to update them to account for removal of flags, arguments no longer required, and updated output style. 
 
 To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) in the cf CLI GitHub repository. 
 
