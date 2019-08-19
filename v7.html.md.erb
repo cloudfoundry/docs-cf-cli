@@ -88,7 +88,7 @@ To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.c
 <td>
 	<ul>
 		<li><strong>[Update]</strong>: <code>SPACE</code> is no longer a required argument. The command creates a route in the space you are targeting.</li>
-		<li><strong>[Update]</strong>: Support for TCP routing removed.</li>
+		<li><strong>[Update]</strong>: Support for TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
 		<li><strong>[Removed flag]</strong>: <code>--random-port</code>.</li>
 		<li><strong>[Removed flag]</strong>: <code>port</code>.</li>
 	</ul> 
@@ -97,14 +97,6 @@ To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.c
 <tr>
 <td><code>cf create-service-auth-token</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015.</i> 
-</td>
-</tr>
-<tr>
-<td><code>cf create-service-broker</code></td>
-<td>
-<ul>
-<li><strong>[Added flag]</strong>: <code>--space-scoped</code>. You can create space-scoped service brokers.</li>
-</ul>
 </td>
 </tr>
 <tr>
