@@ -3,35 +3,42 @@ title: Upgrading to cf CLI v7 (Beta)
 owner: VAT
 ---
 
-This topic describes the major changes in from cf CLI v6 to cf CLI v7.
 
-cf CLI v7 is in beta and is subject to change. Additionally, it is only tested against the latest CAPI release candidate. 
+This topic describes the major changes between the cf CLI v6 and cf CLI v7. 
 
 ## <a id="overview"></a> Overview
 
-cf CLI v7 updates all commands to use [Cloud Foundry API (CAPI) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of [CAPI v2](http://apidocs.cloudfoundry.org/). cf CLI v7 is meant to implement CAPI v3 with minimal changes from previous cf CLI v6 commands. However, cf CLI v7 also supports new functionality provided by CAPI v3.
 
-To understand the differences in specific commands, see [Command Differences](#differences). 
+The cf CLI v7's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who want granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
+In order to do so, the cf CLI v7 beta is under active development to convert commands to call the [Cloud Foundry API (CC API) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of the [CC API v2](http://apidocs.cloudfoundry.org/). 
 
-To learn about new functionality, see [New Workflows Supported](#new-workflows). 
+Since both the cf CLI v7 beta and the backing CC API v3 are both in active development, it is important to note that the cf CLI v7 beta is subject to change as we move toward completing development. However, we aim to provide:
+- a seamless upgrade experience from the cf CLI v6. To do so, we've kept changes to a minimal, and where there are changes we've incorporated feedback from the Community to simplify the cf CLI user experience
+- where a change was made that might potentially cause a breaking change in a scripting environment, we've provided details below and alternative workflows where possible
 
-<p class="note"><strong>Note</strong>: As of Beta, not all cf CLI v7 commands use CAPI v3.</p>
+To understand the differences between specific commands, see [Command Differences](#differences). 
 
-### <a id="install"></a> Install cf CLI v7
+<p class="note"><strong>Note</strong>: Additionally, in order to complete the cf CLI v7 beta in a timely matter, we develop and test against the latest CAPI release candidate. </p>
 
-To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the `cloudfoundry/cli` GitHub repository. It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v7 beta is tested against. 
+<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta mode, not all cf CLI v7 commands are backed by the CC API v3. As we release the cf CLI v7 beta, more v3 resources will be developed along with the cf CLI v7 support for it.</p>
 
-## <a id="new-workflows"></a> New Workflows Supported 
+## <a id="new-workflows"></a> New Workflows Supported on the cf CLI v7
 
-cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CAPI v3 also includes new resources such as sidecars, manifests, deployments.
+cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CC API v3 also includes new resources such as sidecars, manifests, deployments.
 
-The following list provides an overview of key new features available through the cf CLI v7: 
+The following list provides an overview of key new features available through the cf CLI v7 beta: 
 
 * [Rolling App Deployments (Beta)](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 * [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
 * [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process. 
 * [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.  
 * [Using Metadata](https://docs.cloudfoundry.org/adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
+
+
+
+### <a id="install"></a> Install cf CLI v7
+
+To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the `cloudfoundry/cli` GitHub repository. It includes instructions for downloading the latest CC API release candidate, which is what the cf CLI v7 beta is tested against. 
 
 
 ## <a id="differences"></a> Command Differences 
