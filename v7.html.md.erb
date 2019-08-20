@@ -1,0 +1,319 @@
+---
+title: Upgrading to cf CLI v7 (Beta)
+owner: VAT
+---
+
+
+This topic describes the major changes between the cf CLI v6 and cf CLI v7. 
+
+## <a id="overview"></a> Overview
+
+
+The cf CLI v7's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who require granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
+In order to do so, the cf CLI v7 beta is under active development to convert commands to call the [Cloud Foundry API (CC API) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of the [CC API v2](http://apidocs.cloudfoundry.org/). 
+
+Since both the cf CLI v7 beta and the backing CC API v3 are both in active development, it is important to note that the cf CLI v7 beta is subject to change as we move toward completing development. However, we aim to provide:
+- a seamless upgrade experience from the cf CLI v6. To do so, we've kept changes to a minimal, and where there are changes we've incorporated feedback from the Community to simplify the cf CLI user experience
+- where a change was made that might potentially cause a breaking change in a scripting environment, we've provided details below and alternative workflows where possible
+
+To understand the differences between specific commands, see [Command Differences](#differences). 
+
+<p class="note"><strong>Note</strong>: Additionally, in order to complete the cf CLI v7 beta in a timely matter, we develop and test against the latest CAPI release candidate. </p>
+
+<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta mode, not all cf CLI v7 commands are backed by the CC API v3. As a result, commands still fall back to the v2 API. As we release the cf CLI v7 beta, more v3 resources will be developed along with the cf CLI v7 support for it.</p>
+
+## <a id="new-workflows"></a> New Workflows Supported on the cf CLI v7
+
+cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CC API v3 also includes new resources such as sidecars, manifests, deployments.
+
+The following list provides an overview of key new features available through the cf CLI v7 beta: 
+
+* [Rolling App Deployments (Beta)](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
+* [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
+* [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process. 
+* [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.  
+* [Using Metadata](https://docs.cloudfoundry.org/adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
+
+
+
+### <a id="install"></a> Install cf CLI v7
+
+To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the `cloudfoundry/cli` GitHub repository. It includes instructions for downloading the latest CC API release candidate, which is what the cf CLI v7 beta is tested against. 
+
+
+## <a id="differences"></a> Command Differences 
+
+### <a id="scripting"></a> Scripting 
+
+
+It is important to reiterate that the cf CLI v7 beta currently still calls the v2 CC API as development is ongoing. The changes mentioned in this section reflect v3 backed cf CLI v7 commands.  
+
+This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, where possible, breaking changes on the cf CLI v7 beta (Defined as removing flag options, removing commands, removing/changing argument requirements, changing exit codes) are detailed below.  
+
+Scriptors should also be aware of other changes, which were first introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the cf CLI's ongoing refactoring efforts:
+
+- v3-backed v7 CLI beta commands now output errors and warnings to <code>stderr</code> rather than <code>stdout</code> to make simplify debugging 
+- stylistic changes including flavor text [updates](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors)
+- key value and table column headers are displayed in lowercase
+- output text errors are now, where possible, returned directly from the CC API. The cf CLI v7 beta no longer wraps CC API error texts. 
+- single quote resource names in error cases
+
+To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) and the [official release page](https://github.com/cloudfoundry/cli/releases) in the cf CLI GitHub repository. 
+
+<table>
+<tr>
+<th style="width:40%">Command</th>
+<th>Changes</th>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf apps</code></td>
+<td>
+	<ul>
+		<li><strong>[Update]</strong>: Displays information about <code>processes</code>.</li>
+		<li><strong>[Update]</strong>: <code>url</code> field renamed to <code>routes</code>.</li>
+		<li><strong>[Update]</strong>: Removes information about <code>instances</code>, <code>memory</code>, and <code>disk</code>.</li>
+		<li><strong>[Update]</strong>: Apps listed alphabetically.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf check-route</code></td>
+<td>
+	<ul>
+		<li><strong>[Update]</strong>: <code>HOST</code> is no longer a required argument.</li>
+		<li><strong>[Update]</strong>: No longer requires a backslash.</li>
+		<li><strong>[Added flag]</strong>: Use <code>--hostname</code> to specify a hostname.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf create-buildpack</code></td>
+<td>
+	<ul>
+		<li><strong>[Removed flag]</strong>: <code>--enable</code>. Creating a buildpack enables it by default.</li>
+		<li><strong>[Removed flag]</strong>: <code>--disable</code>. There is no way to disable a buildpack upon creation.</li>
+		<li><strong>[Update]</strong>: Creating a buildpack with position set to zero is no longer valid.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf create-route</code></td>
+<td>
+	<ul>
+		<li><strong>[Update]</strong>: <code>SPACE</code> is no longer a required argument. The command creates a route in the space you are targeting.</li>
+		<li><strong>[Update]</strong>: Support for TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+		<li><strong>[Removed flag]</strong>: <code>--random-port</code>.</li>
+		<li><strong>[Removed flag]</strong>: <code>port</code>.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td><code>cf create-service-auth-token</code></td>
+<td><i>Removed command because the V1 Broker API was deprecated as of January 2015.</i> 
+</td>
+</tr>
+<tr>
+<td ><code>cf create-domain</code></td>
+<td><ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
+		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf create-shared-domain</code></td>
+<td>
+<ul>
+		<li><strong>[Removed flag]</strong>: <code>--router-group</code>. This removes support for TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td ><code>cf delete</code></td>
+<td><ul>
+		<li><strong>[Change in flag behavior]</strong>: <code>-r</code> no longer deletes routes when the route is mapped to more than one app.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td ><code>cf delete-domain</code></td>
+<td><ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf delete-private-domain</code>.</li>
+		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td ><code>cf delete-org</code></td>
+<td><ul>
+		<li><strong>[Update]</strong>: The command fails if the org contains shared private domains.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td ><code>cf delete-service-auth-token</code></td>
+<td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
+</td>
+</tr>
+<tr>
+<td ><code>cf domains</code></td>
+<td><ul>
+		<li><strong>[Update]</strong>: <code>status</code> column renamed to <code>availability</code>.</li>
+		<li><strong>[Update]</strong>: Table refers to private domains with <code>private</code> instead of <code>own</code>.</li>
+		<li><strong>[Update]</strong>: Removed <code>type</code> column since support for TCP Routing has been removed.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td><code>cf files</code></td>
+<td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf packages</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: Displays packages from most recent to least recent.</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf push</code></td>
+<td>
+<ul>
+	        <li><strong>[Removed flag]</strong>: <code>--routh-path</code> You can use the <code>routes</code> property in the manifest instead. </li>
+		<li><strong>[Removed flag]</strong>: <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Removed flag]</strong>: <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Removed flag]</strong>: <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+	        <li><strong>[Added flag]</strong>: <code>--strategy</code>. You can deploy an app without down time using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+		<li><strong>[Added flag]</strong>: <code>--no-wait</code>. When used, the command exits when the one instance of one process becomes healthy.</li>
+		<li><strong>[Added flag]</strong>: <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
+		<li><strong>[Updated flag]</strong>: <code>--health-check-type none</code> removed in favor of <code>--health-check-type process</code>.</li>
+		<li><strong>[Updated flag]</strong>: <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
+	        <li><strong>[Updated flag]</strong>: <code>-t</code> now has a long form <code>--app-start-timeout</code>; all short form flags now have long form equivalents </li>
+
+	</ul>
+</td>
+</tr>
+<tr>
+<td><code>cf migrate-services-instances</code></td>
+<td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf restart-app-instance</code></td>
+<td><ul>
+		<li><strong>[Added Flag]</strong>: <code>--process</code>.</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf rename-buildpack</code></td>
+<td><i>Removed command. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code></i> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf routes</code></td>
+<td><ul>
+		<li><strong>[Updated output]</strong>: <code>port</code> and <code>type</code> no longer appear in the table.</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf scale</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td><code>cf service-auth-tokens</code></td>
+<td>
+<i>Removed command because the V1 Broker API was deprecated as of January 2015. </i>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf set-health-check</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+		<li><strong>[Added flag]</strong>: <code>--invocation-timeout</code></li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf ssh</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--process</code></li>
+		<li><strong>[Added environment variable]</strong>: <code>all_proxy</code>. Specifies a proxy server for all requests. </li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf start</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: No longer stages an app. Future updates are planned for this command.</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf unshare-private-domain</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: The command now provides a warning and requires confirmation before it proceeds.</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf update-buildpack</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--rename</code></li>
+	        <li><strong>[Change in flag behavior]</strong>: <code>--unlock</code> and <code>--path</code> are now compatible</li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td><code>cf update-service-auth-token</code></td>
+<td>
+<i>Removed command because the V1 Broker API was deprecated as of January 2015. </i>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-COMMAND</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: <code>v3</code> prefixes have been removed as the commands now use CAPI v3 by default.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-apply-manifest</code></td>
+<td>
+<ul>
+		<li><strong>[Update]</strong>: If no flags are passed, the command defaults to using the manifest located in your <code>pwd</code>.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-cancel-zdt-push</code></td>
+<td>
+<ul>
+		<li><i>Removed command. Instead, use <code>cf cancel-deployment</code></i>.</li>
+</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf v3-zdt-push</code></td>
+<td>
+<ul>
+		<li><i>Removed command. Instead, use <code>--strategy rolling</code> flag with <code>cf push</code></i></li>
+</ul> 
+</td>
+</tr>
+</table>
+
+
