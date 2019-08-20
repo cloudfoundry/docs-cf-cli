@@ -9,7 +9,7 @@ This topic describes the major changes between the cf CLI v6 and cf CLI v7.
 ## <a id="overview"></a> Overview
 
 
-The cf CLI v7's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who want granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
+The cf CLI v7's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who require granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
 In order to do so, the cf CLI v7 beta is under active development to convert commands to call the [Cloud Foundry API (CC API) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of the [CC API v2](http://apidocs.cloudfoundry.org/). 
 
 Since both the cf CLI v7 beta and the backing CC API v3 are both in active development, it is important to note that the cf CLI v7 beta is subject to change as we move toward completing development. However, we aim to provide:
@@ -20,7 +20,7 @@ To understand the differences between specific commands, see [Command Difference
 
 <p class="note"><strong>Note</strong>: Additionally, in order to complete the cf CLI v7 beta in a timely matter, we develop and test against the latest CAPI release candidate. </p>
 
-<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta mode, not all cf CLI v7 commands are backed by the CC API v3. As we release the cf CLI v7 beta, more v3 resources will be developed along with the cf CLI v7 support for it.</p>
+<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta mode, not all cf CLI v7 commands are backed by the CC API v3. As a result, commands still fall back to the v2 API. As we release the cf CLI v7 beta, more v3 resources will be developed along with the cf CLI v7 support for it.</p>
 
 ## <a id="new-workflows"></a> New Workflows Supported on the cf CLI v7
 
@@ -43,9 +43,22 @@ To install cf CLI v7 Beta, see the [README](https://github.com/cloudfoundry/cli#
 
 ## <a id="differences"></a> Command Differences 
 
-This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, you may need to update them to account for removal of flags, arguments no longer required, and updated output style. 
+### <a id="scripting"></a> Scripting 
 
-To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) in the cf CLI GitHub repository. 
+
+It is important to reiterate that the cf CLI v7 beta currently still calls the v2 CC API as development is ongoing. The changes mentioned in this section reflect v3 backed cf CLI v7 commands.  
+
+This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, where possible, breaking changes on the cf CLI v7 beta (Defined as removing flag options, removing commands, removing/changing argument requirements, changing exit codes) are detailed below.  
+
+Scriptors should also be aware of other changes, which were first introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the cf CLI's ongoing refactoring efforts:
+
+- v3-backed v7 CLI beta commands now output errors and warnings to <code>stderr</code> rather than <code>stdout</code> to make simplify debugging 
+- stylistic changes including flavor text [updates](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors)
+- key value and table column headers are displayed in lowercase
+- output text errors are now, where possible, returned directly from the CC API. The cf CLI v7 beta no longer wraps CC API error texts. 
+- single quote resource names in error cases
+
+To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) and the [official release page](https://github.com/cloudfoundry/cli/releases) in the cf CLI GitHub repository. 
 
 <table>
 <tr>
