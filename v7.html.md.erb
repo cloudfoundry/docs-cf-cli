@@ -4,29 +4,29 @@ owner: VAT
 ---
 
 
-This topic describes the major changes between the cf CLI v6 and cf CLI v7. 
+This topic describes the major changes between the cf CLI v6 and cf7 beta CLI. 
 
 ## <a id="overview"></a> Overview
 
 
-The cf CLI v7's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who require granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
-In order to do so, the cf CLI v7 beta is under active development to convert commands to call the [Cloud Foundry API (CC API) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of the [CC API v2](http://apidocs.cloudfoundry.org/). 
+The cf7 CLI's, and the backing v3 CC API, main goal is to unlock new app developer workflows for users who require granular control of their apps and other, more advanced, deployment strategies; see [New Workflows Supported](#new-workflows) for more information. The v3 CC API unlocks developer workflows that were previously limited by the v2 CC API. 
+In order to do so, the cf7 CLI beta is under active development to convert commands to call the [Cloud Foundry API (CC API) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of the [CC API v2](http://apidocs.cloudfoundry.org/). 
 
-Since both the cf CLI v7 beta and the backing CC API v3 are both in active development, it is important to note that the cf CLI v7 beta is subject to change as we move toward completing development. However, we aim to provide:
+Since both the cf CLI v7 beta and the backing CC API v3 are both in active development, it is important to note that the cf7 CLI beta is subject to change as we move toward completing development. However, we aim to provide:
 - a seamless upgrade experience from the cf CLI v6. To do so, we've kept changes to a minimal, and where there are changes we've incorporated feedback from the Community to simplify the cf CLI user experience
 - where a change was made that might potentially cause a breaking change in a scripting environment, we've provided details below and alternative workflows where possible
 
 To understand the differences between specific commands, see [Command Differences](#differences). 
 
-<p class="note"><strong>Note</strong>: Additionally, in order to complete the cf CLI v7 beta in a timely matter, we develop and test against the latest CAPI release candidate. </p>
+<p class="note"><strong>Note</strong>: Additionally, in order to complete the cf7 CLI beta in a timely matter, we develop and test against the latest CAPI release candidate. </p>
 
-<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta mode, not all cf CLI v7 commands are backed by the CC API v3. As a result, commands still fall back to the v2 API. As we release the cf CLI v7 beta, more v3 resources will be developed along with the cf CLI v7 support for it.</p>
+<p class="note"><strong>Note</strong>: Since the cf7 CLI is in beta mode, not all cf7 CLI commands are backed by the CC API v3. As a result, commands still fall back to the v2 API. As we release the cf7 CLI beta, more v3 resources will be developed along with the cf7 CLI support for it.</p>
 
-## <a id="new-workflows"></a> New Workflows Supported on the cf CLI v7
+## <a id="new-workflows"></a> New Workflows Supported on the cf7 CLI
 
-cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CC API v3 also includes new resources such as sidecars, manifests, deployments.
+cf7 CLI uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CC API v3 also includes new resources such as sidecars, manifests, deployments.
 
-The following list provides an overview of key new features available through the cf CLI v7 beta: 
+The following list provides an overview of key new features available through the cf7 CLI beta: 
 
 * [Rolling App Deployments (Beta)](https://docs.cloudfoundry.org/devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 * [Running cf push Sub-Step Commands](https://docs.cloudfoundry.org/devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
@@ -36,9 +36,9 @@ The following list provides an overview of key new features available through th
 
 
 
-### <a id="install"></a> Install cf CLI v7
+### <a id="install"></a> Install cf7 CLI 
 
-To install cf7 CLI Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the `cloudfoundry/cli` GitHub repository. It includes instructions for downloading the latest CC API release candidate, which is what the cf CLI v7 beta is tested against. 
+To install cf7 CLI Beta, see the [README](https://github.com/cloudfoundry/cli#downloads) v7 Section in the `cloudfoundry/cli` GitHub repository. It includes instructions for downloading the latest CC API release candidate, which is what the cf7 CLI  beta is tested against. 
 
 
 ## <a id="differences"></a> Command Differences 
@@ -46,19 +46,19 @@ To install cf7 CLI Beta, see the [README](https://github.com/cloudfoundry/cli#do
 ### <a id="scripting"></a> Scripting 
 
 
-It is important to reiterate that the cf CLI v7 beta currently still calls the v2 CC API as development is ongoing. The changes mentioned in this section reflect v3 backed cf CLI v7 commands.  
+It is important to reiterate that the cf7 CLI beta currently still calls the v2 CC API as development is ongoing. The changes mentioned in this section reflect v3 backed cf7 CLI commands.  
 
-This section includes a table that summarizes how commands differ between cf CLI v7 and cf CLI v6. If you have scripts that rely on the cf CLI, where possible, breaking changes on the cf CLI v7 beta (Defined as removing flag options, removing commands, removing/changing argument requirements, changing exit codes) are detailed below.  
+This section includes a table that summarizes how commands differ between cf7 CLI and cf CLI v6. If you have scripts that rely on the cf CLI, where possible, breaking changes on the cf7 CLI beta (Defined as removing flag options, removing commands, removing/changing argument requirements, changing exit codes) are detailed below.  
 
 Scriptors should also be aware of other changes, which were first introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the cf CLI's ongoing refactoring efforts:
 
-- v3-backed v7 CLI beta commands now output errors and warnings to <code>stderr</code> rather than <code>stdout</code> to make simplify debugging 
+- v3-backed cf7 CLI beta commands now output errors and warnings to <code>stderr</code> rather than <code>stdout</code> to make simplify debugging 
 - stylistic changes including flavor text [updates](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors)
 - key value and table column headers are displayed in lowercase
-- output text errors are now, where possible, returned directly from the CC API. The cf CLI v7 beta no longer wraps CC API error texts. 
+- output text errors are now, where possible, returned directly from the CC API. The cf7 CLI beta no longer wraps CC API error texts. 
 - single quote resource names in error cases
 
-To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com/cloudfoundry/cli/releases) and the [official release page](https://github.com/cloudfoundry/cli/releases) in the cf CLI GitHub repository. 
+To view full latest release notes for cf7 CLI, see [V7 Beta Release](https://github.com/cloudfoundry/cli/releases) in the cf CLI GitHub repository. 
 
 <table>
 <tr>
@@ -108,12 +108,12 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td><code>cf create-service-auth-token</code></td>
+<td><code>cf7 create-service-auth-token</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015.</i> 
 </td>
 </tr>
 <tr>
-<td ><code>cf create-domain</code></td>
+<td ><code>cf7 create-domain</code></td>
 <td><ul>
 		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
 		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
@@ -136,7 +136,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td ><code>cf delete-domain</code></td>
+<td ><code>cf7 delete-domain</code></td>
 <td><ul>
 		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf delete-private-domain</code>.</li>
 		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
@@ -151,7 +151,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td ><code>cf delete-service-auth-token</code></td>
+<td ><code>cf7 delete-service-auth-token</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
 </td>
 </tr>
@@ -170,7 +170,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top"><code>cf packages</code></td>
+<td style="vertical-align:top"><code>cf7 packages</code></td>
 <td>
 <ul>
 		<li><strong>[Update]</strong>: Displays packages from most recent to least recent.</li>
@@ -178,7 +178,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top"><code>cf push</code></td>
+<td style="vertical-align:top"><code>cf7 push</code></td>
 <td>
 <ul>
 	        <li><strong>[Removed flag]</strong>: <code>--routh-path</code> You can use the <code>routes</code> property in the manifest instead. </li>
@@ -196,7 +196,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td><code>cf migrate-services-instances</code></td>
+<td><code>cf7 migrate-services-instances</code></td>
 <td><i>Removed command because the V1 Broker API was deprecated as of January 2015. </i> 
 </td>
 </tr>
@@ -208,7 +208,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top"><code>cf rename-buildpack</code></td>
+<td style="vertical-align:top"><code>cf7 rename-buildpack</code></td>
 <td><i>Removed command. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code></i> 
 </td>
 </tr>
@@ -228,7 +228,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td><code>cf service-auth-tokens</code></td>
+<td><code>cf7 service-auth-tokens</code></td>
 <td>
 <i>Removed command because the V1 Broker API was deprecated as of January 2015. </i>
 </td>
@@ -277,7 +277,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td><code>cf update-service-auth-token</code></td>
+<td><code>cf7 update-service-auth-token</code></td>
 <td>
 <i>Removed command because the V1 Broker API was deprecated as of January 2015. </i>
 </td>
@@ -299,7 +299,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top"><code>cf v3-cancel-zdt-push</code></td>
+<td style="vertical-align:top"><code>cf7 v3-cancel-zdt-push</code></td>
 <td>
 <ul>
 		<li><i>Removed command. Instead, use <code>cf cancel-deployment</code></i>.</li>
@@ -307,7 +307,7 @@ To view full release notes for cf7 CLI, see [V7 Beta Release](https://github.com
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top"><code>cf v3-zdt-push</code></td>
+<td style="vertical-align:top"><code>cf7 v3-zdt-push</code></td>
 <td>
 <ul>
 		<li><i>Removed command. Instead, use <code>--strategy rolling</code> flag with <code>cf push</code></i></li>
