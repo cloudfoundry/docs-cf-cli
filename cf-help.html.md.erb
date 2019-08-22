@@ -9,7 +9,7 @@ title: Cloud Foundry CLI Reference Guide
 <p>cf [global options] command [arguments...] [command options]</p>
 
 ## <a id='version'></a> Version
-<p>6.46.0+29d6257f1.2019-07-09</p>
+<p>6.22.0+f9f1460-2016-09-23</p>
 
 ## <a id='getting-started'></a> Getting Started
 <table>
@@ -58,7 +58,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/auth.html' target='_blank'>auth</a></td>
-      <td>Authenticate non-interactively</td>
+      <td>Authenticate user non-interactively</td>
     </tr>
   </tbody>
 </table>
@@ -82,7 +82,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/app.html' target='_blank'>app</a></td>
-      <td>Display health and status for an app</td>
+      <td>Display health and status for app</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -118,31 +118,15 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart.html' target='_blank'>restart</a></td>
-      <td>Stop all instances of the app, then start them again. This causes downtime.</td>
+      <td>Restart an app</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restage.html' target='_blank'>restage</a></td>
-      <td>Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.). This action will cause app downtime.</td>
+      <td>Restage an app</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/restart-app-instance.html' target='_blank'>restart-app-instance</a></td>
-      <td>Terminate, then restart an app instance</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/run-task.html' target='_blank'>run-task</a></td>
-      <td>Run a one-off task on an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/tasks.html' target='_blank'>tasks</a></td>
-      <td>List tasks of an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/terminate-task.html' target='_blank'>terminate-task</a></td>
-      <td>Terminate a running task of an app</td>
+      <td>Terminate the running application Instance at the given index and instantiate a new instance of the application with the same index</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -174,7 +158,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/unset-env.html' target='_blank'>unset-env</a></td>
-      <td>Remove an env variable from an app</td>
+      <td>Remove an env variable</td>
     </tr>
     <tr class='separator'>
       <td></td>
@@ -206,11 +190,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/get-health-check.html' target='_blank'>get-health-check</a></td>
-      <td>Show the type of health check performed on an app</td>
+      <td>Get the health_check_type value of an app</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-health-check.html' target='_blank'>set-health-check</a></td>
-      <td>Change type of health check performed on an app</td>
+      <td>Set health_check_type flag to either 'port' or 'none'</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/enable-ssh.html' target='_blank'>enable-ssh</a></td>
@@ -331,18 +315,6 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html' target='_blank'>update-user-provided-service</a></td>
       <td>Update user-provided service instance</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/share-service.html' target='_blank'>share-service</a></td>
-      <td>Share a service instance with another space</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/unshare-service.html' target='_blank'>unshare-service</a></td>
-      <td>Unshare a shared service instance from a space</td>
     </tr>
   </tbody>
 </table>
@@ -526,35 +498,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/delete-orphaned-routes.html' target='_blank'>delete-orphaned-routes</a></td>
-      <td>Delete all orphaned routes in the currently targeted space (i.e. those that are not mapped to an app)</td>
-    </tr>
-  </tbody>
-</table>
-
-## <a id='network-policies'></a> Network Policies
-<table>
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/network-policies.html' target='_blank'>network-policies</a></td>
-      <td>List direct network traffic policies</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/add-network-policy.html' target='_blank'>add-network-policy</a></td>
-      <td>Create policy to allow direct network traffic from one app to another</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/remove-network-policy.html' target='_blank'>remove-network-policy</a></td>
-      <td>Remove network traffic policy of an app</td>
+      <td>Delete all orphaned routes (i.e. those that are not mapped to an app)</td>
     </tr>
   </tbody>
 </table>
@@ -955,58 +899,6 @@ title: Cloud Foundry CLI Reference Guide
   </tbody>
 </table>
 
-## <a id='isolation-segments'></a> Isolation Segments
-<table>
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/isolation-segments.html' target='_blank'>isolation-segments</a></td>
-      <td>List all isolation segments</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/create-isolation-segment.html' target='_blank'>create-isolation-segment</a></td>
-      <td>Create an isolation segment</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/delete-isolation-segment.html' target='_blank'>delete-isolation-segment</a></td>
-      <td>Delete an isolation segment</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/enable-org-isolation.html' target='_blank'>enable-org-isolation</a></td>
-      <td>Entitle an organization to an isolation segment</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/disable-org-isolation.html' target='_blank'>disable-org-isolation</a></td>
-      <td>Revoke an organization's entitlement to an isolation segment</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-org-default-isolation-segment.html' target='_blank'>set-org-default-isolation-segment</a></td>
-      <td>Set the default isolation segment used for apps in spaces in an org</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/reset-org-default-isolation-segment.html' target='_blank'>reset-org-default-isolation-segment</a></td>
-      <td>Reset the default isolation segment used for apps in spaces of an org</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/set-space-isolation-segment.html' target='_blank'>set-space-isolation-segment</a></td>
-      <td>Assign the isolation segment for a space</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/reset-space-isolation-segment.html' target='_blank'>reset-space-isolation-segment</a></td>
-      <td>Reset the space's isolation segment to the org default</td>
-    </tr>
-  </tbody>
-</table>
-
 ## <a id='feature-flags'></a> Feature Flags
 <table>
   <thead>
@@ -1022,7 +914,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/feature-flags.html' target='_blank'>feature-flags</a></td>
-      <td>Retrieve list of feature flags with status</td>
+      <td>Retrieve list of feature flags with status of each flag-able feature</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/feature-flag.html' target='_blank'>feature-flag</a></td>
@@ -1030,11 +922,11 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/enable-feature-flag.html' target='_blank'>enable-feature-flag</a></td>
-      <td>Allow use of a feature</td>
+      <td>Enable the use of a feature so that users have access to and can use the feature</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/disable-feature-flag.html' target='_blank'>disable-feature-flag</a></td>
-      <td>Prevent use of a feature</td>
+      <td>Disable the use of a feature so that users have access to and can use the feature</td>
     </tr>
   </tbody>
 </table>
@@ -1118,7 +1010,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/plugins.html' target='_blank'>plugins</a></td>
-      <td>List commands of installed plugins</td>
+      <td>List all available plugin commands</td>
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/install-plugin.html' target='_blank'>install-plugin</a></td>
@@ -1126,7 +1018,7 @@ title: Cloud Foundry CLI Reference Guide
     </tr>
     <tr>
       <td><a href='http://cli.cloudfoundry.org/en-US/cf/uninstall-plugin.html' target='_blank'>uninstall-plugin</a></td>
-      <td>Uninstall CLI plugin</td>
+      <td>Uninstall the plugin defined in command argument</td>
     </tr>
   </tbody>
 </table>
@@ -1149,10 +1041,6 @@ title: Cloud Foundry CLI Reference Guide
       <td>Do not colorize output</td>
     </tr>
     <tr>
-      <td>CF_DIAL_TIMEOUT=5</td>
-      <td>Max wait time to establish a connection, including name resolution, in seconds</td>
-    </tr>
-    <tr>
       <td>CF_HOME=path/to/dir/</td>
       <td>Override path to default config directory</td>
     </tr>
@@ -1169,12 +1057,8 @@ title: Cloud Foundry CLI Reference Guide
       <td>Append API request diagnostics to a log file</td>
     </tr>
     <tr>
-      <td>all_proxy=proxy.example.com:8080</td>
-      <td>Specify a proxy server to enable proxying for all requests</td>
-    </tr>
-    <tr>
       <td>https_proxy=proxy.example.com:8080</td>
-      <td>Enable proxying for HTTP requests</td>
+      <td>Enable HTTP proxying for API requests</td>
     </tr>
   </tbody>
 </table>
@@ -1199,134 +1083,6 @@ title: Cloud Foundry CLI Reference Guide
     <tr>
       <td>-v</td>
       <td>Print API request diagnostics to stdout</td>
-    </tr>
-  </tbody>
-</table>
-
-## <a id='apps-(experimental)'></a> Apps (experimental)
-<table>
-  <thead>
-    <tr>
-      <th>Command</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-apps.html' target='_blank'>v3-apps</a></td>
-      <td>List all apps in the target space</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-app.html' target='_blank'>v3-create-app</a></td>
-      <td>Create a V3 App</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-push.html' target='_blank'>v3-push</a></td>
-      <td>Push a new app or sync changes to an existing app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-scale.html' target='_blank'>v3-scale</a></td>
-      <td>Change or view the instance count, disk space limit, and memory limit for an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-delete.html' target='_blank'>v3-delete</a></td>
-      <td>Delete a V3 App</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-start.html' target='_blank'>v3-start</a></td>
-      <td>Start an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-stop.html' target='_blank'>v3-stop</a></td>
-      <td>Stop an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-restart.html' target='_blank'>v3-restart</a></td>
-      <td>Stop all instances of the app, then start them again. This causes downtime.</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-stage.html' target='_blank'>v3-stage</a></td>
-      <td>Create a new droplet for an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-restart-app-instance.html' target='_blank'>v3-restart-app-instance</a></td>
-      <td>Terminate, then instantiate an app instance</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-apply-manifest.html' target='_blank'>v3-apply-manifest</a></td>
-      <td>Applies manifest properties to an application</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-droplets.html' target='_blank'>v3-droplets</a></td>
-      <td>List droplets of an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-droplet.html' target='_blank'>v3-set-droplet</a></td>
-      <td>Set the droplet used to run an app</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-env.html' target='_blank'>v3-env</a></td>
-      <td>Show all env variables for an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-env.html' target='_blank'>v3-set-env</a></td>
-      <td>Set an env variable for an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-unset-env.html' target='_blank'>v3-unset-env</a></td>
-      <td>Remove an env variable from an app</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-get-health-check.html' target='_blank'>v3-get-health-check</a></td>
-      <td>Show the type of health check performed on an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-set-health-check.html' target='_blank'>v3-set-health-check</a></td>
-      <td>Change type of health check performed on an app's process</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-packages.html' target='_blank'>v3-packages</a></td>
-      <td>List packages of an app</td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-create-package.html' target='_blank'>v3-create-package</a></td>
-      <td>Uploads a V3 Package</td>
-    </tr>
-    <tr class='separator'>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href='http://cli.cloudfoundry.org/en-US/cf/v3-ssh.html' target='_blank'>v3-ssh</a></td>
-      <td>SSH to an application container instance</td>
     </tr>
   </tbody>
 </table>
