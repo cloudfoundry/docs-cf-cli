@@ -101,6 +101,14 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 </td>
 </tr>
 <tr>
+<td ><code>cf7 create-domain</code></td>
+<td><ul>
+		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
+		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf7 create-route</code></td>
 <td>
 	<ul>
@@ -117,18 +125,18 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 </td>
 </tr>
 <tr>
-<td ><code>cf7 create-domain</code></td>
-<td><ul>
-		<li><strong>[Renamed]</strong>: This command is renamed to <code>cf create-private-domain</code>.</li>
-		<li><strong>[Update]</strong>: No longer supports router groups and TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
-	</ul> 
-</td>
-</tr>
-<tr>
 <td style="vertical-align:top"><code>cf7 create-shared-domain</code></td>
 <td>
 <ul>
 		<li><strong>[Removed flag]</strong>: <code>--router-group</code>. This removes support for TCP routing removed in favor of different functionality currently being explored by the Networking team.</li>
+	</ul> 
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf7 create-user</code></td>
+<td>
+<ul>
+		<li><strong>[Added flag]</strong>: <code>--password-prompt</code>. This option provides more security because users do not have to type their password on the command line.</li>
 	</ul> 
 </td>
 </tr>
