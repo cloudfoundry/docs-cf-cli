@@ -5,7 +5,7 @@ owner: CLI
 
 
 
-This topic describes how developers can use the cf CLI to communicate securely with a <%= vars.first_product_name  %> deployment without specifying `--skip-ssl-validation` under the following circumstances:
+This topic describes how developers can use the cf CLI to communicate securely with a <%= vars.product_name  %> deployment without specifying `--skip-ssl-validation` under the following circumstances:
 
 * The deployment uses a self-signed certificate.
 * The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA.
@@ -14,7 +14,7 @@ This topic describes how developers can use the cf CLI to communicate securely w
 
 ## <a id="install-local"></a>Install the Certificate on Local Machines ##
 
-The certificates that developers must insert into their local truststore vary depending on the configuration of the deployment. 
+The certificates that developers must insert into their local truststore vary depending on the configuration of the deployment.
 
 * If the deployment uses a self-signed certificate, the developer must insert the self-signed certificate into their local truststore.
 * If the deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA, the developer must insert the self-signed certificate and any intermediate certificates into their local truststore.
@@ -44,6 +44,6 @@ or
 
 ### <a id="windows"></a>Installing the Certificate on Windows
 
-1. Right-click on the certificate file and click **Install Certificate**. 
+1. Right-click on the certificate file and click **Install Certificate**.
 
 1. Choose to install the certificate as the **Current User** or **Local Machine**. Choose the **Trusted Root Certification Authorities** as the certification store.
