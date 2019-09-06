@@ -9,18 +9,20 @@ This topic describes the major changes between Cloud Foundry Command Line Interf
 
 The cf CLI v7 beta is in active development to convert commands to call the [Cloud Foundry API (CAPI) v3](https://v3-apidocs.cloudfoundry.org/index.html#introduction) instead of [CAPI v2](http://apidocs.cloudfoundry.org/).
 
-The main goal of cf CLI v7 and CAPI v3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. See [New Workflows Supported](#new-workflows) for more information. These workflows were previously limited by CAPI v2.  
+The main goal of cf CLI v7 and CAPI v3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows). These workflows were previously limited by CAPI v2.  
 
-Both cf CLI v7 beta and CAPI v3 are in active development. cf CLI v7 beta is subject to change as development continues. However, the cf CLI development team aims to provide the following:
+Both cf CLI v7 beta and CAPI v3 are in active development. cf CLI v7 beta is subject to change as development continues. However, the cf CLI development team aims to provide:
 
 - A seamless upgrade experience from cf CLI v6. Changes have been kept to a minimum. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience. 
+
 - Details about breaking potential breaking changes and alternative workflows for scripting environments. 
 
 To understand the differences between specific commands, see [Command Differences](#differences). 
 
-<p class="note"><strong>Note</strong>: The cf CLI v7 beta is developed and tested against the latest CAPI release candidate. </p>
+<p class="note"><strong>Note:</strong> The cf CLI v7 beta is developed and tested against the latest CAPI release candidate. </p>
 
-<p class="note"><strong>Note</strong>: Since the cf CLI v7 is in beta, not all commands use CAPI v3. Some commands still use CAPI v2.</p>
+<p class="note"><strong>Note:</strong> Since the cf CLI v7 is in beta, not all commands use CAPI v3. Some commands still use CAPI v2.</p>
+
 
 ## <a id="new-workflows"></a> New Workflows Supported by cf CLI v7
 
@@ -28,10 +30,14 @@ cf CLI v7 uses CAPI v3, which offers developers more granular control over their
 
 The following list provides an overview of key new features available through the cf7 CLI beta: 
 
-* [Rolling App Deployments (Beta)](https://docs.cloudfoundry.org/devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
+* [Rolling App Deployments](https://docs.cloudfoundry.org/devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
+
 * [Running cf push Sub-Step Commands](https://docs.cloudfoundry.org/devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
-* [Pushing an App with Multiple Processes](https://docs.cloudfoundry.org/devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process. 
-* [Pushing Apps with Sidecar Processes](https://docs.cloudfoundry.org/devguide/sidecars.html): Run additional processes in the same container as your app.  
+
+* [Pushing an App with Multiple Processes](https://docs.cloudfoundry.org/devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process.
+
+* [Pushing Apps with Sidecar Processes](https://docs.cloudfoundry.org/devguide/sidecars.html): Run additional processes in the same container as your app.
+
 * [Using Metadata](https://docs.cloudfoundry.org/adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
 
 
@@ -46,7 +52,7 @@ The following sections provide details about changes in commands from v6 to v7 a
 
 To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) and the [official release page](https://github.com/cloudfoundry/cli/releases) in the cf CLI GitHub repository. 
 
-<p class="note"><strong>Note</strong>: cf CLI v7 beta still calls CAPI v2 for some commands while development is ongoing. The changes mentioned in this section reflect v3-backed cf CLI v7 commands.</p>
+<p class="note"><strong>Note:</strong> cf CLI v7 beta still calls CAPI v2 for some commands while development is ongoing. The changes mentioned in this section reflect v3-backed cf CLI v7 commands.</p>
 
 ### <a id="scripting"></a> About Scripting 
 
@@ -54,10 +60,14 @@ If you have scripts that rely on the cf CLI, see the [Table of Differences](#tab
 
 See the following list of additional changes, introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the ongoing effort to refactor the cf CLI:
 
-- cf CLI v7 beta commands output errors and warnings to <code>stderr</code> rather than <code>stdout</code> to simplify debugging. 
-- Style changes including flavor text [updates](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors).
+- cf CLI v7 beta commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
+
+- Style changes including flavor text updates. For more information, see the [Colors](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors) section of the CF CLI Style Guide on GitHub.
+
 - Key-value and table column headers are displayed in lowercase.
-- Output text errors are returned directly from CAPI when possible. The cf CLI v7 beta does not wrap CAPI error texts. 
+
+- Output text errors are returned directly from CAPI when possible. The cf CLI v7 beta does not wrap CAPI error texts.
+
 - Single quote resource names in error cases.
 
 ### <a id="table"></a> Table of Differences
@@ -327,5 +337,3 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 </td>
 </tr>
 </table>
-
-
