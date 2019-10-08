@@ -56,17 +56,15 @@ To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.c
 
 ### <a id="scripting"></a> About Scripting 
 
-If you have scripts that rely on the cf CLI, see the [Table of Differences](#table) to be aware of possible breaking changes. These include removed flag options, removed commands, removed or changed argument requirements, and changed exit codes.  
+If you have scripts that rely on the cf CLI, see the [Table of Differences](#table) to be aware of possible breaking changes. These include removed flag options, removed commands, removed or changed argument requirements, and changed exit codes.   If your scripts parse error text, it is important to note that in cf7, output text errors are returned directly from CAPI. Where possible, cf CLI v7 beta no longer wraps errors it receives from the API. 
 
-See the following list of additional changes, introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the ongoing effort to refactor the cf CLI:
+See the following list of additional changes that may affect scripting, introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the ongoing effort to refactor the cf CLI:
 
 - cf CLI v7 beta commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
 
 - Style changes including flavor text updates. For more information, see the [Colors](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors) section of the CF CLI Style Guide on GitHub.
 
 - Key-value and table column headers are displayed in lowercase.
-
-- Output text errors are returned directly from CAPI when possible. The cf CLI v7 beta does not wrap CAPI error texts.
 
 - Single quote resource names in error cases.
 
