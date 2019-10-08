@@ -56,9 +56,11 @@ To view full release notes for cf CLI v7, see [V7 Beta Release](https://github.c
 
 ### <a id="scripting"></a> About Scripting 
 
-If you have scripts that rely on the cf CLI, see the [Table of Differences](#table) to be aware of possible breaking changes. These include removed flag options, removed commands, removed or changed argument requirements, and changed exit codes.   If your scripts parse error text, it is important to note that in cf7, output text errors are returned directly from CAPI. Where possible, cf CLI v7 beta no longer wraps errors it receives from the API. 
+If you have scripts that rely on the cf CLI, this section discusses possible changes in cf7 which might affect scripts. Also see the [Table of Differences](#table) to be aware of possible breaking changes. These include removed flag options, removed commands, and removed or changed argument requirements.   
 
 See the following list of additional changes that may affect scripting, introduced as early as [December 2016](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) as part of the ongoing effort to refactor the cf CLI:
+
+- If your scripts parse error text, it is important to note that in cf7, output text errors are returned directly from CAPI. Where possible, cf CLI v7 beta no longer wraps errors it receives from the API. 
 
 - cf CLI v7 beta commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
 
@@ -67,6 +69,14 @@ See the following list of additional changes that may affect scripting, introduc
 - Key-value and table column headers are displayed in lowercase.
 
 - Single quote resource names in error cases.
+
+
+### <a id="table"></a> Exit Codes
+
+cf7 attempts to consistently apply the principles of idempotency across all commands which require it. See our [style guide](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) for more information. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
+- attempting to delete a space (or any resource) which doesn't exist. Commands like `delete-route`, `delete-space`, etc now return `0` in those cases. 
+- we've made updates to `create-buildpack` whereby if the buildpack is not created, the command exits with `1` instead of `0`, which is the current cf6 behavior. 
+
 
 ### <a id="table"></a> Table of Differences
 
