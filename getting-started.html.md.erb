@@ -3,50 +3,21 @@ title: Getting Started with the cf CLI
 owner: CLI
 ---
 
+This topic describes configuring and getting started with the Cloud Foundry Command Line Interface (cf CLI).
 
+## Prerequisite
 
-This topic describes configuring and getting started with the Cloud Foundry Command Line Interface (cf CLI). 
-This page assumes you have the latest version of the cf CLI. 
-See the [Installing the Cloud Foundry Command Line Interface](./install-go-cli.html) topic for installation instructions.
-
-##<a id='i18n'></a>Localize ##
-
-The cf CLI translates terminal output into the language that you select. The default language is <code>en-US</code>. The cf CLI supports the following languages:
-
-*  Chinese (simplified): <code>zh-Hans</code>
-*  Chinese (traditional): <code>zh-Hant</code>
-*  English: <code>en-US</code>
-*  French: <code>fr-FR</code>
-*  German: <code>de-DE</code>
-*  Italian: <code>it-IT</code>
-*  Japanese: <code>ja-JP</code>
-*  Korean: <code>ko-KR</code>
-*  Portuguese (Brazil): <code>pt-BR</code>
-*  Spanish: <code>es-ES</code>
-
-Use [cf config](http://cli.cloudfoundry.org/en-US/cf/config.html) to set the language. To set the language with `cf config`, use the syntax: <code>$ cf config --locale YOUR_LANGUAGE </code>.  
-
-For example, to set the language to Portuguese and confirm the change by running `cf help`:
-
-<pre class="terminal">
-$ cf config --locale pt-BR
-$ cf help
-NOME:
-   cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
-
-USO:
-   cf [opções globais] comando [argumentos...] [opções de comando]
-
-VERSÃO:
-   6.14.1+dc6adf6-2015-12-22
-   ...
-</pre>
-
-<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
+To do the procedures in this topic, you must download and install the latest version of the cf CLI. See [Installing the Cloud Foundry Command Line Interface](./install-go-cli.html).
 
 ## <a id='login'></a>Login ##
 
-Use [cf login](http://cli.cloudfoundry.org/en-US/cf/login.html) to log in to <%= vars.product_short %>. The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: <code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.  
+The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: 
+
+To log in to the cf CLI:
+
+<code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.
+
+Where:  
 
 * `API_URL`: This is your API endpoint, <%=vars.api_endpoint%>.
 * `USERNAME`: Your username.
@@ -87,6 +58,63 @@ Upon successful login, the cf CLI saves a `config.json` file containing your API
 If you change these settings, the `config.json` file is updated accordingly.
 
 By default, `config.json` is located in your `~/.cf` directory. The `CF_HOME` environment variable allows you to locate the `config.json` file wherever you like.
+
+##<a id='i18n'></a> Localize ##
+
+The cf CLI translates terminal output into the language that you select. The default language is <code>en-US</code>. The cf CLI supports the following languages:
+
+*  Chinese (simplified): <code>zh-Hans</code>
+*  Chinese (traditional): <code>zh-Hant</code>
+*  English: <code>en-US</code>
+*  French: <code>fr-FR</code>
+*  German: <code>de-DE</code>
+*  Italian: <code>it-IT</code>
+*  Japanese: <code>ja-JP</code>
+*  Korean: <code>ko-KR</code>
+*  Portuguese (Brazil): <code>pt-BR</code>
+*  Spanish: <code>es-ES</code>
+
+To set the language of the cf CLI:
+
+1. Log in to the cf CLI. 
+
+1. Run the following command:
+
+    ```
+    $ cf config --locale YOUR_LANGUAGE
+    ``` 
+    Where YOUR_LANGUAGE is the desired language.
+    
+    For example:
+    <pre class="terminal">
+    $ cf config --locale pt-BR
+    </pre> 
+
+1. Confirm the language change:
+
+    ```
+    cf help
+    ```
+    For example:
+
+    <pre class="terminal">
+
+    $ cf help
+    NOME:
+       cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
+
+    USO:
+       cf [opções globais] comando [argumentos...] [opções de comando]
+
+    VERSÃO:
+       6.14.1+dc6adf6-2015-12-22
+       ...
+    </pre>
+
+<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
+
+For more information, see [config](http://cli.cloudfoundry.org/en-US/cf/config.html) in _Cloud Foundry CLI Reference Guide_.
+
 
 ## <a id='user-roles'></a> Users and Roles ##
 
