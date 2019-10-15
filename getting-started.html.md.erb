@@ -56,7 +56,10 @@ Targeted space development
 
 ## <a id='login'></a> Log In With the API
 
-You can write a script to log in and set your target using the non-interactive [cf api](http://cli.cloudfoundry.org/en-US/cf/api.html), [cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html), and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands.
+You can write a script to log in and set your target using the non-interactive cf api , cf auth, and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands.
+
+[cf api](http://cli.cloudfoundry.org/en-US/cf/api.html)
+[cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
 
 After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token.
 
@@ -298,7 +301,7 @@ To create or update a user-provided service instance, you need to supply basic p
 
 You can provide these parameters in the following ways: 
 
-* Interactively. See [Supply Parameters Interactively](#interactive) 
+* Interactively. See [Supply Parameters Interactively](#interactive). 
 * Non-interactively. See [Supply Parameters Non-Interactively](#non-interactive).
 * With third-party log management software as described in RFC 6587. See [Supply Parameters Through a Third-Party](#third-party). For more information, see [RFC 6587](http://tools.ietf.org/html/rfc6587)
     <p class="note"><b>Note:</b> When used with third-party logging, the cf CLI sends data formatted according to RFC 5424. See [RFC 5424](http://tools.ietf.org/html/rfc5424).</p>
@@ -323,7 +326,7 @@ OK
 
 To supply parameters non-interactively, pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag. 
 
-The following example is a non-interactive version of the `cf cups` example in [Supply Parameters Interactively](#interactive).
+The following example is a non-interactive version of the `cf cups` example in [Supply Parameters Interactively](#interactive):
 
 <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
 Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
