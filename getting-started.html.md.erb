@@ -56,10 +56,13 @@ Targeted space development
 
 ## <a id='login'></a> Log In With the API
 
-You can write a script to log in and set your target using the non-interactive cf api , cf auth, and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands.
+You can write a script to log in and set your target using the non-interactive cf api , cf auth, and cf target commands.
 
-[cf api](http://cli.cloudfoundry.org/en-US/cf/api.html)
-[cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
+For more information, see the following:
+
+* [api](http://cli.cloudfoundry.org/en-US/cf/api.html)
+* [auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
+* [target](http://cli.cloudfoundry.org/en-US/cf/target.html)
 
 After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token.
 
@@ -86,22 +89,27 @@ The cf CLI supports the following languages:
 
 For more information, see [config](http://cli.cloudfoundry.org/en-US/cf/config.html) in _Cloud Foundry CLI Reference Guide_.
 
+<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
+
 To set the language of the cf CLI:
 
-1. Log in to the cf CLI. 
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ``` 
 
 1. Run the following command:
 
     ```
     $ cf config --locale YOUR-LANGUAGE
     ``` 
-    Where YOUR-LANGUAGE is the desired language.
+    Where `YOUR-LANGUAGE` is the desired language.
     
     For example:
     <pre class="terminal">
     $ cf config --locale pt-BR
     </pre> 
-    <p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
 
 1. Confirm the language change:
 
@@ -132,11 +140,28 @@ The cf CLI includes commands that list users and assign roles in orgs and spaces
 
 ### <a id='listing-users'></a> List Users
 
-The following commands list users in an org or a space:
+This section describes how to list users in an org or space. For more information, see See [org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html) and [space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html) in the _Cloud Foundry CLI Reference Guide_
 
-* `cf org-users`. See [org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html) in the _Cloud Foundry CLI Reference Guide_
+To list users in an org or a space:
 
-* `cf space-users`. See [space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html) in the _Cloud Foundry CLI Reference Guide_.
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ``` 
+
+1. Do one of the following: 
+  * List org users:
+      
+      ```
+      cf org-users
+      ``` 
+  * List space users:
+
+      ```
+      cf space-users
+      ``` 
+
 
 The following example shows the cf CLI output for listing the users of an org:
 
@@ -282,12 +307,26 @@ buildpack: ruby_buildpack
 
 ### <a id='new-route'></a> Map a Route to an App
 
-You can use the `--hostname` flag with the `cf push` command to provide a hostname for your app.
+You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form `APPNAME.DOMAIN`, where `APPNAME` is the name of your app and `DOMAIN` is your default domain. 
 
-If you do not provide a hostname, `cf push` routes your app to a URL of the form `APPNAME.DOMAIN`, where `APPNAME` is the name of your app and `DOMAIN` is your default domain. 
+For information about mapping a route to your app, see [Routes and Domains](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html).
 
-For information about mapping a route to your app, see [Routes and Domains](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html). 
+To map a route to the app:
 
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. Map a route:
+
+    ```
+    cf push APP-NAME --hostname MY-HOSTNAME
+    ```
+    Where:
+      * `APP-NAME` is the name of the app.
+      * `MY-HOSTNAME` is the hostname.
 
 ## <a id='user-provided'></a> Manage User-Provided Service Instances
 
@@ -295,7 +334,7 @@ This section describes how to create or update a service instance.
 
 ### <a id='user-cups'></a> Create a Service Instance
 
-To create a new service instance, use `cf create-user-provided-service` or `cf cups`. See [cf cups](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) in the _Cloud Foundry CLI Reference Guide_.
+To create a new service instance, use the `cf create-user-provided-service` or `cf cups` commands. See [cf cups](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
 To create or update a user-provided service instance, you need to supply basic parameters. For example, a database service might require a username, password, host, port, and database name.
 
@@ -308,44 +347,91 @@ You can provide these parameters in the following ways:
 
 #### <a id='interactive'></a> Supply Parameters Interactively
 
-To supply parameters interactively, list parameters in a comma-separated list after the `-p` flag. 
+This procedure describes how to create a new service instance by supplying parameters interactively:
 
-The following example creates a service instance for a database service:  
+To supply parameters interactively:
 
-<pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
-host> mysql.example.com
-port> 1433
-dbname> mysqldb
-username> admin
-password> Pa55w0rd
-Creating user provided service sql-service-instance in org example-org / space development as username@example.com...
-OK
-</pre>
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. List parameters in a comma-separated list after the `-p` flag:
+
+    ```
+    cf cups MY-SERVICE -p "MY-PARAMETER, MY-SECOND-PARAMETER, MY-THIRD-PARAMETER"
+    ```
+    Where:
+    * `MY-SERVICE` is the name of the service to create.
+    * `MY-PARAMETER`, `MY-SECOND-PARAMETER`, and `MY-THIRD-PARAMETER` are parameters such as username, password, host, port, and database name.
+
+    For example:  
+
+    <pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
+    host> mysql.example.com
+    port> 1433
+    dbname> mysqldb
+    username> admin
+    password> Pa55w0rd
+    Creating user provided service sql-service-instance in org example-org / space development as username@example.com...
+    OK
+    </pre>
 
 #### <a id='non-interactive'></a> Supply Parameters Non-Interactively
 
-To supply parameters non-interactively, pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag. 
+This procedure describes how to create a new service instance by supplying parameters non-interactively:
 
-The following example is a non-interactive version of the `cf cups` example in [Supply Parameters Interactively](#interactive):
+To supply parameters non-interactively:
 
-<pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
-Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
-OK
-</pre>
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. Pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag.
+
+    ```
+    cf cups MY-SERVICE -p '{"host":"HOSTNAME", "port":"PORT"}'
+    ``` 
+    Where:
+    * `MY-SERVICE` is the name of the service to create. 
+    * `HOSTNAME` and `PORT` are service parameters.
+
+    For example: 
+    <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
+    Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
+    OK
+    </pre>
 
 
 #### <a id='third-party'></a> Supply Parameters Through a Third-Party
 
-To create a service instance that sends data to a third-party, use the `-l` option followed by the external destination URL. 
-
-The following example creates a service instance that sends log information to the syslog drain URL of a third-party log management service. 
-
 For specific log service instructions, see [Service-Specific Instructions for Streaming Application Logs](https://docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html).
 
-<pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
-Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
-OK
-</pre>
+To create a service instance that sends data to a third-party:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+1. Create a service instance that sends data to a third-party:
+
+    ```
+    cf cups MY-SERVICE -l THIRD-PARTY-DESTINATION-URL
+    ```
+    Where:
+    * `MY-SERVICE` is the name of the service to create.
+    * `THIRD-PARTY-DESTINATION-URL` is the external URL of the third-party service.
+
+    For example, the following command creates a service instance that sends log information to the syslog drain URL of a third-party log management service: 
+
+    <pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
+    Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
+    OK
+    </pre>
 
 ### <a id='bind-unbind'></a> Bind and Unbind Service Instances
 
@@ -365,7 +451,7 @@ To update one or more of the parameters for an existing user-provided service in
 
 For more information, see [update-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-The `cf uups` command does not update any parameter values that you do not supply.
+<p class="note"><b>Note:</b> The <code>cf uups</code> command does not update any parameter values that you do not supply.</p>
 
 ## <a id='return-codes'></a> Retrieve cf CLI Return Codes
 
