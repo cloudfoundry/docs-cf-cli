@@ -56,9 +56,9 @@ Targeted space development
 
 ## <a id='login'></a> Log In With the API
 
-You can write a script to log in and set your target using the non-interactive cf api , cf auth, and cf target commands.
+You can write a script to log in and set your target using the non-interactive `cf api` , `cf auth`, and `cf target` commands.
 
-For more information, see the following:
+For more information, see the following topics in the _Cloud Foundry CLI Reference Guide_:
 
 * [api](http://cli.cloudfoundry.org/en-US/cf/api.html)
 * [auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
@@ -140,7 +140,7 @@ The cf CLI includes commands that list users and assign roles in orgs and spaces
 
 ### <a id='listing-users'></a> List Users
 
-This section describes how to list users in an org or space. For more information, see See [org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html) and [space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html) in the _Cloud Foundry CLI Reference Guide_
+This section describes how to list users in an org or space. For more information, see [org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html) and [space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html) in the _Cloud Foundry CLI Reference Guide_.
 
 To list users in an org or a space:
 
@@ -455,15 +455,27 @@ For more information, see [update-user-provided-service](http://cli.cloudfoundry
 
 ## <a id='return-codes'></a> Retrieve cf CLI Return Codes
 
-The cf CLI uses exit codes, which help with scripting and confirming that a command has run successfully. 
+The cf CLI uses exit codes, which help with scripting and confirming that a command has run successfully. If a command was successful, the exit code is `0`.
 
-After you run a cf CLI command, you can retrieve its return code by running `echo $?` on Mac or `echo %ERRORLEVEL%` on Windows. If the return code is `0`, the command was successful.
+To view a cf CLI exit code:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. Run one of the following commands to see that the login was successful, depending on your OS: 
+    * **Mac**: `echo $?`
+    * **Windows**: `echo %ERRORLEVEL%`
+
+    If the command was successful, the exit code is `0`.
 
 ## <a id='help'></a> View CLI Help Output
 
 The `cf help`  command lists the cf CLI commands and a brief description of each. For more information, see [help](http://cli.cloudfoundry.org/en-US/cf/help.html) in the _Cloud Foundry CLI Reference Guide_.
 
-Passing the `-h` flag to any command lists detailed help, including any aliases. 
+To list detailed help on any cf CLI command, add the `-h` flag to the command. 
 
 The following example shows detailed help output for `cf delete`:
 
