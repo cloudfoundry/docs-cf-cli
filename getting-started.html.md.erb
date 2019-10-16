@@ -5,56 +5,35 @@ owner: CLI
 
 <strong><%= modified_date %></strong>
 
-This topic describes configuring and getting started with the Cloud Foundry Command Line Interface (cf CLI). 
-This page assumes you have the latest version of the cf CLI. 
-See the [Installing the Cloud Foundry Command Line Interface](./install-go-cli.html) topic for installation instructions.
+This topic describes configuring and getting started with the Cloud Foundry Command Line Interface (cf CLI).
 
-##<a id='i18n'></a>Localize ##
+## <a id='overview'></a> Overview
 
-The cf CLI translates terminal output into the language that you select. The default language is <code>en-US</code>. The cf CLI supports the following languages:
+The cf CLI is the official command line client for Cloud Foundry. You can use the cf CLI to manage apps, service instances, orgs and spaces, and users in your environment. 
 
-*  Chinese (simplified): <code>zh-Hans</code>
-*  Chinese (traditional): <code>zh-Hant</code>
-*  English: <code>en-US</code>
-*  French: <code>fr-FR</code>
-*  German: <code>de-DE</code>
-*  Italian: <code>it-IT</code>
-*  Japanese: <code>ja-JP</code>
-*  Korean: <code>ko-KR</code>
-*  Portuguese (Brazil): <code>pt-BR</code>
-*  Spanish: <code>es-ES</code>
+## <a id='prerequisite'></a> Prerequisite
 
-Use [cf config](http://cli.cloudfoundry.org/en-US/cf/config.html) to set the language. To set the language with `cf config`, use the syntax: <code>$ cf config --locale YOUR_LANGUAGE </code>.  
+To do the procedures in this topic, you must download and install the latest version of the cf CLI. See [Installing the Cloud Foundry Command Line Interface](./install-go-cli.html).
 
-For example, to set the language to Portuguese and confirm the change by running `cf help`:
+## <a id='login'></a> Log In With the CLI
 
-<pre class="terminal">
-$ cf config --locale pt-BR
-$ cf help
-NOME:
-   cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
+The `cf login` command uses the following syntax to specify a target API endpoint, an org, and a space. 
 
-USO:
-   cf [opções globais] comando [argumentos...] [opções de comando]
+The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically.
 
-VERSÃO:
-   6.14.1+dc6adf6-2015-12-22
-   ...
-</pre>
+To log in to the cf CLI:
 
-<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
+```
+cf login -a API_URL -u USERNAME -p PASSWORD -o ORG -s SPACE
+```
 
-## <a id='login'></a>Login ##
-
-Use [cf login](http://cli.cloudfoundry.org/en-US/cf/login.html) to log in to <%= vars.product_short %>. The `cf login` command uses the following syntax to specify a target API endpoint, an org (organization), and a space: <code>$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] </code>.  
+Where:  
 
 * `API_URL`: This is your API endpoint, <%=vars.api_endpoint%>.
 * `USERNAME`: Your username.
 * `PASSWORD`: Your password. Use of the `-p` option is discouraged as it may record your password in your shell history. 
 * `ORG`: The org where you want to deploy your apps.
 * `SPACE`: The space in the org where you want to deploy your apps.
-
-The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically.
 
 <pre class="terminal">
 $ cf login -a https://api.example.com -u username<span>@</span>example.com
@@ -81,26 +60,116 @@ Targeted space development
 
 </pre>
 
-Alternatively, you can write a script to log in and set your target using the non-interactive [cf api](http://cli.cloudfoundry.org/en-US/cf/api.html), [cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html), and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands.
+## <a id='login'></a> Log In With the API
 
-Upon successful login, the cf CLI saves a `config.json` file containing your API endpoint, org, space values, and access token. 
+You can write a script to log in and set your target using the non-interactive `cf api` , `cf auth`, and `cf target` commands.
+
+For more information, see the following topics in the _Cloud Foundry CLI Reference Guide_:
+
+* [api](http://cli.cloudfoundry.org/en-US/cf/api.html)
+* [auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
+* [target](http://cli.cloudfoundry.org/en-US/cf/target.html)
+
+After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token.
+
 If you change these settings, the `config.json` file is updated accordingly.
 
-By default, `config.json` is located in your `~/.cf` directory. The `CF_HOME` environment variable allows you to locate the `config.json` file wherever you like.
+By default, `config.json` is located in the `~/.cf` directory. The `CF_HOME` environment variable allows you to relocate the `config.json` file.
 
-## <a id='user-roles'></a> Users and Roles ##
+##<a id='i18n'></a> Localize the CLI
 
-The cf CLI includes commands that list users and assign roles in orgs and spaces. See the [Orgs, Spaces, Roles, and Permissions](../concepts/roles.html) topic.
+The cf CLI translates terminal output into the language that you select. The default language is <code>en-US</code>. 
 
-### <a id='listing-users'></a>Commands for Listing Users ###
+The cf CLI supports the following languages:
 
-These commands take an org or space as an argument:
+*  Chinese (simplified): <code>zh-Hans</code>
+*  Chinese (traditional): <code>zh-Hant</code>
+*  English: <code>en-US</code>
+*  French: <code>fr-FR</code>
+*  German: <code>de-DE</code>
+*  Italian: <code>it-IT</code>
+*  Japanese: <code>ja-JP</code>
+*  Korean: <code>ko-KR</code>
+*  Portuguese (Brazil): <code>pt-BR</code>
+*  Spanish: <code>es-ES</code>
 
-* [cf org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html)
+For more information, see [config](http://cli.cloudfoundry.org/en-US/cf/config.html) in _Cloud Foundry CLI Reference Guide_.
 
-* [cf space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html)
+<p class='note'><strong>Note</strong>: Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates. </p>
 
-For example, to list the users who are members of an org:
+To set the language of the cf CLI:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ``` 
+
+1. Run the following command:
+
+    ```
+    $ cf config --locale YOUR-LANGUAGE
+    ``` 
+    Where `YOUR-LANGUAGE` is the desired language.
+    
+    For example:
+    <pre class="terminal">
+    $ cf config --locale pt-BR
+    </pre> 
+
+1. Confirm the language change:
+
+    ```
+    cf help
+    ```
+    
+    For example:
+
+    <pre class="terminal">
+
+    $ cf help
+    NOME:
+       cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
+
+    USO:
+       cf [opções globais] comando [argumentos...] [opções de comando]
+
+    VERSÃO:
+       6.14.1+dc6adf6-2015-12-22
+       ...
+    </pre>
+
+
+## <a id='user-roles'></a> Manage Users and Roles
+
+The cf CLI includes commands that list users and assign roles in orgs and spaces.
+
+### <a id='listing-users'></a> List Users
+
+This section describes how to list users in an org or space. For more information, see [org-users](http://cli.cloudfoundry.org/en-US/cf/org-users.html) and [space-users](http://cli.cloudfoundry.org/en-US/cf/space-users.html) in the _Cloud Foundry CLI Reference Guide_.
+
+To list users in an org or a space:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ``` 
+
+1. Do one of the following: 
+  * List org users:
+      
+      ```
+      cf org-users
+      ``` 
+  * List space users:
+
+      ```
+      cf space-users
+      ``` 
+
+
+The following example shows the cf CLI output for listing the users of an org:
 
 <pre class="terminal">
 $ cf org-users example-org
@@ -117,19 +186,35 @@ ORG AUDITOR
   louie<span>@</span>example.com
 </pre>
 
-### <a id='managing-roles'></a>Commands for Managing Roles ###
+### <a id='managing-roles'></a> Manage Roles
 
-These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
+The following commands can be used to manage roles in the cf CLI. These commands require <%=vars.product_short%> admin permissions and take username, org or space, and role as arguments:
 
-* [cf set-org-role](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html)
+* `cf set-org-role`. See [set-org-role](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html) in the _Cloud Foundry CLI Reference Guide_.
 
-* [cf unset-org-role](http://cli.cloudfoundry.org/en-US/cf/unset-org-role.html)
+* `cf unset-org-role`. See [unset-org-role](http://cli.cloudfoundry.org/en-US/cf/unset-org-role.html) in the _Cloud Foundry CLI Reference Guide_.
 
-* [cf set-space-role](http://cli.cloudfoundry.org/en-US/cf/set-space-role.html)
+* `cf set-space-role`. See [set-space-role](http://cli.cloudfoundry.org/en-US/cf/set-space-role.html) in the _Cloud Foundry CLI Reference Guide_.
 
-* [cf unset-space-role](http://cli.cloudfoundry.org/en-US/cf/unset-space-role.html)
+* `cf unset-space-role`. See [unset-space-role](http://cli.cloudfoundry.org/en-US/cf/unset-space-role.html) in the _Cloud Foundry CLI Reference Guide_.
 
-Available roles are `OrgManager`, `BillingManager`, `OrgAuditor`, `SpaceManager`, `SpaceDeveloper`, and `SpaceAuditor`. For example, to grant the Org Manager role to a user within an org:
+The following are the available roles:
+
+* `OrgManager`
+
+* `BillingManager` 
+
+* `OrgAuditor` 
+
+* `SpaceManager`
+
+* `SpaceDeveloper`
+
+* `SpaceAuditor` 
+
+For more information about user roles, see [Orgs, Spaces, Roles, and Permissions](https://docs.cloudfoundry.org/concepts/roles.html).
+
+The following example shows the cf CLI output for assigning the Org Manager role to a user within an org:
 
 <pre class="terminal">
 $ cf set-org-role huey@example.com example-org OrgManager
@@ -141,25 +226,63 @@ OK
 <p class="note"><strong>Note</strong>: If you are not a <%=vars.product_short%> admin, you see this message when you try to run these commands:
 <code>error code: 10003, message: You are not authorized to perform the requested action</code></p>
 
-#### <a id='multi-origin'></a>Identical Usernames in Multiple Origins
+### <a id='multi-origin'></a> Manage Roles for Users with Identical Usernames in Multiple Origins
 
-If a username corresponds to multiple accounts from different user stores, such as both the internal UAA store and an external SAML or LDAP store, the `set` and `unset` role commands above return an error:
-`The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’`
+If a username corresponds to multiple accounts from different user stores, such as both the internal UAA store and an external SAML or LDAP store, the `cf set-org-role` and the `cf unset-org-role` commands above return the following error:
 
-To resolve this ambiguity, the operator can construct a `curl` command that uses the CF API to perform the desired role-management function. For an example, see the [PUT v2/organizations/:guid/auditors](http://apidocs.cloudfoundry.org/280/organizations/associate_auditor_with_the_organization_by_username.html) API function.
+<pre class="terminal">The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’</pre>
 
-## <a id='push'></a>Push
+To resolve this ambiguity, construct a `curl` command that uses the CF API to perform the desired role-management function. 
 
-The [cf push](http://cli.cloudfoundry.org/en-US/cf/push.html) command pushes a new app or syncs changes to an existing app.
+For an example, see the [PUT v2/organizations/:guid/auditors](http://apidocs.cloudfoundry.org/280/organizations/associate_auditor_with_the_organization_by_username.html) API function.
 
-If you do not provide a hostname (also known as subdomain), `cf push` routes your app to a URL of the form `APPNAME.DOMAIN` based on the name of your app and your default domain. 
-If you want to map a different route to your app, see the [Routes and Domains](../devguide/deploy-apps/routes-domains.html) topic for information about creating routes. 
+## <a id='push'></a> Push an App
 
-The `cf push` command supports many options that determine how and where the app instances are deployed. For details about the `cf push` command, see the [push](http://cli.cloudfoundry.org/en-US/cf/push.html) page in the Cloud Foundry CLI Reference Guide.
+This section describes how to use the `cf push` command to push a new app or sync changes to an existing app. 
 
-The following example pushes an app called `my-awesome-app` to the URL `http://my-awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag.
+For more information, see [push](http://cli.cloudfoundry.org/en-US/cf/push.html) in the _Cloud Foundry CLI Reference Guide_.
 
-<p class="note"><strong>Note</strong>: When you push an app and specify a buildpack with the <code>-b</code> flag, the app remains permanently linked to that buildpack. To use the app with a different buildpack, you must delete the app and re-push it.</p>
+### <a id='push-procedure'></a> Push a New App or Push Changes to an App
+
+The following procedure describes how to push an app from the cf CLI. 
+
+To push an app:
+
+1. Log in to the cf CLI:
+    
+    ```
+    cf login
+    ```
+
+1. Navigate to the directory of the app. 
+
+1. Push a new app or push changes to an app:
+
+    ```
+    cf push APP-NAME
+    ```
+    Where `APP-NAME` is the name of the app. 
+
+
+### <a id='push-path'></a> Push an App Using a Manifest 
+
+You can provide a path to a manifest file when you push an app. The manifest file may include information such as the name of the app, disk limit, and number of instances. You can use a manifest file rather than adding flags to the `cf push` command. 
+
+`cf push` locates the `manifest.yml` file in the current working
+directory by default. Or, you can provide a path to the manifest with the `-f` flag.
+
+For more information about the `-f` flag, see [push](http://cli.cloudfoundry.org/en-US/cf/push.html) in the _Cloud Foundry CLI Reference Guide_. 
+
+<p class="note"><strong>Note</strong>: When you provide an app name at the command line, <code>cf push</code> uses that app name whether or not there is a different app name in the manifest. If the manifest describes multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p> 
+
+
+### <a id='push-buildpack'></a> Push an App with a Buildpack
+
+You can specify a buildpack when you push an app with the `-b` flag. If you use the `-b` flag to specify a buildpack, the app remains permanently linked to that buildpack. To use the app with a different buildpack, you must delete the app and then push it again.
+
+For more information about available buildpacks, see [Buildpacks](https://docs.cloudfoundry.org/buildpacks/).
+
+The following example pushes an app called `my-awesome-app` to the URL `http://my-awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag:
 
 <pre class="terminal">
 $ cf push my-awesome-app -b ruby_buildpack
@@ -187,90 +310,180 @@ buildpack: ruby_buildpack
 #0   running   2016-06-08 04:44:07 PM   0.0%   0 of 1G   0 of 1G
 </pre>
 
-For more information about available buildpacks, see the <a href="../buildpacks/">Buildpacks</a> topic.
 
-### <a id='name'></a> Always Provide an App Name to cf push
+### <a id='new-route'></a> Map a Route to an App
 
-`cf push` requires an app name, which you provide either in a manifest
-or at the command line.
+You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form `APPNAME.DOMAIN`, where `APPNAME` is the name of your app and `DOMAIN` is your default domain. 
 
-`cf push` locates the `manifest.yml` in the current working
-directory by default, or in the path provided by the `-f` option.
+For information about mapping a route to your app, see [Routes and Domains](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html).
 
-If you do not use a manifest, the minimal `cf push` command looks like this:
+To map a route to the app:
 
-<pre class="terminal">
-$ cf push my-app
-</pre>
+1. Log in to the cf CLI:
 
-<p class="note"><strong>Note</strong>: When you provide an app name at the command line, <code>cf push</code> uses that app name whether or not there is a different app name in the manifest. If the manifest describes multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others.
-Use these behaviors for testing.</p>
+    ```
+    cf login
+    ```
+
+1. Map a route:
+
+    ```
+    cf push APP-NAME --hostname MY-HOSTNAME
+    ```
+    Where:
+      * `APP-NAME` is the name of the app.
+      * `MY-HOSTNAME` is the hostname.
+
+## <a id='user-provided'></a> Manage User-Provided Service Instances
+
+This section describes how to create or update a service instance.
+
+### <a id='user-cups'></a> Create a Service Instance
+
+To create a new service instance, use the `cf create-user-provided-service` or `cf cups` commands. See [cf cups](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) in the _Cloud Foundry CLI Reference Guide_.
+
+To create or update a user-provided service instance, you need to supply basic parameters. For example, a database service might require a username, password, host, port, and database name.
+
+You can provide these parameters in the following ways: 
+
+* Interactively. See [Supply Parameters Interactively](#interactive). 
+* Non-interactively. See [Supply Parameters Non-Interactively](#non-interactive).
+* With third-party log management software as described in RFC 6587. See [Supply Parameters Through a Third-Party](#third-party). For more information, see [RFC 6587](http://tools.ietf.org/html/rfc6587)
+    <p class="note"><b>Note:</b> When used with third-party logging, the cf CLI sends data formatted according to RFC 5424. See [RFC 5424](http://tools.ietf.org/html/rfc5424).</p>
+
+#### <a id='interactive'></a> Supply Parameters Interactively
+
+This procedure describes how to create a new service instance by supplying parameters interactively:
+
+To supply parameters interactively:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. List parameters in a comma-separated list after the `-p` flag:
+
+    ```
+    cf cups MY-SERVICE -p "MY-PARAMETER, MY-SECOND-PARAMETER, MY-THIRD-PARAMETER"
+    ```
+    Where:
+    * `MY-SERVICE` is the name of the service to create.
+    * `MY-PARAMETER`, `MY-SECOND-PARAMETER`, and `MY-THIRD-PARAMETER` are parameters such as username, password, host, port, and database name.
+
+    For example:  
+
+    <pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
+    host> mysql.example.com
+    port> 1433
+    dbname> mysqldb
+    username> admin
+    password> Pa55w0rd
+    Creating user provided service sql-service-instance in org example-org / space development as username@example.com...
+    OK
+    </pre>
+
+#### <a id='non-interactive'></a> Supply Parameters Non-Interactively
+
+This procedure describes how to create a new service instance by supplying parameters non-interactively:
+
+To supply parameters non-interactively:
+
+1. Log in to the cf CLI:
+
+    ```
+    cf login
+    ```
+
+1. Pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag.
+
+    ```
+    cf cups MY-SERVICE -p '{"host":"HOSTNAME", "port":"PORT"}'
+    ``` 
+    Where:
+    * `MY-SERVICE` is the name of the service to create. 
+    * `HOSTNAME` and `PORT` are service parameters.
+
+    For example: 
+    <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
+    Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
+    OK
+    </pre>
 
 
-### <a id='find-app'></a> How cf push Finds the App
+#### <a id='third-party'></a> Supply Parameters Through a Third-Party
 
-By default, `cf push` recursively pushes the contents of the current working directory. Alternatively, you can provide a path using either a manifest or a command line option.
+For specific log service instructions, see [Service-Specific Instructions for Streaming Application Logs](https://docs.cloudfoundry.org/devguide/services/log-management-thirdparty-svc.html).
 
-- If the path is to a directory, `cf push` recursively pushes the contents of that directory instead of the current working directory.
-- If the path is to a file, `cf push` pushes only that file.
+To create a service instance that sends data to a third-party:
 
-<p class="note"><strong>Note</strong>: If you want to push more than a single file, but not the entire contents of a directory, consider using a <code>.cfignore</code> file to tell <code>cf push</code> what to exclude.</p>
+1. Log in to the cf CLI:
 
-## <a id='user-provided'></a> User-Provided Service Instances ##
+    ```
+    cf login
+    ```
+1. Create a service instance that sends data to a third-party:
 
-To create or update a user-provided service instance, you need to supply basic parameters. For example a database service might require a username, password, host, port, and database name.
+    ```
+    cf cups MY-SERVICE -l THIRD-PARTY-DESTINATION-URL
+    ```
+    Where:
+    * `MY-SERVICE` is the name of the service to create.
+    * `THIRD-PARTY-DESTINATION-URL` is the external URL of the third-party service.
 
-The cf CLI has three ways of supplying these parameters to create or update an instance of a service: interactively, non-interactively, and in conjunction with 
-third-party log management software as described in [RFC 6587](http://tools.ietf.org/html/rfc6587). When used with third-party logging, the cf CLI sends data formatted according to [RFC 5424](http://tools.ietf.org/html/rfc5424).
+    For example, the following command creates a service instance that sends log information to the syslog drain URL of a third-party log management service: 
 
-You create a service instance with `cf cups` and update one with `cf uups` as described below. 
+    <pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
+    Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
+    OK
+    </pre>
 
-### <a id='user-cups'></a>The cf create-user-provided-service (cups) Command ###
+### <a id='bind-unbind'></a> Bind and Unbind Service Instances
 
-Use [cf create-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html) (alias `cf cups`) creates a new service instance.
+After you create a user-provided service instance, you can do the following with the cf CLI:
 
-**To supply service instance parameters interactively:** Specify parameters in a comma-separated list after the `-p` flag. This example command-line session creates a service instance for a database service.  
+* Bind the service to an app with `cf bind-service`. See [bind-service](http://cli.cloudfoundry.org/en-US/cf/bind-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-  <pre class="terminal">$ cf cups sql-service-instance -p "host, port, dbname, username, password"
-host> mysql.example.com
-port> 1433
-dbname> mysqldb
-username> admin
-password> Pa55w0rd
-Creating user provided service sql-service-instance in org example-org / space development as username@example.com...
-OK
-</pre>
+* Unbind the service with `cf unbind-service`. See [unbind-service](http://cli.cloudfoundry.org/en-US/cf/unbind-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-**To supply service instance parameters to `cf cups` non-interactively:** Pass parameters and their values in as a JSON hash, bound by single quotes, after the `-p` tag. This example is a non-interactive version of the `cf cups` session above.
+* Rename the service with `cf rename-service`. See [rename-service](http://cli.cloudfoundry.org/en-US/cf/rename-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-  <pre class="terminal">$ cf cups sql-service-instance -p '{"host":"mysql.example.com", "port":"1433", "dbname":"mysqldb", "username":"admin","password":"pa55woRD"}'
-Creating user provided service sql-service-instance in org example-org / space development as username<span>@</span>example.com...
-OK
-</pre>
+* Delete the service with `cf delete-service`. See [delete-service](http://cli.cloudfoundry.org/en-US/cf/delete-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-**To create a service instance that sends data to a third-party:** Use the `-l` option followed by the external destination URL. This example creates a service instance that sends log information to the syslog drain URL of a third-party log management service. For specific log service instructions, see the [Service-Specific Instructions for Streaming Application Logs](../devguide/services/log-management-thirdparty-svc.html) topic.
+### <a id='user-uups'></a> Update a Service Instance ###
 
-  <pre class="terminal">$ cf cups mylog -l syslog://logs4.example.com:25258
-Creating user provided service mylog in org example-org / space development as username<span>@</span>example.com...
-OK
-</pre>
+To update one or more of the parameters for an existing user-provided service instance, use `cf update-user-provided-service` or `cf uups`. 
 
-After you create a user-provided service instance, you bind it to an app with [cf bind-service](http://cli.cloudfoundry.org/en-US/cf/bind-service.html), 
-unbind it with [cf unbind-service](http://cli.cloudfoundry.org/en-US/cf/unbind-service.html), rename it with [cf rename-service](http://cli.cloudfoundry.org/en-US/cf/rename-service.html), and delete it with [cf delete-service](http://cli.cloudfoundry.org/en-US/cf/delete-service.html).
+For more information, see [update-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html) in the _Cloud Foundry CLI Reference Guide_.
 
-### <a id='user-uups'></a> The cf update-user-provided-service (uups) Command ###
+<p class="note"><b>Note:</b> The <code>cf uups</code> command does not update any parameter values that you do not supply.</p>
 
-Use [cf update-user-provided-service](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html) (alias `cf uups`) to update one or more of the parameters for an existing user-provided service instance. 
-The `cf uups` command uses the same syntax as `cf cups` [above](#user-cups) to set parameter values. The `cf uups` command does not update any parameter values that you do not supply.
+## <a id='return-codes'></a> Retrieve cf CLI Return Codes
 
-## <a id='return-codes'></a> cf CLI Return Codes ##
+The cf CLI uses exit codes, which help with scripting and confirming that a command has run successfully. If a command was successful, the exit code is `0`.
 
-The cf CLI uses exit codes, which help with scripting and confirming that a command has run successfully. For example, after you run a cf CLI command, you can retrieve its return code by running `echo $?` (on Windows, `echo %ERRORLEVEL%`). If the return code is `0`, the command was successful.
+To view a cf CLI exit code:
 
-## <a id='help'></a> The cf help Command ##
+1. Log in to the cf CLI:
 
-The [cf help](http://cli.cloudfoundry.org/en-US/cf) command lists the cf CLI commands and a brief description of each.
-Passing the `-h` flag to any command lists detailed help, including any aliases. For example, to see detailed help for `cf delete`, run:
+    ```
+    cf login
+    ```
+
+1. Run one of the following commands to see that the login was successful, depending on your OS: 
+    * **Mac**: `echo $?`
+    * **Windows**: `echo %ERRORLEVEL%`
+
+    If the command was successful, the exit code is `0`.
+
+## <a id='help'></a> View CLI Help Output
+
+The `cf help`  command lists the cf CLI commands and a brief description of each. For more information, see [help](http://cli.cloudfoundry.org/en-US/cf/help.html) in the _Cloud Foundry CLI Reference Guide_.
+
+To list detailed help on any cf CLI command, add the `-h` flag to the command. 
+
+The following example shows detailed help output for `cf delete`:
 
 <pre class="terminal">
 $ cf delete -h
