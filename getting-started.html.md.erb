@@ -15,7 +15,7 @@ To do the procedures in this topic, you must download and install the latest ver
 
 ## <a id='login'></a> Log In With the CLI
 
-The `cf login` command uses the following syntax to specify a target API endpoint, an org, and a space. 
+The `cf login` command uses the following syntax to specify a target API endpoint, login credentials, an org, and a space. 
 
 The cf CLI prompts for credentials as needed. If you are a member of multiple orgs or spaces, `cf login` prompts you for which ones to log into. Otherwise it targets your org and space automatically.
 
@@ -34,35 +34,33 @@ Where:
 * `SPACE`: The space in the org where you want to deploy your apps.
 
 <pre class="terminal">
-$ cf login -a https://api.example.com -u username<span>@</span>example.com
+$ cf login -a https://api.example.com -u username<span>@</span>example.com -o example-org -s development
 API endpoint: https://api.example.com
 
 Password>
 Authenticating...
 OK
 
-Select an org (or press enter to skip):
-1. example-org
-2. example-other-org
-
-Org> 1
 Targeted org example-org
 
-Select a space (or press enter to skip):
-1. development
-2. staging
-3. production
-
-Space> 1
 Targeted space development
+
+
+
+API endpoint:   https://api.example.com
+User:           username<span>@</span>example.com
+Org:            example-org
+Space:          development
 
 </pre>
 
 ## <a id='login'></a> Log In With the API
 
-You can write a script to log in and set your target using the non-interactive `cf api` , `cf auth`, and `cf target` commands.
+You can write a script to log in to the cf CLI. This allows you to avoid manually logging in to the cf CLI each time you use it. 
 
-For more information, see the following topics in the _Cloud Foundry CLI Reference Guide_:
+To write a script to log in, set your target using the non-interactive `cf api` , `cf auth`, and `cf target` commands.   
+
+For more information about these commands, see the following topics in the _Cloud Foundry CLI Reference Guide_:
 
 * [api](http://cli.cloudfoundry.org/en-US/cf/api.html)
 * [auth](http://cli.cloudfoundry.org/en-US/cf/auth.html)
@@ -133,7 +131,7 @@ To set the language of the cf CLI:
        cf [opções globais] comando [argumentos...] [opções de comando]
 
     VERSÃO:
-       6.14.1+dc6adf6-2015-12-22
+       6.14.1
        ...
     </pre>
 
