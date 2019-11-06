@@ -248,7 +248,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 		<li><strong>[Updated output]</strong>: <code>port</code> and <code>type</code> no longer appear in the table.</li>
 	</ul>
 </td>
-</tr>
+</tr>	
 <tr>
 <td style="vertical-align:top"><code>cf7 scale</code></td>
 <td>
@@ -273,11 +273,25 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top"><code>cf7 set-running-environment-variable-group</code></td>
+<td><ul>
+		<li><strong>[Update]</strong>: System environment variables can only be strings. This is enforced now on the API.</li>
+	</ul>
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top"><code>cf7 ssh</code></td>
 <td>
 <ul>
 		<li><strong>[Added flag]</strong>: <code>--process</code></li>
 		<li><strong>[Added environment variable]</strong>: <code>all_proxy</code>. Specifies a proxy server for all requests. </li>
+	</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code>cf7 set-staging-environment-variable-group</code></td>
+<td><ul>
+		<li><strong>[Update]</strong>: System environment variables can only be strings. This is enforced now on the API.</li>
 	</ul>
 </td>
 </tr>
