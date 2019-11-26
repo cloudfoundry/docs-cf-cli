@@ -74,8 +74,8 @@ See the following list of additional changes that may affect scripting, introduc
 ### <a id="table"></a> Exit Codes
 
 cf7 attempts to consistently apply the principles of idempotency across all commands which require it. See our [style guide](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) for more information. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
-- attempting to delete a space (or any resource) which doesn't exist. Commands like `delete-route`, `delete-space`, etc now return `0` in those cases. 
-- we've made updates to `create-buildpack` whereby if the buildpack is not created, the command exits with `1` instead of `0`, which is the current cf6 behavior. 
+- attempting to delete a space (or any resource) which does not exist. Commands like `delete-route`, `delete-space`, etc now return `0` in those cases. 
+- we have made updates to `create-buildpack` where if the buildpack is not created, the command exits with `1` instead of `0`, which is the current cf6 behavior. 
 
 
 ### <a id="table"></a> Table of Differences
