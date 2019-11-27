@@ -299,7 +299,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
 <td style="vertical-align:top"><code>cf7 start</code></td>
 <td>
 <ul>
-	<li><strong>[Update]</strong>: Stages an app again to support <code>cf push app --no-start</code> use cases. If there is a new package, <code>start</code> will stage and start with the new package. If the app has been rolled back, <code>start</code> will start with the droplet you used to roll back your app. In the case of a droplet that's in a FAILED state, V7 <code>start</code> will ignore the failed droplet and restage the latest READY package to try to produce a healthy droplet. In V6, <code>start</code> will fail.</li>
+	<li><strong>[Update]</strong>: Stages an app to support <code>cf push app --no-start</code> use cases. If there is a new package, <code>start</code> stages and starts using the new package. If the app has been rolled back, <code>start</code> starts using the droplet you used to roll back your app. In the case of a droplet that is in a <code>FAILED</code> state, <code>start</code> ignores the failed droplet and restages the latest <code>READY</code> package to try to produce a healthy droplet. In cf CLI v6, <code>start</code> fails if the droplet is in a <code>FAILED</code> state.</li>
 	</ul>
 </td>
 </tr>
