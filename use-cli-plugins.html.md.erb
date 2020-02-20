@@ -3,100 +3,161 @@ title: Using cf CLI Plugins
 owner: CLI
 ---
 
+This topic describes using Cloud Foundry Command Line Interface (cf CLI) plugins.
 
 
-The Cloud Foundry Command Line Interface (cf CLI) includes plugin functionality. These plugins enable developers to add custom commands to the cf CLI. You can install and use plugins that Cloud Foundry developers and third-party developers create. You can review the [Cloud Foundry Community CLI Plugin page](https://plugins.cloudfoundry.org) for a current list of community-supported plugins. You can find information about submitting your own plugin to the community in the [Cloud Foundry CLI plugin repository](https://github.com/cloudfoundry-incubator/cli-plugin-repo) on GitHub.
+## <a id='overview'></a> Overview
 
-<p class="warning note"><strong>Warning:</strong> Plugins are not vetted in any way, including for security or functionality. Use plugins at your own risk.</p>
+The cf CLI includes plugin functionality. These plugins enable developers to add custom commands to the cf CLI.
+
+You can install and use plugins that Cloud Foundry developers and third-party developers create. For a current list of community-supported plugins, see the [Cloud Foundry Community CLI Plugin page](https://plugins.cloudfoundry.org). For information about submitting your own plugin, see the [Cloud Foundry CLI Plugin Repository (CLIPR)](https://github.com/cloudfoundry-incubator/cli-plugin-repo) repository on GitHub.
+
+<p class='note warning'><strong>Warning:</strong> Plugins are not vetted in any way, including for security or functionality. Use plugins at your own risk.</p>
 
 The cf CLI identifies a plugin by its binary filename, its developer-defined plugin name, and the commands that the plugin provides. You use the binary filename only to install a plugin. You use the plugin name or a command for any other action.
 
-<p class="note"><strong>Note</strong>: The cf CLI uses case-sensitive commands, but plugin management commands accept plugin and repository names irrespective of their casing.</p>
+<p class="note"><strong>Note:</strong> The cf CLI uses case-sensitive commands, but plugin management commands accept plugin and repository names irrespective of their casing.</p>
 
-## <a id="plugin-directory"></a>Changing the Plugin Directory ##
 
-By default, the cf CLI stores plugins on your workstation in `$CF_HOME/.cf/plugins`, which defaults to `$HOME/.cf/plugins`. To change the root directory of this path from `$CF_HOME`, set the `CF_PLUGIN_HOME` environment variable. The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plugins in that location.
+## <a id="plugin-directory"></a> Change the Plugin Directory
 
-For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plugins in `/my-folder/.cf/plugins`.
+By default, the cf CLI stores plugins on your workstation in `$CF_HOME/.cf/plugins`, which defaults to `$HOME/.cf/plugins`.
 
-## <a id="plugin-install"></a>Installing a Plugin ##
+To change the root directory of this path from `$CF_HOME`, you must set the `CF_PLUGIN_HOME` environment variable.
+
+The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plugins in that location. For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plugins in `/my-folder/.cf/plugins`.
+
+
+## <a id="plugin-install"></a> Install a Plugin
+
+To install a plugin:
 
 1. Download a binary or the source code for a plugin from a trusted provider.
+    <p class="note"><strong>Note:</strong> The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.</p>
 
-    <p class="note"><strong>Note</strong>: The cf CLI requires a binary file compiled from source code written in Go. If you
-download source code, you must compile the code to create a binary.</p>
+1. Run:
 
-1. Run `cf install-plugin BINARY-FILENAME` to install a plugin. Replace `BINARY-FILENAME` with the path to and name of your binary file.
+    ```
+    cf install-plugin BINARY-FILENAME
+    ```
+    Where `BINARY-FILENAME` is the path to and name of your binary file.
+    <p class="note"><strong>Note:</strong> You cannot install a plugin that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.</p>
+    <p class="note"><strong>Note:</strong> The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.</p>
 
-    <p class="note"><strong>Note</strong>:
-    You cannot install a plugin that has the same name or that uses the same command as an existing plugin. You will be prompted to uninstall the existing plugin.
-</p>
-    <p class="note"><strong>Note</strong>:
-    The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the command <code>cf push</code>, the cf CLI halts the installation.</p>
+For more information, see [install-plugin](http://cli.cloudfoundry.org/en-US/cf/install-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
-## <a id="plugin-run-cmd"></a>Running a Plugin Command ##
+## <a id="plugin-run-cmd"></a> Manage Plugins and Run Plugin Commands
 
 Use the contents of the `cf help` **CLI plugin management** and **Commands offered by installed plugins** sections to manage plugins and run plugin commands.
 
-1. Run `cf plugins` to list all installed plugins and all commands that the plugins provide.
-1. Run `cf PLUGIN-COMMAND` to execute a plugin command.
+To manage plugins and run plugin commands:
 
-## <a id="plugins-outdated"></a>Checking for Plugin Updates ##
+1. List all installed plugins and all commands that the plugins provide by running:
 
-Run `cf plugins --outdated` to check all registered plugin repositories for newer versions of currently installed plugins.
+    ```
+    cf plugins
+    ```
 
-Example:
-<pre class="terminal">
-$ cf plugins --outdated
-Searching CF-Community, company-repo for newer versions of installed plugins...
-plugin          version   latest version
-coffeemaker     1.1.2     1.2.0
-Use 'cf install-plugin' to update a plugin to the latest version.
-</pre>
+1. Execute a plugin command by running:
 
-For more information about the `cf plugins` command, see [cf plugins](http://cli.cloudfoundry.org/en-US/cf/plugins.html).
+    ```
+    cf PLUGIN-COMMAND
+    ```
+    Where `PLUGIN-COMMAND` is the plugin command you want to execute.
 
-## <a id="plugin-uninstall"></a>Uninstalling a Plugin ##
 
-Use the `PLUGIN-NAME` to remove a plugin, not the `BINARY-FILENAME`.
+## <a id="plugins-outdated"></a> Check for Plugin Updates
 
-1. Run `cf plugins` to view the names of all installed plugins.
-1. Run `cf uninstall-plugin PLUGIN-NAME` to remove a plugin.
+To check all registered plugin repositories for newer versions of currently installed plugins:
 
-## <a id="adding-plugin-repo"></a>Adding a Plugin Repository ##
+1. Run:
 
-Run `cf add-plugin-repo REPOSITORY-NAME-URL` to add a plugin repository.
+    ```
+    cf plugins --outdated
+    ```
 
-Example:
-<pre class="terminal">
-$ cf add-plugin-repo CF-Community https:/<span>/</span>plugins.cloudfoundry.org
-https:/<span>/</span>plugins.cloudfoundry.org added as CF-Community
-</pre>
+1. See the output of the above command, as in the example below:
+    <pre class="terminal">
+    $ cf plugins --outdated
+    Searching CF-Community, company-repo for newer versions of installed plugins...
+    plugin          version   latest version
+    coffeemaker     1.1.2     1.2.0
+    Use 'cf install-plugin' to update a plugin to the latest version.
+    </pre>
 
-## <a id="listing-plugin-repo"></a>Listing Available Plugin Repositories ##
+For more information about the `cf plugins` command, see [cf plugins](http://cli.cloudfoundry.org/en-US/cf/plugins.html) in the _Cloud Foundry CLI Reference Guide_.
 
-Run [cf list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) to view your available plugin repositories.
 
-Example:
-<pre class="terminal">
-$ cf list-plugin-repos
-OK
-Repo Name      Url
-CF-Community   https:/<span>/</span>plugins.cloudfoundry.org
-</pre>
+## <a id="plugin-uninstall"></a> Uninstall a Plugin
 
-## <a id="listing-plugin-repo"></a>Listing All Plugins by Repository ##
+To uninstall a plugin:
 
-Run [cf repo-plugins](http://cli.cloudfoundry.org/en-US/cf/repo-plugins.html) to show all plugins from all available repositories.
+1. View the names of all installed plugins by running:
 
-## <a id="troubleshoot"></a>Troubleshooting ##
+    ```
+    cf plugins
+    ```
 
-The cf CLI provides the following error messages to help you troubleshoot installation and usage issues. Third-party plugins can provide their own error messages.
+1. Run:
 
-### Permission Denied###
+    ```
+    cf uninstall-plugin PLUGIN-NAME
+    ```
+    Where `PLUGIN-NAME` is the name of the plugin you want to uninstall.
+    <p class='note'><strong>Note:</strong> You must use the name of the plugin to uninstall it, not the binary filename.</p>
+
+For more information, see [uninstall-plugin](http://cli.cloudfoundry.org/en-US/cf/uninstall-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
+
+## <a id="adding-plugin-repo"></a> Add a Plugin Repository
+
+To add a plugin repository:
+
+1. Run:
+
+    ```
+    cf add-plugin-repo REPOSITORY-NAME-URL
+    ```
+    Where `REPOSITORY-NAME-URL` is the URL of the plugin repository you want to add.
+
+For more information, see [add-plugin-repo](http://cli.cloudfoundry.org/en-US/cf/add-plugin-repo.html) in the _Cloud Foundry CLI Reference Guide_.
+
+
+## <a id="listing-plugin-repo"></a> List Available Plugin Repositories
+
+To view your available plugin repositories:
+
+1. Run:
+
+    ```
+    cf list-plugin-repos
+    ```
+
+For more information, see [list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) in the _Cloud Foundry CLI Reference Guide_.
+
+
+## <a id="listing-plugin-repo"></a> List All Plugins by Repository
+
+To show all plugins from all available repositories:
+
+1. Run:
+
+    ```
+    cf repo-plugins
+    ```
+
+For more information, see [repo-plugins](http://cli.cloudfoundry.org/en-US/cf/repo-plugins.html) in the _Cloud Foundry CLI Reference Guide_.
+
+
+## <a id="troubleshoot"></a> Troubleshooting
+
+The cf CLI provides the error messages described below to help you troubleshoot installation and usage issues. Third-party plugins can provide their own error messages.
+
+### <a id='permission-denied'></a> Permission Denied
+
 If you receive a `permission denied` error message, you lack required permissions to the plugin. You must have `read` and `execute` permissions to the plugin binary file.
 
-### Plugin Command Collision###
+### <a id='plugin-command-collision'></a> Plugin Command Collision
+
 Plugin names and commands must be unique. The CLI displays an error message if you attempt to install a plugin with a non-unique name or command.
 
 If the plugin has the same name or command as a currently installed plugin, you must first uninstall the existing plugin to install the new plugin.
