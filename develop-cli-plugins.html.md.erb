@@ -11,12 +11,12 @@ This topic describes creating and installing Cloud Foundry Command Line Interfac
 You can create and install cf CLI plugins to provide custom commands. You can submit and share these plugins to the [CF Community repository](https://plugins.cloudfoundry.org/).
 
 
-## <a id=''></a> Prerequisite
+## <a id='prerequisite'></a> Prerequisite
 
 To use plugins, you must use cf CLI v.6.7 or later. For information about downloading, installing, and uninstalling the cf CLI, see [Installing the Cloud Foundry Command Line Interface](install-go-cli.html).
 
 
-## <a id=''></a> Installing the Architecture
+## <a id='install-arch'></a> Installing the Architecture
 
 To prepare to create a plugin:
 
@@ -25,7 +25,7 @@ To prepare to create a plugin:
 1. Clone the [Cloud Foundry CLI repository](https://github.com/cloudfoundry/cli) from GitHub. To create a plugin, you need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
 
 
-## <a id=''></a> Initializing the Plugin
+## <a id='initialize'></a> Initializing the Plugin
 
 To initialize a plugin:
 
@@ -37,7 +37,7 @@ To initialize a plugin:
     The `plugin.Start(...)` function requires a new reference to the `struct` that implements the defined interface.
 
 
-## <a id=''></a> Invoking cf CLI Commands
+## <a id='invoke'></a> Invoking cf CLI Commands
 
 To invoke cf CLI commands,
 
@@ -54,7 +54,7 @@ The output is returned as a slice of strings. The error occurs if the call to th
 For more information, see [Plugin API](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/DOC.md) in the Cloud Foundry CLI repository on GitHub.
 
 
-## <a id=''></a> Installing a Plugin
+## <a id='install-plugin'></a> Installing a Plugin
 
 To install a plugin:
 
