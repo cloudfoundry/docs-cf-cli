@@ -3,79 +3,103 @@ title: Using the cf CLI with a Proxy Server
 owner: CLI
 ---
 
+This topic describes using the Cloud Foundry Command Line Interfact (cf CLI) with a proxy server.
 
-If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your Cloud Foundry API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server.
 
-The `https_proxy` environment variable holds the hostname or IP address of your
-proxy server.
+<a id='overview'></a> Overview
 
-`https_proxy` is a standard environment variable.
-Like any environment variable, the specific steps you use to set it depends on
-your operating system.
+If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of your proxy server.
 
-## <a id="format"></a>Format of https_proxy ##
+`https_proxy` is a standard environment variable. Like any environment variable, the specific steps you use to set it depends on your operating system.
 
-`https_proxy` is set with hostname or IP address of the proxy server in URL
-format: `https_proxy=http://proxy.example.com`
 
-If the proxy server requires a user name and password, include the credentials:
-`https_proxy=http://username:password@proxy.example.com`
+## <a id="format"></a> Format of https_proxy
 
-If the proxy server uses a port other than 80, include the port number:
-`https_proxy=http://username:password@proxy.example.com:8080`
+`https_proxy` is set with hostname or IP address of the proxy server in URL format, as in the example below:
 
-If the proxy server is a SOCKS5 proxy, specify the SOCKS5 protocol in the URL: 
-`https_proxy=socks5://socks_proxy.example.com`
+```
+https_proxy=http://proxy.example.com
+```
 
-## <a id="v3-ssh-socks5"></a> Using SOCKS5 with v3-ssh ##
+If the proxy server requires a username and password, you must include the credentials, as in the example below:
 
-The `cf v3-ssh` command supports SOCKS5 proxies. To specify the SOCKS5  proxy server, 
-set the `ALL_PROXY` environment variable using the following format:  `ALL_PROXY=socks5://socks_proxy.example.com`. 
+```
+https_proxy=http://username:password@proxy.example.com
+```
 
-<p class="note"><strong>Note</strong>: <code>cf ssh</code> does not work through a SOCKS5 proxy.</p>
+If the proxy server uses a port other than 80, you must include the port number, as in the example below:
 
-## <a id="mac-linux"></a>Setting https_proxy in Mac OS or Linux ##
+```
+https_proxy=http://username:password@proxy.example.com:8080
+```
 
-Set the `https_proxy` environment variable using the command specific to your
-shell.
-For example, in bash, use the `export` command.
+If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in the URL, as in the example below:
 
-Example:
-<pre class=terminal>
-$ export https_proxy=http:/<span>/</span>my.proxyserver.com:8080
-</pre>
+```
+https_proxy=socks5://socks_proxy.example.com
+```
 
-To make this change persistent, add the command to the appropriate profile file
-for the shell.
-For example, in bash, add a line like the following to your `.bash_profile` or
-`.bashrc` file:
 
-<pre class="detect-script"t>
-  https_proxy=http://username:password@hostname:port
-  export $https_proxy
-</pre>
+## <a id="v3-ssh-socks5"></a> Use SOCKS5 with v3-ssh
 
-## <a id="windows"></a>Setting https_proxy in Windows ##
+The `cf v3-ssh` command supports SOCKS5 proxies.
 
-1. Open the Start menu. Right-click **Computer** and select **Properties**.
+To specify the SOCKS5 proxy server:
+
+1. Set the `ALL_PROXY` environment variable, as in the example below:
+
+    ```
+    ALL_PROXY=socks5://socks_proxy.example.com
+    ```
+
+<p class="note"><strong>Note:</strong> The <code>cf ssh</code> command does not work through a SOCKS5 proxy.</p>
+
+
+## <a id="mac-linux"></a> Set https_proxy in Mac OS or Linux
+
+To set the `https_proxy` environment variable in Mac OS or Linux:
+
+1. Use the command specific to your shell. For example, in bash, use the `export` command, as in the example below:
+
+    ```
+    export https_proxy=http://my.proxyserver.com:8080
+    ```
+
+1. To make this change persistent, add the command to the appropriate profile file for the shell. For example, in bash, add a line like example below to your `.bash_profile` or `.bashrc` file:
+
+    ```
+    https_proxy=http://username:password@hostname:port
+    export $https_proxy
+    ```
+
+
+## <a id="windows"></a> Set https_proxy in Windows
+
+To set the `https_proxy` environment variable in Windows:
+
+1. Open the **Start** menu.
+
+1. Right-click **Computer** and select **Properties**.
 
     <%= image_tag("./images/properties.png") %>
 
-1. In the left pane of the System window, click **Advanced system settings**.
+1. In the left pane of the **System** window, click **Advanced system settings**.
 
     <%= image_tag("./images/adv-settings.png") %>
 
-1. In the System Properties window, select the **Advanced** tab, then click
-**Environment Variables**.
+1. In the **System Properties** window:
+    1. Select **Advanced**.
+    1. Click **Environment Variables**.
 
     <%= image_tag("./images/env-var.png") %>
 
-1. In the Environment Variables window, under User variables, click **New**.
+1. Under **User variables**, click **New**.
 
     <%= image_tag("./images/new.png") %>
 
-1. In the Variable name field, input `https_proxy`.
-In the Variable value field, input your proxy server information.
+1. For **Variable name**, enter `https_proxy`.
+
+1. For **Variable value**, enter your proxy server information.
 
     <%= image_tag("./images/proxy.png") %>
 

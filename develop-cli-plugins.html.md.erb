@@ -3,40 +3,66 @@ title: Developing cf CLI Plugins
 owner: CLI
 ---
 
+This topic describes creating and installing Cloud Foundry Command Line Interface (cf CLI) plugins.
 
-Users can create and install Cloud Foundry Command Line Interface (cf CLI) plugins to provide custom commands.
-These plugins can be submitted and shared to the [CF Community repository](https://plugins.cloudfoundry.org/).
 
-### Requirements ###
+## <a id='overview'></a> Overview
 
-Using plugins requires cf CLI v.6.7 or higher.
-Refer to the [Installing the Cloud Foundry Command Line Interface](./install-go-cli.html) topic for information about downloading, installing, and uninstalling the cf CLI.
+You can create and install cf CLI plugins to provide custom commands. You can submit and share these plugins to the [CF Community repository](https://plugins.cloudfoundry.org/).
 
-### Installing the Architecture ###
 
-1. Implement the [predefined plugin interface](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go).
-1. Clone the [template repository](https://github.com/cloudfoundry/cli). You will need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
+## <a id='prerequisite'></a> Prerequisite
 
-### Initializing the Plugin ###
+To use plugins, you must use cf CLI v.6.7 or later. For information about downloading, installing, and uninstalling the cf CLI, see [Installing the Cloud Foundry Command Line Interface](install-go-cli.html).
 
-To initialize a plugin, call `plugin.Start(new(MyPluginStruct))` from within
-the `main()` method of your plugin.
-The `plugin.Start(...)` function requires a new reference to the `struct` that
-implements the defined interface.
 
-### Invoking cf CLI Commands ###
+## <a id='install-arch'></a> Install the Architecture
 
-Invoke cf CLI commands with `cliConnection.CliCommand([]args)` from within a plugin's `Run(...)` method.
-`The Run(...)` method receives the `cliConnection` as its first argument.
-The `cliConnection.CliCommand([]args)` returns the output printed by the command and an error.
+To prepare to create a plugin:
 
-The output is returned as a slice of strings.
-The error will be present if the call to the cf CLI command fails.
+1. Implement the predefined plugin interface from [plugin.go ](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go) in the Cloud Foundry CLI repository on GitHub.
 
-For more information, see the [API commands documentation](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/DOC.md).
+1. Clone the [Cloud Foundry CLI repository](https://github.com/cloudfoundry/cli) from GitHub. To create a plugin, you need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
 
-### Installing a Plugin ###
 
-To install a plugin, run `cf install-plugin PATH_TO_PLUGIN_BINARY`.
+## <a id='initialize'></a> Initialize the Plugin
 
-For additional information about developing plugins, see the [plugin development guide](https://github.com/cloudfoundry/cli/tree/master/plugin/plugin_examples).
+To initialize a plugin:
+
+1. From within the `main()` method of your plugin, call:
+
+    ```
+    plugin.Start(new(MyPluginStruct))
+    ```
+    The `plugin.Start(...)` function requires a new reference to the `struct` that implements the defined interface.
+
+
+## <a id='invoke'></a> Invoke cf CLI Commands
+
+To invoke cf CLI commands,
+
+1. From within the `Run(...)` method of your plugin, call:
+
+    ```
+    cliConnection.CliCommand([]args)
+    ```
+
+The `Run(...)` method receives the `cliConnection` as its first argument. The `cliConnection.CliCommand([]args)` returns the output printed by the command and an error.
+
+The output is returned as a slice of strings. The error occurs if the call to the cf CLI command fails.
+
+For more information, see [Plugin API](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/DOC.md) in the Cloud Foundry CLI repository on GitHub.
+
+
+## <a id='install-plugin'></a> Installing a Plugin
+
+To install a plugin:
+
+1. Run:
+
+    ```
+    cf install-plugin PATH-TO-PLUGIN-BINARY
+    ```
+    Where `PATH-TO-PLUGIN-BINARY` is the path to your plugin binary.
+
+For more information about developing plugins, see [plugin_examples](https://github.com/cloudfoundry/cli/tree/master/plugin/plugin_examples) in the Cloud Foundry CLI repository on GitHub.
