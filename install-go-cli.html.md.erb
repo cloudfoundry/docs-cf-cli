@@ -53,9 +53,7 @@ To uninstall the gem:
 
 1. Run:
 
-		```
 		gem uninstall cf
-		```
 
 1. Verify that your Ruby environment manager uninstalled the gem by closing and reopening your terminal.
 
@@ -72,37 +70,29 @@ To install the cf CLI on Debian and Ubuntu-based Linux distributions:
 
 1. Add the Cloud Foundry Foundation public key and package repository to your system by running:
 
-		```
 		wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
 		echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-		```
 
 1. Update your local package index by running:
 
-		```
 		sudo apt-get update
-		```
 
 1. Install the cf CLI by running:
 
-		```
 		sudo apt-get install cf-cli
-		```
 
 To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later distributions:
 
 1. Configure the Cloud Foundry Foundation package repository by running:
 
-		```
 		sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo
-		```
 
 1. Install the cf CLI by running:
 
-		```
 		sudo yum install cf-cli
-		```
-		This also downloads and adds the public key to your system.
+		<br>
+		<br>
+This also downloads and adds the public key to your system.
 
 ### <a name='pkg-mac'></a> Mac OS X Installation
 
@@ -114,9 +104,7 @@ To install the cf CLI for Mac OS X using Homebrew:
 
 1. Install the cf CLI by running:
 
-		```
 		brew install cloudfoundry/tap/cf-cli
-		```
 
 <% if not vars.platform_code == 'CF' %>
 <%= partial '../console/cf_cli_installer' %>
@@ -139,10 +127,9 @@ To verify the installation of the cf CLI:
 
 1. Run:
 
-		```
 		cf --help
-		```
-		If your installation was successful, the cf CLI help listing appears.
+
+If your installation was successful, the cf CLI help listing appears.
 
 
 ## <a name="uninstall"></a> Uninstall the cf CLI
