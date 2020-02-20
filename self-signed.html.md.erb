@@ -3,47 +3,75 @@ title: Using the cf CLI with a Self-Signed Certificate
 owner: CLI
 ---
 
+This topic describes how developers can use the Cloud Foundry Command Line Interface (cf CLI) to communicate securely with a <%= vars.platform_name %> deployment with a self-signed certificate.
 
 
-This topic describes how developers can use the cf CLI to communicate securely with a <%= vars.first_product_name  %> deployment without specifying `--skip-ssl-validation` under the following circumstances:
+## <a id='overview'></a>
+
+You can use the cf CLI to communicate securely with a <%= vars.platform_name %> deployment without specifying `--skip-ssl-validation` under these circumstances:
 
 * The deployment uses a self-signed certificate.
-* The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA.
+
+* The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that is signed by a self-signed CA.
 
 <%= vars.self_signed %>
 
-## <a id="install-local"></a>Install the Certificate on Local Machines ##
 
-The certificates that developers must insert into their local truststore vary depending on the configuration of the deployment. 
+## <a id="install-local"></a> Install the Certificate on Local Machines
 
-* If the deployment uses a self-signed certificate, the developer must insert the self-signed certificate into their local truststore.
-* If the deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that’s signed by a self-signed CA, the developer must insert the self-signed certificate and any intermediate certificates into their local truststore.
+The certificates you must insert into your local truststore vary depending on the configuration of your deployment.
 
-### <a id="macosx"></a>Installing the Certificate on Mac OS X
+* If the deployment uses a self-signed certificate, the you must insert the self-signed certificate into your local truststore.
 
-Enter the following command to place a certificate file `server.crt` into your local truststore:
+* If the deployment uses a certificate that is signed by a self-signed CA, or a certificate signed by a certificate that is signed by a self-signed CA, you must insert the self-signed certificate and any intermediate certificates into your local truststore.
 
-<pre class="terminal">$ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain server.crt</pre>
+### <a id="macosx"></a> Install the Certificate on Mac OS X
 
-### <a id="linux"></a>Installing the Certificate on Linux
+To place the certificate file `server.crt` into your local truststore for Mac OS X:
 
-Perform the following steps specific to your distribution to place the certificate file `server.crt` into your truststore:
+1. Run:
 
-<ul>
-<li>Debian/Ubuntu/Gentoo: <pre class="terminal">$ cat server.crt >> /etc/ssl/certs/ca-certificates.crt</pre></li>
-<li>Fedora/RHEL: <pre class="terminal">$ cat server.crt >> /etc/pki/tls/certs/ca-bundle.crt</pre></li>
-</ul>
+    ```
+    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain server.crt
+    ```
 
-The above example will set certificate permanently on your machine across all users and requires sudo permissions. You can also run the following command to set certificate in your current terminal/script:
+### <a id="linux"></a> Install the Certificate on Linux
 
-<pre class="terminal">$ export SSL_CERT_FILE=/path/to/server.crt</pre>
+To place the certificate file `server.crt` into your truststore for Linux:
 
-or
+1. Run one of these commands, depending on your Linux distrubution:
+    * For Debian, Ubuntu, or Gentoo, run:
 
-<pre class="terminal">$ export SSL_CERT_DIR=/path/to/server/dir</pre>
+        ```
+        cat server.crt >> /etc/ssl/certs/ca-certificates.crt
+        ```
+    * For Fedora or RHEL, run:
 
-### <a id="windows"></a>Installing the Certificate on Windows
+        ```
+        cat server.crt >> /etc/pki/tls/certs/ca-bundle.crt
+        ```
+    <br>
+    <br>
+    The examples above set the certificate permanently on your machine across all users and require `sudo` permissions. To set the certificate only in your current terminal or script, run one of these commands:
+    *
+      ```
+      export SSL_CERT_FILE=PATH-TO-SERVER.crt
+      ```
+      Where `PATH-TO-SERVER.crt` is the filepath of the `server.crt` certificate file.
+    *
+      ```
+      export SSL_CERT_DIR=PATH-TO-SERVER-DIRECTORY
+      ```
+      Where `PATH-TO-SERVER-DIRECTORY` is the directory of the `server.crt` certificate file.
 
-1. Right-click on the certificate file and click **Install Certificate**. 
+### <a id="windows"></a> Installing the Certificate on Windows
 
-1. Choose to install the certificate as the **Current User** or **Local Machine**. Choose the **Trusted Root Certification Authorities** as the certification store.
+To place the certificate file `server.crt` into your local truststore for Windows:
+
+1. Right-click on the certificate file.
+
+1. Click **Install Certificate**.
+
+1. Choose to install the certificate as the **Current User** or **Local Machine**.
+
+1. From the certification store list, select **Trusted Root Certification Authorities**.
