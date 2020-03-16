@@ -8,7 +8,9 @@ This topic describes configuring and getting started with the Cloud Foundry Comm
 
 ## <a id='overview'></a> Overview
 
-The cf CLI is the official command line client for <%= vars.platform_name %>. You can use the cf CLI to manage apps, service instances, orgs, spaces, and users in your environment.
+The cf CLI is the official command line client for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>).
+You can use the cf CLI to manage apps, service instances, orgs, spaces, and users
+in your environment.
 
 
 ## <a id='prerequisite'></a> Prerequisite
@@ -32,7 +34,7 @@ To log in to the cf CLI:
     Where:
     * `API-URL` is your API endpoint, <%= vars.api_endpoint %>.
     * `USERNAME` is your username.
-    * `PASSWORD` is your password. <%= vars.recommended_by %> discourages using the `-p` option, as it may record your password in your shell history.
+    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, as it may record your password in your shell history.
     * `ORG` is the org where you want to deploy your apps.
     * `SPACE` is the space in the org where you want to deploy your apps.
 
@@ -83,7 +85,8 @@ To write a script to log in:
     ```
     Where:
     * `USERNAME` is your username.
-    * `PASSWORD` is your password. <%= vars.recommended_by %> discourages using the `-p` option, as it may record your password in your shell history.
+    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option,
+       because it may record your password in your shell history.
     <br>
     <br>
     For more information, see [auth](http://cli.cloudfoundry.org/en-US/cf/auth.html) in the _Cloud Foundry CLI Reference Guide_.
@@ -211,7 +214,9 @@ For more information, see [org-users](http://cli.cloudfoundry.org/en-US/cf/org-u
 
 ### <a id='managing-roles'></a> Manage Roles
 
-You use the commands listed below to manage roles in the cf CLI. These commands require <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) admin permissions and take username, org or space, and role as arguments:
+You use the commands listed below to manage roles in the cf CLI.
+These commands require <%= vars.app_runtime_abbr %> admin permissions and take username,
+org or space, and role as arguments:
 
 * `cf set-org-role`<br>For more information, see [set-org-role](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html) in the _Cloud Foundry CLI Reference Guide_.
 
