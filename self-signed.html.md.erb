@@ -3,12 +3,14 @@ title: Using the cf CLI with a Self-Signed Certificate
 owner: CLI
 ---
 
-This topic describes how developers can use the Cloud Foundry Command Line Interface (cf CLI) to communicate securely with a <%= vars.platform_name %> deployment with a self-signed certificate.
+This topic describes how developers can use the Cloud Foundry Command Line Interface (cf CLI)
+to communicate securely with a Cloud Foundry deployment with a self-signed certificate.
 
 
 ## <a id='overview'></a> Overview
 
-You can use the cf CLI to communicate securely with a <%= vars.platform_name %> deployment without specifying `--skip-ssl-validation` under these circumstances:
+You can use the cf CLI to communicate securely with a Cloud Foundry deployment without
+specifying `--skip-ssl-validation` under these circumstances:
 
 * The deployment uses a self-signed certificate.
 
@@ -58,7 +60,7 @@ To place the certificate file `server.crt` into your truststore for Linux:
     * `export SSL_CERT_DIR=PATH-TO-SERVER-DIRECTORY`<br>
       Where `PATH-TO-SERVER-DIRECTORY` is the directory of the `server.crt` certificate file.
 
-### <a id="windows"></a> Installing the Certificate on Windows
+### <a id="windows"></a> Install the Certificate on Windows
 
 To place the certificate file `server.crt` into your local truststore for Windows:
 
