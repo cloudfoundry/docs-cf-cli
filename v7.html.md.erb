@@ -91,6 +91,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 <th>Changes</th>
 </tr>
 <tr>
+	<td style="vertical-align:top"><code>cf7 add-network-policy</code></td>
+	<td>
+		<ul>
+			<li><strong>[Removed flag]:</strong> The flag <code>--destination-app</code> is deprecated; instead, the destination app is the required second argument, no flag.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
 	<td style="vertical-align:top"><code>cf7 apps</code></td>
 	<td>
 		<ul>
@@ -234,16 +242,24 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
 </tr>
 <tr>
-	<td style="vertical-align:top"><code>cf7 restart-app-instance</code></td>
+	<td style="vertical-align:top"><code>cf7 remove-network-policy</code></td>
 	<td>
 		<ul>
-			<li><strong>[Added Flag]:</strong> <code>--process</code></li>
+			<li><strong>[Removed flag]:</strong> The flag <code>--destination-app</code> is deprecated; instead, the destination app is the required second argument, no flag.</li>
 		</ul>
 	</td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 rename-buildpack</code></td>
 	<td><em>This command is removed. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>.</em></td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 restart-app-instance</code></td>
+	<td>
+		<ul>
+			<li><strong>[Added Flag]:</strong> <code>--process</code></li>
+		</ul>
+	</td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 routes</code></td>
