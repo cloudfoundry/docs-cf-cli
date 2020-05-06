@@ -20,7 +20,7 @@ Both cf CLI v7 beta and CAPI v3 are in active development. cf CLI v7 beta is sub
 
 To understand the differences between specific commands, see [Command Differences](#differences).
 
-For more information about CAPI v3, see the CAPI v3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction). For more information about CAPI v2, see the [CAPI v2](http://apidocs.cloudfoundry.org/) documentation.
+For more information about CAPI v3, see the [CAPI v3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction). For more information about CAPI v2, see the [CAPI v2 documentation](http://apidocs.cloudfoundry.org/).
 
 <p class="note"><strong>Note:</strong> The cf CLI v7 beta is developed and tested against the latest CAPI release candidate. </p>
 
@@ -35,7 +35,7 @@ Some key new features available through the cf CLI v7 beta are:
 
 * [Rolling App Deployments](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 
-* [Running cf push Sub-Step Commands](../devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
+* [Running cf push Sub-Step Commands](https://docs.cloudfoundry.org/devguide/push-sub-commands.html): Exercise granular control over the cf push process. These commands break down the cf push process into sub-steps that can run independently.
 
 * [Pushing an App with Multiple Processes](../devguide/multiple-processes.html): Use a single command to push apps that run multiple processes. One example is a web app that has a UI process and a worker process.
 
@@ -89,6 +89,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 <tr>
 <th style="width:40%">Command</th>
 <th>Changes</th>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 add-network-policy</code></td>
+	<td>
+		<ul>
+			<li><strong>[Removed flag]:</strong> The flag <code>--destination-app</code> is deprecated; instead, the destination app is the required second argument, no flag.</li>
+		</ul>
+	</td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 apps</code></td>
@@ -216,12 +224,12 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td style="vertical-align:top"><code>cf7 push</code></td>
 	<td>
 		<ul>
-		  <li><strong>[Removed flag]:</strong> <code>--routh-path</code>. You can use the <code>routes</code> property in the manifest instead.</li>
-			<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead.</li>
+		  <li><strong>[Removed flag]:</strong> <code>--routh-path</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+			<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead. </li>
 		  <li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
 		  <li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
 		  <li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
-			<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when one instance of one process becomes healthy.</li>
+			<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when the one instance one process becomes healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 			<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
 			<li><strong>[Updated flag]:</strong> <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
@@ -231,7 +239,19 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf7 migrate-services-instances</code></td>
-	<td><em>This command is removed because the V1 Broker API iss deprecated as of January 2015.</em></td>
+	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 remove-network-policy</code></td>
+	<td>
+		<ul>
+			<li><strong>[Removed flag]:</strong> The flag <code>--destination-app</code> is deprecated; instead, the destination app is the required second argument, no flag.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 rename-buildpack</code></td>
+	<td><em>This command is removed. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 restart-app-instance</code></td>
@@ -242,21 +262,18 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
-	<td style="vertical-align:top"><code>cf7 rename-buildpack</code></td>
-	<td><em>This command is removed. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>.</em></td>
-</tr>
-<tr>
 	<td style="vertical-align:top"><code>cf7 routes</code></td>
 	<td>
 		<ul>
 			<li><strong>[Updated output]:</strong> <code>port</code> and <code>type</code> no longer appear in the table.</li>
+			<li><strong>[Renamed flag]:</strong> <code>--orglevel</code> is now <code>--org-level</code>.</li>
 		</ul>
 	</td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 scale</code></td>
 	<td>
-	<ul>
+		<ul>
 			<li><strong>[Added flag]:</strong> <code>--process</code></li>
 		</ul>
 	</td>
@@ -287,7 +304,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Added flag]:</strong> <code>--process</code></li>
-			<li><strong>[Added environment variable]:</strong> <code>all_proxy</code>. This specifies a proxy server for all requests.</li>
+			<li><strong>[Added environment variable]:</strong> <code>all_proxy</code>. Specifies a proxy server for all requests. </li>
 		</ul>
 	</td>
 </tr>
@@ -345,7 +362,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
-	<td style="vertical-align:top"><code>cf7 v3-cancel-zdt-push</code></td>
+<td style="vertical-align:top"><code>cf7 v3-cancel-zdt-push</code></td>
 	<td>
 		<ul>
 			<li><em>This command is removed. Instead, use <code>cf cancel-deployment</code></em>.</li>
