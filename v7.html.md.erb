@@ -1,5 +1,5 @@
 ---
-title: Upgrading to cf CLI v7 (Beta)
+title: Upgrading to cf CLI v7
 owner: VAT
 ---
 
@@ -8,11 +8,9 @@ This topic describes the major changes between Cloud Foundry Command Line Interf
 
 ## <a id="overview"></a> Overview
 
-The cf CLI v7 beta is in active development to convert commands to call the Cloud Foundry API (CAPI) v3 instead of CAPI v2.
-
 The main goal of cf CLI v7 and CAPI v3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows). These workflows were previously limited by CAPI v2.
 
-Both cf CLI v7 beta and CAPI v3 are in active development. cf CLI v7 beta is subject to change as development continues. However, the cf CLI development team aims to provide:
+The cf CLI development team aims to provide:
 
 * A seamless upgrade experience from cf CLI v6. Changes have been kept to a minimum. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience.
 
@@ -22,16 +20,11 @@ To understand the differences between specific commands, see [Command Difference
 
 For more information about CAPI v3, see the [CAPI v3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction). For more information about CAPI v2, see the [CAPI v2 documentation](http://apidocs.cloudfoundry.org/).
 
-<p class="note"><strong>Note:</strong> The cf CLI v7 beta is developed and tested against the latest CAPI release candidate. </p>
-
-<p class="note"><strong>Note:</strong> Since the cf CLI v7 is in beta, not all commands use CAPI v3. Some commands still use CAPI v2.</p>
-
-
 ## <a id="new-workflows"></a> New Workflows Supported by cf CLI v7
 
 cf CLI v7 uses CAPI v3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CAPI v3 also includes new resources such as sidecars, manifests, deployments.
 
-Some key new features available through the cf CLI v7 beta are:
+Some key new features available through the cf CLI v7 are:
 
 * [Rolling App Deployments](../devguide/deploy-apps/rolling-deploy.html): Push updates to apps without incurring downtime.
 
@@ -46,26 +39,24 @@ Some key new features available through the cf CLI v7 beta are:
 
 ## <a id="install"></a> Install cf CLI v7
 
-To install cf CLI v7 beta, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub. It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v7 beta is tested against.
+To install cf CLI v7, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub. It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v7 beta is tested against.
 
 
 ## <a id="differences"></a> Command Differences
 
-These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts.
+These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts. 
 
-To view the release notes for cf CLI v7, see [V7 Beta Release](https://github.com/cloudfoundry/cli/wiki/V7-Beta-Release) and [Releases](https://github.com/cloudfoundry/cli/releases) in the Cloud Foundry CLI repository on GitHub.
-
-<p class="note"><strong>Note:</strong> cf CLI v7 beta still calls CAPI v2 for some commands while development is ongoing. The changes mentioned in this section reflect v3-backed cf CLI v7 commands.</p>
+For information about possible breaking changes, see below the [Table of Differences](#table). This table includes removed flag options, removed commands, and removed or changed argument requirements.
 
 ### <a id="scripting"></a> About Scripting
 
-If you have scripts that rely on the cf CLI, this section describes possible changes in cf7 which might affect scripts. For information about possible breaking changes, see [Table of Differences](#table). This table includes removed flag options, removed commands, and removed or changed argument requirements.
+If you have scripts that rely on the cf CLI, this section describes possible changes in cf7 which might affect scripts.
 
-For information about additional changes that may affect scripting, see the [v6.230 release notes](https://github.com/cloudfoundry/cli/releases/tag/v6.23.0) in the Cloud Foundry CLI repository on GitHub. Some of these changes are:
+Some of these changes are:
 
-* In cf CLI v7, if your scripts parse error text, output text errors are returned directly from CAPI. Where possible, cf CLI v7 beta no longer wraps errors it receives from the API.
+* In cf CLI v7, if your scripts parse error text, output text errors are returned directly from CAPI. Where possible, cf CLI v7 no longer wraps errors it receives from the API.
 
-* cf CLI v7 beta commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
+* cf CLI v7 commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
 
 * Style changes including flavor text updates. For more information, see [Colors](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors) in _CF CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub.
 
@@ -110,6 +101,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
+	<td style="vertical-align:top"><code>cf7 bind-security-group</code></td>
+	<td>
+		<ul>
+			<li><strong>[Update]:</strong> <code>SPACE</code> is no longer an argument. To provide a space, use the <code>--space</code> flag.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
 	<td style="vertical-align:top"><code>cf7 check-route</code></td>
 	<td>
 		<ul>
@@ -133,8 +132,16 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><code>cf7 create-domain</code></td>
 	<td>
 		<ul>
-			<li><strong>[Renamed]:</strong> This command is renamed to <code>cf create-private-domain</code>.</li>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>create-private-domain</code>.</li>
 			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 create-quota</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>create-org-quota</code>.</li>
 		</ul>
 	</td>
 </tr>
@@ -181,7 +188,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><code>cf7 delete-domain</code></td>
 	<td>
 		<ul>
-			<li><strong>[Renamed]:</strong> This command is renamed to <code>cf delete-private-domain</code>.</li>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>delete-private-domain</code>.</li>
 			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
@@ -191,6 +198,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Update]:</strong> The command fails if the org contains shared private domains.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 delete-quota</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>delete-org-quota</code>.</li>
 		</ul>
 	</td>
 </tr>
@@ -213,6 +228,10 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
 </tr>
 <tr>
+	<td><code>cf7 migrate-services-instances</code></td>
+	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+</tr>
+<tr>
 	<td style="vertical-align:top"><code>cf7 packages</code></td>
 	<td>
 		<ul>
@@ -228,7 +247,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 			<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead. </li>
 		  <li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
 		  <li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
-		  <li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+		  <li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf7 push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when the one instance one process becomes healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 			<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
@@ -238,8 +257,20 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
-	<td><code>cf7 migrate-services-instances</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><code>cf7 quota</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>org-quota</code>.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 quotas</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>org-quotas</code>.</li>
+		</ul>
+	</td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 remove-network-policy</code></td>
@@ -251,7 +282,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 rename-buildpack</code></td>
-	<td><em>This command is removed. Instead, use <code>--rename</code> flag with <code>cf update-buildpack</code>.</em></td>
+	<td><em>This command is removed. Instead, use <code>--rename</code> flag with <code>cf7 update-buildpack</code>.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 restart-app-instance</code></td>
@@ -267,6 +298,15 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		<ul>
 			<li><strong>[Updated output]:</strong> <code>port</code> and <code>type</code> no longer appear in the table.</li>
 			<li><strong>[Renamed flag]:</strong> <code>--orglevel</code> is now <code>--org-level</code>.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 run-task</code></td>
+	<td>
+		<ul>
+			<li><strong>[Updated]:</strong> <code>COMMAND</code> is no longer an argument. To specify a command, use the <code>--command</code> flag</li>
+			<li><strong>[Added Flag]:</strong> <code>--process</code></li>
 		</ul>
 	</td>
 </tr>
@@ -292,7 +332,23 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
+	<td><code>cf7 set-quota</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>set-org-quota</code>.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
 	<td style="vertical-align:top"><code>cf7 set-running-environment-variable-group</code></td>
+	<td>
+		<ul>
+			<li><strong>[Update]:</strong> System environment variables can only be strings. This is enforced on the API.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 set-staging-environment-variable-group</code></td>
 	<td>
 		<ul>
 			<li><strong>[Update]:</strong> System environment variables can only be strings. This is enforced on the API.</li>
@@ -309,18 +365,10 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	</td>
 </tr>
 <tr>
-	<td style="vertical-align:top"><code>cf7 set-staging-environment-variable-group</code></td>
-	<td>
-		<ul>
-			<li><strong>[Update]:</strong> System environment variables can only be strings. This is enforced on the API.</li>
-		</ul>
-	</td>
-</tr>
-<tr>
 	<td style="vertical-align:top"><code>cf7 start</code></td>
 	<td>
 		<ul>
-			<li><strong>[Update]:</strong> Stages an app to support <code>cf push app --no-start</code> use cases. If there is a new package, <code>start</code> stages and starts using the new package. If the app has been rolled back, <code>start</code> starts using the droplet you used to roll back your app. In the case of a droplet that is in a <code>FAILED</code> state, <code>start</code> ignores the failed droplet and restages the latest <code>READY</code> package to try to produce a healthy droplet. In cf CLI v6, <code>start</code> fails if the droplet is in a <code>FAILED</code> state.</li>
+			<li><strong>[Update]:</strong> Stages an app to support <code>cf7 push app --no-start</code> use cases. If there is a new package, <code>start</code> stages and starts using the new package. If the app has been rolled back, <code>start</code> starts using the droplet you used to roll back your app. In the case of a droplet that is in a <code>FAILED</code> state, <code>start</code> ignores the failed droplet and restages the latest <code>READY</code> package to try to produce a healthy droplet. In cf CLI v6, <code>start</code> fails if the droplet is in a <code>FAILED</code> state.</li>
 		</ul>
 	</td>
 </tr>
@@ -338,6 +386,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		<ul>
 			<li><strong>[Added flag]:</strong> <code>--rename</code></li>
 		  <li><strong>[Change in flag behavior]:</strong> <code>--unlock</code> and <code>--path</code> are now compatible.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 update-quota</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed]:</strong> This command is renamed to <code>update-org-quota</code>.</li>
 		</ul>
 	</td>
 </tr>
@@ -365,7 +421,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 <td style="vertical-align:top"><code>cf7 v3-cancel-zdt-push</code></td>
 	<td>
 		<ul>
-			<li><em>This command is removed. Instead, use <code>cf cancel-deployment</code></em>.</li>
+			<li><em>This command is removed. Instead, use <code>cf7 cancel-deployment</code></em>.</li>
 		</ul>
 	</td>
 </tr>
@@ -373,7 +429,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td style="vertical-align:top"><code>cf7 v3-zdt-push</code></td>
 	<td>
 		<ul>
-			<li><em>This command is removed. Instead, use <code>--strategy rolling</code> flag with <code>cf push</code>.</em></li>
+			<li><em>This command is removed. Instead, use <code>--strategy rolling</code> flag with <code>cf7 push</code>.</em></li>
 		</ul>
 	</td>
 </tr>
