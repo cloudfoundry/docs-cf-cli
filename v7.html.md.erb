@@ -161,6 +161,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
 </tr>
 <tr>
+	<td><code>cf7 create-service-broker</code></td>
+	<td>
+		<ul>
+			<li><strong>[Update]:</strong> If the command does not successfully complete all phases, a service broker object may exist, which can then be updated or deleted.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
 	<td style="vertical-align:top"><code>cf7 create-shared-domain</code></td>
 	<td>
 		<ul>
@@ -228,6 +236,15 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
 </tr>
 <tr>
+	<td><code>cf7 marketplace</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed flag]:</strong> The <code>-s</code> flag has been renamed to <code>-e</code> for consistency with other commands.</li>
+			<li><strong>[Update]:</strong> When the <code>-e</code> flag is specified, plan costs advertised by the service broker are displayed.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
 	<td><code>cf7 migrate-services-instances</code></td>
 	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
 </tr>
@@ -253,6 +270,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 			<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
 			<li><strong>[Updated flag]:</strong> <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
 		  <li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 purge-service-offering</code></td>
+	<td>
+		<ul>
+			<li><strong>[Removed flag]:</strong> The <code>-p</code> flag has been removed because the V1 Broker API is deprecated as of January 2015.</li>
 		</ul>
 	</td>
 </tr>
@@ -315,6 +340,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Added flag]:</strong> <code>--process</code></li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 service-access</code></td>
+	<td>
+		<ul>
+			<li><strong>[Update]:</strong> When a service offering comes from a space-scoped service broker, the space and organization is displayed.</li>
 		</ul>
 	</td>
 </tr>
