@@ -133,7 +133,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Renamed]:</strong> This command is renamed to <code>create-private-domain</code>.</li>
-			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
 </tr>
@@ -150,9 +149,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Update]:</strong> <code>SPACE</code> is no longer a required argument. The command creates a route in the space you are targeting.</li>
-			<li><strong>[Update]:</strong> Support for TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
-			<li><strong>[Removed flag]:</strong> <code>--random-port</code></li>
-			<li><strong>[Removed flag]:</strong> <code>port</code></li>
+			<li><strong>[Removed flag]:</strong> <code>--random-port</code>, this is now default behavior for routes with TCP domains if the <code>--port</code> flag is not provided.</li>
 		</ul>
 	</td>
 </tr>
@@ -165,14 +162,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Update]:</strong> If the command does not successfully complete all phases, a service broker object may exist, which can then be updated or deleted.</li>
-		</ul>
-	</td>
-</tr>
-<tr>
-	<td style="vertical-align:top"><code>cf7 create-shared-domain</code></td>
-	<td>
-		<ul>
-			<li><strong>[Removed flag]:</strong> <code>--router-group</code>. Support for TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
 </tr>
@@ -197,7 +186,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Renamed]:</strong> This command is renamed to <code>delete-private-domain</code>.</li>
-			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
 </tr>
@@ -227,7 +215,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		<ul>
 			<li><strong>[Update]:</strong> The <code>status</code> column is renamed to <code>availability</code>.</li>
 			<li><strong>[Update]:</strong> The table refers to private domains with <code>private</code> instead of <code>own</code>.</li>
-			<li><strong>[Update]:</strong> The <code>type</code> column is removed, since support for TCP routing is removed.</li>
 		</ul>
 	</td>
 </tr>
