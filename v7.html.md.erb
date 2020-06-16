@@ -158,7 +158,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf7 create-service-auth-token</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 create-shared-domain</code></td>
@@ -211,7 +211,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf7 delete-service-auth-token</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td><code>cf7 domains</code></td>
@@ -225,11 +225,11 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf files</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td><code>cf7 migrate-services-instances</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 packages</code></td>
@@ -243,16 +243,16 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td style="vertical-align:top"><code>cf7 push</code></td>
 	<td>
 		<ul>
-		  <li><strong>[Removed flag]:</strong> <code>--route-path</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+			<li><strong>[Removed flag]:</strong> <code>--route-path</code>. You can use the <code>routes</code> property in the manifest instead. </li>
 			<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead. </li>
-		  <li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
-		  <li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
-		  <li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf7 push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+			<li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+		 	<li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+		 	<li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf7 push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when the one instance one process becomes healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 			<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
 			<li><strong>[Updated flag]:</strong> <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
-		  <li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
+		 	<li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
 		</ul>
 	</td>
 </tr>
@@ -320,7 +320,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf7 service-auth-tokens</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 set-health-check</code></td>
@@ -399,7 +399,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 </tr>
 <tr>
 	<td><code>cf7 update-service-auth-token</code></td>
-	<td><em>This command is removed because the V1 Broker API is deprecated as of January 2015.</em></td>
+	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
 	<td style="vertical-align:top"><code>cf7 v3-COMMAND</code></td>
