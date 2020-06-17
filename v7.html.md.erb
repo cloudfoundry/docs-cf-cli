@@ -41,15 +41,21 @@ Some key new features available through the cf CLI v7 are:
 
 To install cf CLI v7, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub. It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v7 beta is tested against.
 
-### <a id="pre-requisites"></a> Pre-requisites
+### <a id="prerequisites"></a> Prerequisites
 
-V7 of the cf CLI requires [CF Deployment](https://github.com/cloudfoundry/cf-deployment) version v13.4.0 or later, which contains [CAPI release](https://github.com/cloudfoundry/capi-release) 1.95.0 (providing [v3 API](https://github.com/cloudfoundry/cloud_controller_ng) version 3.85.0).
+The cf CLI v7 requires [cf-deployment](https://github.com/cloudfoundry/cf-deployment) v13.4.0 or later.
 
-If targeting an older CF Deployment, the v7 cf CLI will present a warning saying that the API version is less than the minimum supported. Not all commands may run correctly; `cf apps`, for example, will not work.
+This version of cf-deployment contains CAPI release v1.95.0, which provides the CAPI v3 API version 3.85.0.
+
+For more information, see the [CAPI release notes](https://github.com/cloudfoundry/capi-release) and the [Cloud Controller release notes](https://github.com/cloudfoundry/cloud_controller_ng) on GitHub.
+
+If you target an older version of cf-deployment, cf CLI v7 presents a warning saying that the API version is less than the minimum supported.
+Not all commands run correctly.
+For example, `cf apps` does not work.
 
 ## <a id="differences"></a> Command Differences
 
-These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts. 
+These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts.
 
 For information about possible breaking changes, see below the [Table of Differences](#table). This table includes removed flag options, removed commands, and removed or changed argument requirements.
 
