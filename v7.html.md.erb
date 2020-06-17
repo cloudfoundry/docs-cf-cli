@@ -226,7 +226,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><code>cf7 map-route</code></td>
 	<td>
 		<ul>
-			<li><strong>[Removed flag]:</strong> <code>--random-route</code>. This is now the default behavior of the <code>cf7 map-route</code> command if no <code>--port</code> is provided.</li>
+			<li><strong>[Removed flag]:</strong> <code>--random-port</code>. In the cf CLI v7, when you map a TCP route to an app, a random port is assigned to the route by default. To specify a port for a TCP route, use the <code>--port</code> flag.</li>
 		</ul>
 	</td>
 </tr>
