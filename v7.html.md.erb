@@ -41,10 +41,21 @@ Some key new features available through the cf CLI v7 are:
 
 To install cf CLI v7, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub. It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v7 beta is tested against.
 
+### <a id="prerequisites"></a> Prerequisites
+
+The cf CLI v7 requires [cf-deployment](https://github.com/cloudfoundry/cf-deployment) v13.5.0 or later.
+
+This version of cf-deployment contains CAPI release v1.95.0, which provides the CAPI v3 API version 3.85.0.
+
+For more information, see the [CAPI release notes](https://github.com/cloudfoundry/capi-release) and the [Cloud Controller release notes](https://github.com/cloudfoundry/cloud_controller_ng) on GitHub.
+
+If you target an older version of cf-deployment, cf CLI v7 presents a warning saying that the API version is less than the minimum supported.
+Not all commands run correctly.
+For example, `cf apps` does not work.
 
 ## <a id="differences"></a> Command Differences
 
-These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts. 
+These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts.
 
 For information about possible breaking changes, see below the [Table of Differences](#table). This table includes removed flag options, removed commands, and removed or changed argument requirements.
 
@@ -133,7 +144,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Renamed]:</strong> This command is renamed to <code>create-private-domain</code>.</li>
-			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
 </tr>
@@ -150,9 +160,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Update]:</strong> <code>SPACE</code> is no longer a required argument. The command creates a route in the space you are targeting.</li>
-			<li><strong>[Update]:</strong> Support for TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
-			<li><strong>[Removed flag]:</strong> <code>--random-port</code></li>
-			<li><strong>[Removed flag]:</strong> <code>port</code></li>
+			<li><strong>[Removed flag]:</strong> <code>--random-port</code>, this is now default behavior for routes with TCP domains if the <code>--port</code> flag is not provided.</li>
 		</ul>
 	</td>
 </tr>
@@ -161,10 +169,10 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
-	<td style="vertical-align:top"><code>cf7 create-shared-domain</code></td>
+	<td><code>cf7 create-service-broker</code></td>
 	<td>
 		<ul>
-			<li><strong>[Removed flag]:</strong> <code>--router-group</code>. Support for TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
+			<li><strong>[Update]:</strong> If the command does not successfully complete all phases, a service broker object may exist, which can then be updated or deleted.</li>
 		</ul>
 	</td>
 </tr>
@@ -189,7 +197,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Renamed]:</strong> This command is renamed to <code>delete-private-domain</code>.</li>
-			<li><strong>[Update]:</strong> Support for router groups and TCP routing is removed in favor of different functionality currently being explored by the Networking team.</li>
 		</ul>
 	</td>
 </tr>
@@ -219,7 +226,6 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		<ul>
 			<li><strong>[Update]:</strong> The <code>status</code> column is renamed to <code>availability</code>.</li>
 			<li><strong>[Update]:</strong> The table refers to private domains with <code>private</code> instead of <code>own</code>.</li>
-			<li><strong>[Update]:</strong> The <code>type</code> column is removed, since support for TCP routing is removed.</li>
 		</ul>
 	</td>
 </tr>
@@ -228,7 +234,24 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
-	<td><code>cf7 migrate-services-instances</code></td>
+	<td><code>cf7 map-route</code></td>
+	<td>
+		<ul>
+			<li><strong>[Removed flag]:</strong> <code>--random-port</code>. In the cf CLI v7, when you map a TCP route to an app, a random port is assigned to the route by default. To specify a port for a TCP route, use the <code>--port</code> flag.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 marketplace</code></td>
+	<td>
+		<ul>
+			<li><strong>[Renamed flag]:</strong> The <code>-s</code> flag is renamed to <code>-e</code> for consistency with other commands.</li>
+			<li><strong>[Update]:</strong> When the <code>-e</code> flag is specified, plan costs advertised by the service broker are displayed.</li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td><code>cf7 migrate-service-instances</code></td>
 	<td><em>This command is removed.</em></td>
 </tr>
 <tr>
@@ -243,16 +266,16 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td style="vertical-align:top"><code>cf7 push</code></td>
 	<td>
 		<ul>
-			<li><strong>[Removed flag]:</strong> <code>--route-path</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+		  	<li><strong>[Removed flag]:</strong> <code>--route-path</code>. You can use the <code>routes</code> property in the manifest instead. </li>
 			<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead. </li>
-			<li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
-		 	<li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
-		 	<li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf7 push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
+		  	<li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+		  	<li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead. </li>
+		  	<li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf7 push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when the one instance one process becomes healthy.</li>
 			<li><strong>[Added flag]:</strong> <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
 			<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
 			<li><strong>[Updated flag]:</strong> <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
-		 	<li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
+		  	<li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
 		</ul>
 	</td>
 </tr>
@@ -313,7 +336,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td style="vertical-align:top"><code>cf7 run-task</code></td>
 	<td>
 		<ul>
-			<li><strong>[Updated]:</strong> <code>COMMAND</code> is no longer an argument. To specify a command, use the <code>--command</code> flag</li>
+			<li><strong>[Updated]:</strong> <code>COMMAND</code> is no longer an argument. To specify a command, use the <code>--command</code> flag.</li>
 			<li><strong>[Added Flag]:</strong> <code>--process</code></li>
 		</ul>
 	</td>
@@ -323,6 +346,14 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 	<td>
 		<ul>
 			<li><strong>[Added flag]:</strong> <code>--process</code></li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top"><code>cf7 service-access</code></td>
+	<td>
+		<ul>
+			<li><strong>[Update]:</strong> When a service offering comes from a space-scoped service broker, the space and org are displayed.</li>
 		</ul>
 	</td>
 </tr>
