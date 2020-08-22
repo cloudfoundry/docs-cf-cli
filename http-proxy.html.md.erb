@@ -3,10 +3,10 @@ title: Using the cf CLI with a Proxy Server
 owner: CLI
 ---
 
-This topic describes using the Cloud Foundry Command Line Interfact (cf CLI) with a proxy server.
+This topic describes using the Cloud Foundry Command Line Interface (cf CLI) with a proxy server.
 
 
-<a id='overview'></a> Overview
+## <a id='overview'></a> Overview
 
 If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of your proxy server.
 
@@ -40,19 +40,19 @@ https_proxy=socks5://socks_proxy.example.com
 ```
 
 
-## <a id="v3-ssh-socks5"></a> Use SOCKS5 with v3-ssh
+## <a id="v3-ssh-socks5"></a> Use SOCKS5 with cf v3-ssh
 
-The `cf v3-ssh` command supports SOCKS5 proxies.
+The `cf v3-ssh` command in cf CLI v6 supports SOCKS5 proxies.
 
 To specify the SOCKS5 proxy server:
 
-1. Set the `ALL_PROXY` environment variable, as in the example below:
+1. Set the `all_proxy` environment variable, as in the example below:
 
     ```
-    ALL_PROXY=socks5://socks_proxy.example.com
+    all_proxy=socks5://socks_proxy.example.com
     ```
 
-<p class="note"><strong>Note:</strong> The <code>cf ssh</code> command does not work through a SOCKS5 proxy.</p>
+<p class="note"><strong>Note:</strong> The <code>cf ssh</code> command for cf CLI 7 does not work through a SOCKS5 proxy.</p>
 
 
 ## <a id="mac-linux"></a> Set https_proxy in Mac OS or Linux
