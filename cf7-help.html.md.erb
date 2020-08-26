@@ -1,0 +1,1264 @@
+---
+title: Cloud Foundry CLI Reference Guide
+---
+
+## <a id='name'></a> Name
+<p>cf - A command line tool to interact with Cloud Foundry</p>
+
+## <a id='usage'></a> Usage
+<p>cf [global options] command [arguments...] [command options]</p>
+
+## <a id='version'></a> Version
+<p>7.0.2+17b4eeafd.2020-07-24</p>
+
+## <a id='getting-started'></a> Getting Started
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/help.html' target='_blank'>help</a></td>
+      <td>Show help</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/version.html' target='_blank'>version</a></td>
+      <td>Print the version</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/login.html' target='_blank'>login</a></td>
+      <td>Log user in</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/logout.html' target='_blank'>logout</a></td>
+      <td>Log user out</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/passwd.html' target='_blank'>passwd</a></td>
+      <td>Change user password</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/target.html' target='_blank'>target</a></td>
+      <td>Set or view the targeted org or space</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/api.html' target='_blank'>api</a></td>
+      <td>Set or view target api url</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/auth.html' target='_blank'>auth</a></td>
+      <td>Authenticate non-interactively</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='apps'></a> Apps
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/apps.html' target='_blank'>apps</a></td>
+      <td>List all apps in the target space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/app.html' target='_blank'>app</a></td>
+      <td>Display health and status for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-app.html' target='_blank'>create-app</a></td>
+      <td>Create an Application in the target space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/revisions.html' target='_blank'>revisions</a></td>
+      <td>Lists revisions for an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/push.html' target='_blank'>push</a></td>
+      <td>Push a new app or sync changes to an existing app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/scale.html' target='_blank'>scale</a></td>
+      <td>Change or view the instance count, disk space limit, and memory limit for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete.html' target='_blank'>delete</a></td>
+      <td>Delete an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/rename.html' target='_blank'>rename</a></td>
+      <td>Rename an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/cancel-deployment.html' target='_blank'>cancel-deployment</a></td>
+      <td>Cancel the most recent deployment for an app. Resets the current droplet to the previous deployment's droplet.</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/start.html' target='_blank'>start</a></td>
+      <td>Start an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/stop.html' target='_blank'>stop</a></td>
+      <td>Stop an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/restart.html' target='_blank'>restart</a></td>
+      <td>Stop all instances of the app, then start them again.</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/stage-package.html' target='_blank'>stage-package</a></td>
+      <td>Stage a package into a droplet</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/restage.html' target='_blank'>restage</a></td>
+      <td>Stage the app's latest package into a droplet and restart the app with this new droplet and updated configuration (environment variables, service bindings, buildpack, stack, etc.).</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/restart-app-instance.html' target='_blank'>restart-app-instance</a></td>
+      <td>Terminate, then instantiate an app instance</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/run-task.html' target='_blank'>run-task</a></td>
+      <td>Run a one-off task on an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/tasks.html' target='_blank'>tasks</a></td>
+      <td>List tasks of an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/terminate-task.html' target='_blank'>terminate-task</a></td>
+      <td>Terminate a running task of an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/packages.html' target='_blank'>packages</a></td>
+      <td>List packages of an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-package.html' target='_blank'>create-package</a></td>
+      <td>Uploads a Package</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/droplets.html' target='_blank'>droplets</a></td>
+      <td>List droplets of an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-droplet.html' target='_blank'>set-droplet</a></td>
+      <td>Set the droplet used to run an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/download-droplet.html' target='_blank'>download-droplet</a></td>
+      <td>Download an application droplet</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/events.html' target='_blank'>events</a></td>
+      <td>Show recent app events</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/logs.html' target='_blank'>logs</a></td>
+      <td>Tail or show recent logs for an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/env.html' target='_blank'>env</a></td>
+      <td>Show all env variables for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-env.html' target='_blank'>set-env</a></td>
+      <td>Set an env variable for an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unset-env.html' target='_blank'>unset-env</a></td>
+      <td>Remove an env variable from an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/stacks.html' target='_blank'>stacks</a></td>
+      <td>List all stacks (a stack is a pre-built file system, including an operating system, that can run apps)</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/stack.html' target='_blank'>stack</a></td>
+      <td>Show information for a stack (a stack is a pre-built file system, including an operating system, that can run apps)</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/copy-source.html' target='_blank'>copy-source</a></td>
+      <td>Copies the source code of an application to another existing application and restages that application</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-app-manifest.html' target='_blank'>create-app-manifest</a></td>
+      <td>Create an app manifest for an app that has been pushed successfully</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/get-health-check.html' target='_blank'>get-health-check</a></td>
+      <td>Show the type of health check performed on an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-health-check.html' target='_blank'>set-health-check</a></td>
+      <td>Change type of health check performed on an app's process</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/enable-ssh.html' target='_blank'>enable-ssh</a></td>
+      <td>Enable ssh for the application</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/disable-ssh.html' target='_blank'>disable-ssh</a></td>
+      <td>Disable ssh for the application</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/ssh-enabled.html' target='_blank'>ssh-enabled</a></td>
+      <td>Reports whether SSH is enabled on an application container instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/ssh.html' target='_blank'>ssh</a></td>
+      <td>SSH to an application container instance</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='services'></a> Services
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/marketplace.html' target='_blank'>marketplace</a></td>
+      <td>List available offerings in the marketplace</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/services.html' target='_blank'>services</a></td>
+      <td>List all service instances in the target space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/service.html' target='_blank'>service</a></td>
+      <td>Show service instance info</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-service.html' target='_blank'>create-service</a></td>
+      <td>Create a service instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-service.html' target='_blank'>update-service</a></td>
+      <td>Update a service instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-service.html' target='_blank'>delete-service</a></td>
+      <td>Delete a service instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/rename-service.html' target='_blank'>rename-service</a></td>
+      <td>Rename a service instance</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-service-key.html' target='_blank'>create-service-key</a></td>
+      <td>Create key for a service instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/service-keys.html' target='_blank'>service-keys</a></td>
+      <td>List keys for a service instance</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/service-key.html' target='_blank'>service-key</a></td>
+      <td>Show service key info</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-service-key.html' target='_blank'>delete-service-key</a></td>
+      <td>Delete a service key</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/bind-service.html' target='_blank'>bind-service</a></td>
+      <td>Bind a service instance to an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unbind-service.html' target='_blank'>unbind-service</a></td>
+      <td>Unbind a service instance from an app</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/bind-route-service.html' target='_blank'>bind-route-service</a></td>
+      <td>Bind a service instance to an HTTP route</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unbind-route-service.html' target='_blank'>unbind-route-service</a></td>
+      <td>Unbind a service instance from an HTTP route</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-user-provided-service.html' target='_blank'>create-user-provided-service</a></td>
+      <td>Make a user-provided service instance available to CF apps</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-user-provided-service.html' target='_blank'>update-user-provided-service</a></td>
+      <td>Update user-provided service instance</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/share-service.html' target='_blank'>share-service</a></td>
+      <td>Share a service instance with another space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unshare-service.html' target='_blank'>unshare-service</a></td>
+      <td>Unshare a shared service instance from a space</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='orgs'></a> Orgs
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/orgs.html' target='_blank'>orgs</a></td>
+      <td>List all orgs</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/org.html' target='_blank'>org</a></td>
+      <td>Show org info</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-org.html' target='_blank'>create-org</a></td>
+      <td>Create an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-org.html' target='_blank'>delete-org</a></td>
+      <td>Delete an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/rename-org.html' target='_blank'>rename-org</a></td>
+      <td>Rename an org</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='spaces'></a> Spaces
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/spaces.html' target='_blank'>spaces</a></td>
+      <td>List all spaces in an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/space.html' target='_blank'>space</a></td>
+      <td>Show space info</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-space.html' target='_blank'>create-space</a></td>
+      <td>Create a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-space.html' target='_blank'>delete-space</a></td>
+      <td>Delete a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/rename-space.html' target='_blank'>rename-space</a></td>
+      <td>Rename a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/apply-manifest.html' target='_blank'>apply-manifest</a></td>
+      <td>Apply manifest properties to a space</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/allow-space-ssh.html' target='_blank'>allow-space-ssh</a></td>
+      <td>Allow SSH access for the space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/disallow-space-ssh.html' target='_blank'>disallow-space-ssh</a></td>
+      <td>Disallow SSH access for the space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/space-ssh-allowed.html' target='_blank'>space-ssh-allowed</a></td>
+      <td>Reports whether SSH is allowed in a space</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='domains'></a> Domains
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/domains.html' target='_blank'>domains</a></td>
+      <td>List domains in the target org</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-private-domain.html' target='_blank'>create-private-domain</a></td>
+      <td>Create a private domain for a specific org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-private-domain.html' target='_blank'>delete-private-domain</a></td>
+      <td>Delete a private domain</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-shared-domain.html' target='_blank'>create-shared-domain</a></td>
+      <td>Create a domain that can be used by all orgs (admin-only)</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-shared-domain.html' target='_blank'>delete-shared-domain</a></td>
+      <td>Delete a shared domain</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/router-groups.html' target='_blank'>router-groups</a></td>
+      <td>List router groups</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='routes'></a> Routes
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/routes.html' target='_blank'>routes</a></td>
+      <td>List all routes in the current space or the current organization</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-route.html' target='_blank'>create-route</a></td>
+      <td>Create a route for later use</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/check-route.html' target='_blank'>check-route</a></td>
+      <td>Perform a check to determine whether a route currently exists or not</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/map-route.html' target='_blank'>map-route</a></td>
+      <td>Map a route to an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unmap-route.html' target='_blank'>unmap-route</a></td>
+      <td>Remove a route from an app</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-route.html' target='_blank'>delete-route</a></td>
+      <td>Delete a route</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-orphaned-routes.html' target='_blank'>delete-orphaned-routes</a></td>
+      <td>Delete all orphaned routes in the currently targeted space (i.e. those that are not mapped to an app or service instance)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='network-policies'></a> Network Policies
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/network-policies.html' target='_blank'>network-policies</a></td>
+      <td>List direct network traffic policies</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/add-network-policy.html' target='_blank'>add-network-policy</a></td>
+      <td>Create policy to allow direct network traffic from one app to another</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/remove-network-policy.html' target='_blank'>remove-network-policy</a></td>
+      <td>Remove network traffic policy of an app</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='buildpacks'></a> Buildpacks
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/buildpacks.html' target='_blank'>buildpacks</a></td>
+      <td>List all buildpacks</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-buildpack.html' target='_blank'>create-buildpack</a></td>
+      <td>Create a buildpack</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-buildpack.html' target='_blank'>update-buildpack</a></td>
+      <td>Update a buildpack</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-buildpack.html' target='_blank'>delete-buildpack</a></td>
+      <td>Delete a buildpack</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='user-admin'></a> User Admin
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-user.html' target='_blank'>create-user</a></td>
+      <td>Create a new user</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-user.html' target='_blank'>delete-user</a></td>
+      <td>Delete a user</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/org-users.html' target='_blank'>org-users</a></td>
+      <td>Show org users by role</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-org-role.html' target='_blank'>set-org-role</a></td>
+      <td>Assign an org role to a user</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unset-org-role.html' target='_blank'>unset-org-role</a></td>
+      <td>Remove an org role from a user</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/space-users.html' target='_blank'>space-users</a></td>
+      <td>Show space users by role</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-space-role.html' target='_blank'>set-space-role</a></td>
+      <td>Assign a space role to a user</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unset-space-role.html' target='_blank'>unset-space-role</a></td>
+      <td>Remove a space role from a user</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='org-admin'></a> Org Admin
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/org-quotas.html' target='_blank'>org-quotas</a></td>
+      <td>List available organization quotas</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/org-quota.html' target='_blank'>org-quota</a></td>
+      <td>Show organization quota</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-org-quota.html' target='_blank'>set-org-quota</a></td>
+      <td>Assign a quota to an organization</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-org-quota.html' target='_blank'>create-org-quota</a></td>
+      <td>Define a new quota for an organization</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-org-quota.html' target='_blank'>delete-org-quota</a></td>
+      <td>Delete an organization quota</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-org-quota.html' target='_blank'>update-org-quota</a></td>
+      <td>Update an existing organization quota</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/share-private-domain.html' target='_blank'>share-private-domain</a></td>
+      <td>Share a private domain with a specific org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unshare-private-domain.html' target='_blank'>unshare-private-domain</a></td>
+      <td>Unshare a private domain with a specific org</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='space-admin'></a> Space Admin
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/space-quotas.html' target='_blank'>space-quotas</a></td>
+      <td>List available space quotas</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/space-quota.html' target='_blank'>space-quota</a></td>
+      <td>Show space quota info</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-space-quota.html' target='_blank'>create-space-quota</a></td>
+      <td>Define a new quota for a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-space-quota.html' target='_blank'>update-space-quota</a></td>
+      <td>Update an existing space quota</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-space-quota.html' target='_blank'>delete-space-quota</a></td>
+      <td>Delete a space quota</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-space-quota.html' target='_blank'>set-space-quota</a></td>
+      <td>Assign a quota to a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unset-space-quota.html' target='_blank'>unset-space-quota</a></td>
+      <td>Unassign a quota from a space</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='service-admin'></a> Service Admin
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/service-brokers.html' target='_blank'>service-brokers</a></td>
+      <td>List service brokers</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-service-broker.html' target='_blank'>create-service-broker</a></td>
+      <td>Create a service broker</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-service-broker.html' target='_blank'>update-service-broker</a></td>
+      <td>Update a service broker</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-service-broker.html' target='_blank'>delete-service-broker</a></td>
+      <td>Delete a service broker</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/rename-service-broker.html' target='_blank'>rename-service-broker</a></td>
+      <td>Rename a service broker</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/purge-service-offering.html' target='_blank'>purge-service-offering</a></td>
+      <td>Recursively remove a service offering and child objects from Cloud Foundry database without making requests to a service broker</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/purge-service-instance.html' target='_blank'>purge-service-instance</a></td>
+      <td>Recursively remove a service instance and child objects from Cloud Foundry database without making requests to a service broker</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/service-access.html' target='_blank'>service-access</a></td>
+      <td>List service access settings</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/enable-service-access.html' target='_blank'>enable-service-access</a></td>
+      <td>Enable access to a service offering or service plan for one or all orgs</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/disable-service-access.html' target='_blank'>disable-service-access</a></td>
+      <td>Disable access to a service offering or service plan for one or all orgs</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='security-group'></a> Security Group
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/security-group.html' target='_blank'>security-group</a></td>
+      <td>Show a single security group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/security-groups.html' target='_blank'>security-groups</a></td>
+      <td>List all security groups</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-security-group.html' target='_blank'>create-security-group</a></td>
+      <td>Create a security group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/update-security-group.html' target='_blank'>update-security-group</a></td>
+      <td>Update a security group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-security-group.html' target='_blank'>delete-security-group</a></td>
+      <td>Deletes a security group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/bind-security-group.html' target='_blank'>bind-security-group</a></td>
+      <td>Bind a security group to a particular space, or all existing spaces of an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unbind-security-group.html' target='_blank'>unbind-security-group</a></td>
+      <td>Unbind a security group from a space</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/bind-staging-security-group.html' target='_blank'>bind-staging-security-group</a></td>
+      <td>Bind a security group to the list of security groups to be used for staging applications globally</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/staging-security-groups.html' target='_blank'>staging-security-groups</a></td>
+      <td>List security groups globally configured for staging applications</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unbind-staging-security-group.html' target='_blank'>unbind-staging-security-group</a></td>
+      <td>Unbind a security group from the set of security groups for staging applications globally</td>
+    </tr>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/bind-running-security-group.html' target='_blank'>bind-running-security-group</a></td>
+      <td>Bind a security group to the list of security groups to be used for running applications</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/running-security-groups.html' target='_blank'>running-security-groups</a></td>
+      <td>List security groups globally configured for running applications</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unbind-running-security-group.html' target='_blank'>unbind-running-security-group</a></td>
+      <td>Unbind a security group from the set of security groups for running applications globally</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='environment-variable-groups'></a> Environment Variable Groups
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/running-environment-variable-group.html' target='_blank'>running-environment-variable-group</a></td>
+      <td>Retrieve the contents of the running environment variable group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/staging-environment-variable-group.html' target='_blank'>staging-environment-variable-group</a></td>
+      <td>Retrieve the contents of the staging environment variable group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-staging-environment-variable-group.html' target='_blank'>set-staging-environment-variable-group</a></td>
+      <td>Pass parameters as JSON to create a staging environment variable group</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-running-environment-variable-group.html' target='_blank'>set-running-environment-variable-group</a></td>
+      <td>Pass parameters as JSON to create a running environment variable group</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='isolation-segments'></a> Isolation Segments
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/isolation-segments.html' target='_blank'>isolation-segments</a></td>
+      <td>List all isolation segments</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/create-isolation-segment.html' target='_blank'>create-isolation-segment</a></td>
+      <td>Create an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/delete-isolation-segment.html' target='_blank'>delete-isolation-segment</a></td>
+      <td>Delete an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/enable-org-isolation.html' target='_blank'>enable-org-isolation</a></td>
+      <td>Entitle an organization to an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/disable-org-isolation.html' target='_blank'>disable-org-isolation</a></td>
+      <td>Revoke an organization's entitlement to an isolation segment</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-org-default-isolation-segment.html' target='_blank'>set-org-default-isolation-segment</a></td>
+      <td>Set the default isolation segment used for apps in spaces in an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/reset-org-default-isolation-segment.html' target='_blank'>reset-org-default-isolation-segment</a></td>
+      <td>Reset the default isolation segment used for apps in spaces of an org</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-space-isolation-segment.html' target='_blank'>set-space-isolation-segment</a></td>
+      <td>Assign the isolation segment for a space</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/reset-space-isolation-segment.html' target='_blank'>reset-space-isolation-segment</a></td>
+      <td>Reset the space's isolation segment to the org default</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='feature-flags'></a> Feature Flags
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/feature-flags.html' target='_blank'>feature-flags</a></td>
+      <td>Retrieve list of feature flags with status</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/feature-flag.html' target='_blank'>feature-flag</a></td>
+      <td>Retrieve an individual feature flag with status</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/enable-feature-flag.html' target='_blank'>enable-feature-flag</a></td>
+      <td>Allow use of a feature</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/disable-feature-flag.html' target='_blank'>disable-feature-flag</a></td>
+      <td>Prevent use of a feature</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='metadata'></a> Metadata
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/labels.html' target='_blank'>labels</a></td>
+      <td>List all labels (key-value pairs) for an API resource</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/set-label.html' target='_blank'>set-label</a></td>
+      <td>Set a label (key-value pairs) for an API resource</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/unset-label.html' target='_blank'>unset-label</a></td>
+      <td>Unset a label (key-value pairs) for an API resource</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='advanced'></a> Advanced
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/curl.html' target='_blank'>curl</a></td>
+      <td>Executes a request to the targeted API endpoint</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/config.html' target='_blank'>config</a></td>
+      <td>Write default values to the config</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/oauth-token.html' target='_blank'>oauth-token</a></td>
+      <td>Display the OAuth token for the current session and refresh the token if necessary</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/ssh-code.html' target='_blank'>ssh-code</a></td>
+      <td>Get a one time password for ssh clients</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='addremove-plugin-repository'></a> Add/remove Plugin Repository
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/add-plugin-repo.html' target='_blank'>add-plugin-repo</a></td>
+      <td>Add a new plugin repository</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/remove-plugin-repo.html' target='_blank'>remove-plugin-repo</a></td>
+      <td>Remove a plugin repository</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/list-plugin-repos.html' target='_blank'>list-plugin-repos</a></td>
+      <td>List all the added plugin repositories</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/repo-plugins.html' target='_blank'>repo-plugins</a></td>
+      <td>List all available plugins in specified repository or in all added repositories</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='addremove-plugin'></a> Add/remove Plugin
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/plugins.html' target='_blank'>plugins</a></td>
+      <td>List commands of installed plugins</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/install-plugin.html' target='_blank'>install-plugin</a></td>
+      <td>Install CLI plugin</td>
+    </tr>
+    <tr>
+      <td><a href='http://cli.cloudfoundry.org/en-US/v7/uninstall-plugin.html' target='_blank'>uninstall-plugin</a></td>
+      <td>Uninstall CLI plugin</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='environment-variables'></a> Environment Variables
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CF_COLOR=false</td>
+      <td>Do not colorize output</td>
+    </tr>
+    <tr>
+      <td>CF_DIAL_TIMEOUT=6</td>
+      <td>Max wait time to establish a connection, including name resolution, in seconds</td>
+    </tr>
+    <tr>
+      <td>CF_HOME=path/to/dir/</td>
+      <td>Override path to default config directory</td>
+    </tr>
+    <tr>
+      <td>CF_PLUGIN_HOME=path/to/dir/</td>
+      <td>Override path to default plugin config directory</td>
+    </tr>
+    <tr>
+      <td>CF_TRACE=true</td>
+      <td>Print API request diagnostics to stdout</td>
+    </tr>
+    <tr>
+      <td>CF_TRACE=path/to/trace.log</td>
+      <td>Append API request diagnostics to a log file</td>
+    </tr>
+    <tr>
+      <td>all_proxy=proxy.example.com:8080</td>
+      <td>Specify a proxy server to enable proxying for all requests</td>
+    </tr>
+    <tr>
+      <td>https_proxy=proxy.example.com:8080</td>
+      <td>Enable proxying for HTTP requests</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id='global-options'></a> Global Options
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='separator'>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>--help, -h</td>
+      <td>Show help</td>
+    </tr>
+    <tr>
+      <td>-v</td>
+      <td>Print API request diagnostics to stdout</td>
+    </tr>
+  </tbody>
+</table>
