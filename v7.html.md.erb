@@ -149,10 +149,26 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		</td>
 	</tr>
 	<tr>
+		<td><code>cf create-org</code></td>
+		<td>
+			<ul>
+			<li><strong>[Update]:</strong> <code>clients.read</code> scope (or <code>clients.admin</code>, or <code>zones.uaa.admin</code>) is now required when logged in using client credentials.</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
 		<td><code>cf create-quota</code></td>
 		<td>
 			<ul>
 				<li><strong>[Renamed]:</strong> This command is renamed to <code>create-org-quota</code>.</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td><code>cf create-space</code></td>
+		<td>
+			<ul>
+			<li><strong>[Update]:</strong> <code>clients.read</code> scope (or <code>clients.admin</code>, or <code>zones.uaa.admin</code>) is now required when logged in using client credentials.</li>
 			</ul>
 		</td>
 	</tr>
