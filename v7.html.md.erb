@@ -264,6 +264,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 			<ul>
 				<li><strong>[Renamed flag]:</strong> The <code>-s</code> flag is renamed to <code>-e</code> for consistency with other commands.</li>
 				<li><strong>[Update]:</strong> When the <code>-e</code> flag is specified, plan costs advertised by the service broker are displayed.</li>
+				<li><strong>[Update]:</strong> When the <code>-e</code> flag is specified, and no service offering with that name is found the exit code returned is 0, in contrast to the cf CLI v6, which returned exit code 1 in this case.</li>
 			</ul>
 		</td>
 	</tr>
