@@ -44,6 +44,8 @@ For more information about how to use the cf CLI, see [Getting Started with cf C
 
 To learn when cf CLI updates are released and to download a new binary or installer, see [Releases](https://github.com/cloudfoundry/cli/releases) in the Cloud Foundry CLI repository on GitHub.
 
+There are currently two major versions of the cf CLI, v6 and v7. See [the README](https://github.com/cloudfoundry/cli/blob/master/README.md) to decide which version to use.
+
 
 ## <a name="prerequisites"></a> Prerequisites
 
@@ -77,9 +79,13 @@ To install the cf CLI on Debian and Ubuntu-based Linux distributions:
 
 		sudo apt-get update
 
-1. Install the cf CLI by running:
+1. To install **cf CLI v6**, run:
 
 		sudo apt-get install cf-cli
+
+1. To install **cf CLI v7**, run:
+
+		sudo apt-get install cf7-cli
 
 To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later distributions:
 
@@ -87,9 +93,13 @@ To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later dis
 
 		sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo
 
-1. Install the cf CLI by running:
+1. To install **cf CLI v6**, run:
 
 		sudo yum install cf-cli
+
+1. To install **cf CLI v7**, run:
+
+		sudo yum install cf7-cli
 
     This also downloads and adds the public key to your system.
 
@@ -101,9 +111,13 @@ To install the cf CLI for Mac OS X using Homebrew:
 
 1. Install Homebrew. For instructions, see [Install Homebrew](http://brew.sh/) on the Homebrew website.
 
-1. Install the cf CLI by running:
+1. To install **cf CLI v6**, run:
 
 		brew install cloudfoundry/tap/cf-cli
+
+1. To install **cf CLI v7**, run:
+
+		brew install cloudfoundry/tap/cf-cli@7
 
 <% if not vars.platform_code == 'CF' %>
 <%= partial '../console/cf_cli_installer' %>
@@ -115,8 +129,9 @@ To install the cf CLI for Mac OS X using Homebrew:
 
 You can install the cf CLI using a compressed binary on Windows, Mac OS X, and Linux operating systems.
 
-For more information about downloading and installing a compressed binary, see [Installers and compressed binaries](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries) in the Cloud Foundry CLI repository on GitHub.
+For more information about downloading and installing a compressed binary for **cf CLI v6**, see [Installers and compressed binaries](https://github.com/cloudfoundry/cli/blob/master/doc/installation-instructions/installation-instructions-v6.md#installers-and-compressed-binaries).
 
+For more information about downloading and installing a compressed binary for **cf CLI v7**, see [Installers and compressed binaries](https://github.com/cloudfoundry/cli/blob/master/doc/installation-instructions/installation-instructions-v7.md#installers-and-compressed-binaries).
 
 ## <a name="verify"></a> Verify Installation
 
