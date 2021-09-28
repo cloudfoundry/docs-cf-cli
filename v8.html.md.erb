@@ -1,0 +1,205 @@
+---
+title: Upgrading to cf CLI v8
+owner: CLI
+---
+
+This topic describes the major changes between Cloud Foundry Command Line Interface (cf CLI) v7 and cf CLI v8.
+
+
+## <a id="overview"></a> Overview
+
+You can use cf CLI v8 is to interact with Cloud Foundry API (CAPI) V3.
+
+The cf CLI development team aims to provide:
+
+* A seamless upgrade experience from cf CLI v7. Changes are minimal. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience.
+
+* Details about breaking potential breaking changes and alternative workflows for scripting environments.
+
+To understand the differences between specific commands, see [Command Differences](#differences) below.
+
+For more information about CAPI V3, see the [CAPI V3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction).
+
+## <a id="new-workflows"></a> New Workflows Supported by cf CLI v8
+
+Some key new features available through the cf CLI v8 are:
+
+* **Asynchronous service operations**: All service-related operations are now asynchronous by default. This includes manipulating service keys and route bindings.
+
+
+## <a id="install"></a> Install cf CLI v8
+
+To install cf CLI v8, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub.
+It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v8 beta is tested against.
+
+In cf CLI v8, Golang has been updated from v1.13 to v1.16.
+If you target a foundation that does not have a SAN, you might encounter errors because the common name field is deprecated in Golang v1.15 and later.
+For more information, see [X.509 CommonName deprecation](https://golang.org/doc/go1.15#commonname) in the Golang v1.15 release notes.
+
+### <a id="prerequisites"></a> Prerequisites
+
+The cf CLI v8 requires [cf-deployment](https://github.com/cloudfoundry/cf-deployment) v16.11.0 or later.
+
+This version of cf-deployment contains CAPI release v1.109.0, which provides the CAPI V3 API v3.99.0.
+
+For more information, see the cf CLI [Versioning and Support Policy](https://github.com/cloudfoundry/cli/wiki/Versioning-and-Support-Policy) on GitHub.
+
+## <a id="differences"></a> Command Differences
+
+These sections describe changes in commands from cf CLI v7 to cf CLI v8. They also provide important information for those who use the cf CLI in scripts.
+
+For information about possible breaking changes, see the [Table of Differences](#table) below. This table includes removed flag options, updated output, and removed or changed argument requirements.
+
+
+### <a id="manifests"></a> Manifest Differences
+
+When you apply a manifest by running `cf push`, cf CLI v8 does not provide a manifest diff through the V3 manifest diff endpoint.
+This new endpoint supports version 1 manifests only.
+For more information, see [Create a manifest diff for a space (experimental)](https://v3-apidocs.cloudfoundry.org/version/3.102.0/index.html#create-a-manifest-diff-for-a-space-experimental) in the CAPI documentation.
+
+
+### <a id="scripting"></a> About Scripting
+
+If you have scripts that rely on the cf CLI, this section describes possible changes in cf CLI v8 that might affect scripts.
+
+Some of these changes are:
+
+* Style changes, including changes in the order or wording of the output.
+* cf CLI v8 uses CAPI V3 to make requests related to services. CAPI V3 creates asynchronous jobs. If you want to continue to create jobs synchronously, use the new `--wait` flag.
+
+
+### <a id="table"></a> Table of Differences
+
+The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
+
+<table>
+  <tr>
+    <th style="width:40%">Command</th>
+    <th>Changes</th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf bind-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the bind operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf bind-route-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Bind route operation is async by default.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the bind operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf create-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the create operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf create-service-key</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Create operation is async by default.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the create operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf delete-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the delete operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+    <tr>
+    <td style="vertical-align:top"><code>cf delete-service-key</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Delete operation is async by default.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the delete operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+    </tr>
+    <tr>
+      <td style="vertical-align:top"><code>cf marketplace</code></td>
+      <td>
+        <ul>
+          <li><strong>[Added flag]:</strong> Use <code>--show-unavailable</code> to show plans that are not available for use.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+    <td style="vertical-align:top"><code>cf routes</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Added <code>service instance</code> column to output.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--params</code> to retrieve and display the given service instances's parameters as JSON.</li>
+        <li><strong>[Update]:</strong> Displays information about <code>guid</code>, <code>type</code>, and <code>broker tags</code>.</li>
+        <li><strong>[Update]:</strong> The <code>service</code> field is renamed to <code>offering</code>.</li>
+        <li><strong>[Update]:</strong> The <code>service broker</code> field is renamed to <code>broker</code>.</li>
+        <li><strong>[Update]:</strong> The <code>dashboard</code> field is renamed to <code>dashboard url</code>.</li>
+        <li><strong>[Update]:</strong> Minor changes to the ordering and wording of each block of information.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf service-keys</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Displays information about <code>last operation</code> and <code>message</code> as new columns.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf services</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--no-apps</code> to not retrieve bound apps information.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf unbind-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the unbind operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf unbind-route-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update]:</strong> Unbind route operation is async by default.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the unbind operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf update-service</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the update operation to complete.</li>
+        <li><strong>[Removed flag]:</strong> <code>--upgrade</code>. Use new command <code>cf upgrade-service</code> to upgrade a plan.</li>
+        <li><strong>[Removed flag]:</strong> <code>--force</code>. There is no longer user interaction required on this command.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
