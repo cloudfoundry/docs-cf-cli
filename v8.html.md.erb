@@ -119,7 +119,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
       </ul>
     </td>
   </tr>
-    <tr>
+  <tr>
     <td style="vertical-align:top"><code>cf delete-service-key</code></td>
     <td>
       <ul>
@@ -128,16 +128,31 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
       </ul>
     </td>
   </tr>
-    </tr>
-    <tr>
-      <td style="vertical-align:top"><code>cf marketplace</code></td>
-      <td>
-        <ul>
-          <li><strong>[Added flag]:</strong> Use <code>--show-unavailable</code> to show plans that are not available for use.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf map-route</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--destination-protocol</code> to use HTTP/2 protocol to communicate with apps. By default if destination-protocol is not set HTTP/1 protocol will be used for HTTP route.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf marketplace</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--show-unavailable</code> to show plans that are not available for use.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf route</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> New command for viewing details about a route and its destinations.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf routes</code></td>
     <td>
       <ul>
