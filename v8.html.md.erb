@@ -149,7 +149,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
     <td style="vertical-align:top"><code>cf service</code></td>
     <td>
       <ul>
-        <li><strong>[Added flag]:</strong> Use <code>--params</code> to retrieve and display the given service instances's parameters as JSON.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--params</code> to retrieve and display the given service instances's parameters as JSON. All other output is suppressed.</li>
         <li><strong>[Update]:</strong> Displays information about <code>guid</code>, <code>type</code>, and <code>broker tags</code>.</li>
         <li><strong>[Update]:</strong> The <code>service</code> field is renamed to <code>offering</code>.</li>
         <li><strong>[Update]:</strong> The <code>service broker</code> field is renamed to <code>broker</code>.</li>
@@ -159,7 +159,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
     </td>
   </tr>
   <tr>
-    <td style="vertical-align:top"><code>cf service-keys</code></td>
+    <td style="vertical-align:top"><code>cf service-key</code></td>
     <td>
       <ul>
         <li><strong>[Update]:</strong> Displays information about <code>last operation</code> and <code>message</code> as new columns.</li>
@@ -198,6 +198,13 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the update operation to complete.</li>
         <li><strong>[Removed flag]:</strong> <code>--upgrade</code>. Use new command <code>cf upgrade-service</code> to upgrade a plan.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf upgrade-service</code></td>
+    <td>
+      <ul>
         <li><strong>[Removed flag]:</strong> <code>--force</code>. There is no longer user interaction required on this command.</li>
       </ul>
     </td>
