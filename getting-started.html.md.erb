@@ -341,13 +341,15 @@ To map a route to the app:
     cf login
     ```
 
-1. Map a route by running:
+1. Push and map a route by running:
 
     ```
-    cf push APP-NAME --hostname APP-HOSTNAME
+    cf push APP-NAME
+    cf map-route APP-NAME APP-DOMAIN --hostname APP-HOSTNAME
     ```
     Where:
       * `APP-NAME` is the name of the app.
+      * `APP-DOMAIN` is the domain of the app.
       * `APP-HOSTNAME` is the hostname of the app.
 
 
