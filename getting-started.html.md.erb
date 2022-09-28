@@ -27,7 +27,7 @@ want to log in. Otherwise, it targets your org and space automatically.
 
 To log in to the cf CLI:
 
-1. Run:
+1. In a terminal window, run:
 
     ```
     cf login -a API-URL -u USERNAME -p PASSWORD -o ORG -s SPACE
@@ -35,7 +35,7 @@ To log in to the cf CLI:
     Where:
     * `API-URL` is your API endpoint, <%= vars.api_endpoint %>.
     * `USERNAME` is your username.
-    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, as it may record your password in your shell history.
+    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, because it may record your password in your shell history.
     * `ORG` is the org where you want to deploy your apps.
     * `SPACE` is the space in the org where you want to deploy your apps.
 
@@ -67,7 +67,7 @@ You can write a script to log in to the cf CLI. This allows you to avoid manuall
 
 To write a script to log in:
 
-1. Target your API by running:
+1. In a terminal window, target your API by running:
 
     ```
     cf api API-URL
@@ -75,7 +75,7 @@ To write a script to log in:
     Where `API-URL` is your API endpoint, <%= vars.api_endpoint %>.
     <br>
     <br>
-    For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/api.html).
+    For more information about the `cf api` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/api.html).
 
 1. Authenticate by running:
 
@@ -87,7 +87,7 @@ To write a script to log in:
     * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, because it may record your password in your shell history.
     <br>
     <br>
-    For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/auth.html).
+    For more information about the `cf auth` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/auth.html).
 
 1. Target your org or space by running:
 
@@ -99,16 +99,15 @@ To write a script to log in:
     * `SPACE` is the space you want to target.
     <br>
     <br>
-    For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/target.html).
+    For more information about the `cf target` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/target.html).
 
-After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token.
-
-If you change these settings, the `config.json` file is updated accordingly.
+After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token. If you change these settings,
+the `config.json` file is updated accordingly.
 
 By default, `config.json` is located in the `~/.cf` directory. You can relocate the `config.json` file using the `CF_HOME` environment variable.
 
 
-## <a id='i18n'></a> Localize the CLI
+## <a id='i18n'></a> Localize the cf CLI
 
 The cf CLI translates terminal output into the language that you select. The default language is `en-US`.
 
@@ -125,13 +124,13 @@ The cf CLI supports these languages:
 *  Portuguese (Brazil): `pt-BR`
 *  Spanish: `es-ES`
 
-For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/config.html).
+For more information about the `cf config --locale` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/config.html).
 
-<p class='note'><strong>Note:</strong> Localization with <code>cf config --locale</code> affects only messages that the cf CLI generates.</p>
+<p class='note'><strong>Note:</strong> Localizing the cf CLI affects only messages that the cf CLI generates.</p>
 
 To set the language of the cf CLI:
 
-1. Log in to the cf CLI:
+1. In a terminal window, log in to the cf CLI:
 
     ```
     cf login
@@ -142,7 +141,8 @@ To set the language of the cf CLI:
     ```
     cf config --locale LANGUAGE
     ```
-    Where `LANGUAGE` is code of the language you want to set.
+    Where `LANGUAGE` is code of the language you want to set. Valid values are `zh-Hans`, `zh-Hant`, `en-US`, `fr-FR`, `de-DE`, `it-IT`, `ja-JP`, `ko-KR`,
+    `pt-BR`, and `es-ES`.
 
 1. Confirm the language change by running:
 
@@ -171,7 +171,7 @@ The cf CLI includes commands that list users and assign roles in orgs and spaces
 
 To list all users in an org or a space:
 
-1. Log in to the cf CLI:
+1. In a terminal window, log in to the cf CLI:
 
     ```
     cf login
@@ -230,7 +230,7 @@ more information about the `cf space-users` command, see the [Cloud Foundry CLI 
 
 ### <a id='managing-roles'></a> Manage Roles
 
-You use the commands listed below to manage roles in the cf CLI. These commands require admin permissions and take username, org or space, and role as
+You use the commands listed below to manage roles in the cf CLI. These commands require admin permissions and take `username`, `org` or `space`, and `role` as
 arguments:
 
 * `cf set-org-role`<br>For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html).
@@ -252,11 +252,10 @@ The available roles are:
 
 For more information about user roles, see [Orgs, Spaces, Roles, and Permissions](../concepts/roles.html).
 
-The example below shows the cf CLI output for assigning the Org Manager role to a user within an org:
+The following example shows the terminal output for `cf set-org-role huey@example.com example-org OrgManager`, which assigns the Org Manager role to
+`huey@example.com` within the `example-org` org:
 
 <pre class="terminal">
-$ cf set-org-role huey@example.com example-org OrgManager
-
 Assigning role OrgManager to user huey<span>@</span>example.com in org example-org as username<span>@</span>example.com...
 OK
 </pre>
@@ -267,7 +266,7 @@ OK
 ### <a id='multi-origin'></a> Manage Roles for Users with Identical Usernames in Multiple Origins
 
 If a username corresponds to multiple accounts from different user stores, such as both the internal UAA store and an external SAML or LDAP store, running
-`cf set-org-role` and `cf unset-org-role` return this error:
+either `cf set-org-role` or `cf unset-org-role` returns an error similar to the following example:
 
 <pre class='terminal'>The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’</pre>
 
@@ -279,13 +278,13 @@ To resolve this ambiguity, you can construct a `curl` command that uses the API 
 
 These sections describe how to use the `cf push` command to push a new app or sync changes to an existing app.
 
-For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
+For more information about the `cf push` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
 
 ### <a id='push-procedure'></a> Push a New App or Push Changes to an App
 
 To push an app:
 
-1. Log in to the cf CLI by running:
+1. In a terminal window, log in to the cf CLI by running:
 
     ```
     cf login
@@ -305,7 +304,8 @@ To push an app:
 You can provide a path to a manifest file when you push an app. The manifest file may include information such as the name of the app, disk limit, and number
 of instances. You can use a manifest file rather than adding flags to the `cf push` command.
 
-`cf push` locates the `manifest.yml` file in the current working directory by default. Or, you can provide a path to the manifest with the `-f` flag.
+`cf push` locates the `manifest.yml` file in the current working directory by default. Alternatively, you can provide a path to the manifest with the `-f`
+flag.
 
 For more information about the `-f` flag, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
 
@@ -320,10 +320,10 @@ that buildpack. To use the app with a different buildpack, you must delete the a
 
 For more information about available buildpacks, see the [Cloud Foundry documentation](https://docs.cloudfoundry.org/buildpacks/).
 
-The example below pushes an app called `awesome-app` to the URL `http://awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag:
+The following example shows the terminal output for `cf push awesome-app -b ruby_buildpack`, which pushes an app called `awesome-app` to the URL
+`http://awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag:
 
 <pre class='terminal'>
-$ cf push awesome-app -b ruby_buildpack
 Pushing app awesome-app to org example-org / space development as username@example.com...
 
 ...
@@ -358,7 +358,7 @@ For information about mapping a route to your app, see [Routes and Domains](../d
 
 To map a route to the app:
 
-1. Log in to the cf CLI by running:
+1. In a terminal window, log in to the cf CLI by running:
 
     ```
     cf login
@@ -382,20 +382,21 @@ These sections describe how to create or update a service instance.
 
 ### <a id='user-cups'></a> Create a Service Instance
 
-To create a new service instance, use the `cf create-user-provided-service` or `cf cups` commands. For more information, see the [Cloud Foundry CLI Reference
+To create a new service instance, use the `cf create-user-provided-service` or `cf cups` commands. For more information about the
+`cf create-user-provided-service` and `cf cups` commands, see the [Cloud Foundry CLI Reference
 Guide](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html).
 
 To create or update a user-provided service instance, you must supply basic parameters. For example, a database service might require a username, password,
 host, port, and database name.
 
-You can provide these parameters in these ways:
+You can provide these parameters in the following ways:
 
 * Interactively. For more information, see [Supply Parameters Interactively](#interactive) below.
 
 * Non-interactively. For more information, see [Supply Parameters Non-Interactively](#non-interactive) below.
 
-* With third-party log management software as described in RFC 6587. For more information, see [Supply Parameters Through a Third Party](#third-party) and
-[RFC 6587](http://tools.ietf.org/html/rfc6587).
+* With third-party log management software as described in RFC 6587. For more information, see [Supply Parameters Through a Third Party](#third-party) below
+and [RFC 6587](http://tools.ietf.org/html/rfc6587).
     <p class='note'><strong>Note:</strong> When used with third-party logging, data is sent formatted according to RFC 5424. For more information, see
       <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a>.</p>
 
@@ -403,7 +404,7 @@ You can provide these parameters in these ways:
 
 To create a new service while supplying parameters interactively:
 
-1. Log in to the cf CLI by running:
+1. In a terminal window, log in to the cf CLI by running:
 
     ```
     cf login
@@ -422,7 +423,7 @@ To create a new service while supplying parameters interactively:
 
 To create a new service while supplying parameters non-interactively:
 
-1. Log in to the cf CLI by running:
+1. In a terminal window, log in to the cf CLI by running:
 
     ```
     cf login
@@ -477,7 +478,8 @@ Guide](http://cli.cloudfoundry.org/en-US/cf/delete-service.html).
 
 To update one or more of the parameters for an existing user-provided service instance, use `cf update-user-provided-service` or `cf uups`.
 
-For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html).
+For more information about the `cf update-user-provided-service` and `cf uups` commands, see the [Cloud Foundry CLI Reference
+Guide](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html).
 
 <p class="note"><strong>Note:</strong> The <code>cf uups</code> command does not update any parameter values that you do not supply.</p>
 
@@ -488,7 +490,7 @@ The cf CLI uses exit codes, which help with scripting and confirming that a comm
 
 To view a cf CLI exit code:
 
-1. Log in to the cf CLI by running:
+1. In a terminal window, log in to the cf CLI by running:
 
     ```
     cf login
