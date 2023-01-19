@@ -12,7 +12,7 @@ owner: CLI
 				<li><a href="#pkg-linux">Linux Installation</a></li>
 				<li><a href="#pkg-mac">Mac OS X Installation</a></li>
 			</ul>
-		<% if not vars.platform_code == 'CF' %>
+		<% if vars.platform_code != 'CF' %>
 		<li><a href="#installer">Install the cf CLI Using an Installer</a></li>
 			<ul>
 				<li><a href="#installer-linux">Linux Installation</a></li>
@@ -107,7 +107,7 @@ To install the cf CLI for Mac OS X using Homebrew:
 
 		brew install cloudfoundry/tap/cf-cli@7
 
-<% if not vars.platform_code == 'CF' %>
+<% if vars.platform_code != 'CF' %>
 <%= partial '../console/cf_cli_installer' %>
 <% else %>
 <% end %>
