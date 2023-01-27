@@ -121,7 +121,7 @@ To install the cf CLI for Mac OS X using Homebrew:
 		brew install cloudfoundry/tap/cf-cli@8
 
 <% if vars.platform_code != 'CF' %>
-<%= partial '/pcf/core/2-13/cf_cli_installer' %>
+<%= partial '/pcf/core/#{vars.current_major_version}/cf_cli_installer' %>
 <% else %>
 <% end %>
 
