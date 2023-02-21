@@ -41,7 +41,7 @@ To log in to the cf CLI:
 
 When you successfully log in, you see output similar to the following example:
 
-<pre class='terminal'>
+<pre class="terminal">
 API endpoint: https://api.example.com
 
 Password>
@@ -150,7 +150,7 @@ To set the language of the cf CLI:
     cf help
     ```
     The above command returns output similar to the example below:
-    <pre class='terminal'>
+    <pre class="terminal">
     NOME:
        cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
 
@@ -187,7 +187,7 @@ To list all users in an org or a space:
       <br>
       <br>
       The above command returns output similar to the example below:
-      <pre class='terminal'>
+      <pre class="terminal">
       Getting users in org example-org as username<span>@</span>example.com...
 
       ORG MANAGER
@@ -211,7 +211,7 @@ To list all users in an org or a space:
       <br>
       <br>
       The above command returns output similar to the example below:
-      <pre class='terminal'>
+      <pre class="terminal">
       Getting users in org example-org / space example-space as username<span>@</span>example.com...
 
       SPACE MANAGER
@@ -268,7 +268,7 @@ OK
 If a username corresponds to multiple accounts from different user stores, such as both the internal UAA store and an external SAML or LDAP store, running
 either `cf set-org-role` or `cf unset-org-role` returns an error similar to the following example:
 
-<pre class='terminal'>The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’</pre>
+<pre class="terminal">The user exists in multiple origins. Specify an origin for the requested user from: ‘uaa’, ‘other’</pre>
 
 To resolve this ambiguity, you can construct a `curl` command that uses the API to perform the desired role management function. For an example, see the
 [Cloud Foundry API documentation](http://apidocs.cloudfoundry.org/280/organizations/associate_auditor_with_the_organization_by_username.html).
@@ -323,7 +323,7 @@ For more information about available buildpacks, see the [Cloud Foundry document
 The following example shows the terminal output for `cf push awesome-app -b ruby_buildpack`, which pushes an app called `awesome-app` to the URL
 `http://awesome-app.example.com` and specifies the Ruby buildpack with the `-b` flag:
 
-<pre class='terminal'>
+<pre class="terminal">
 Pushing app awesome-app to org example-org / space development as username@example.com...
 
 ...
@@ -520,7 +520,7 @@ To list detailed help for any cf CLI command, add the `-h` flag to the command.
 
 The example below shows detailed help output for the `cf delete` command:
 
-<pre class='terminal'>
+<pre class="terminal">
 NAME:
    delete - Delete an app
 
