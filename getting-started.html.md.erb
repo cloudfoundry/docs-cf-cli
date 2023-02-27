@@ -182,53 +182,53 @@ To list all users in an org or a space:
     ```
 
 1. Run one of these commands:
-  * To list org users, run:
+    * To list org users, run:
 
-      ```
-      cf org-users ORG
-      ```
-      Where `ORG` is the name of the org for which you want to see the list of users.
-      <br>
-      <br>
-      The above command returns output similar to the example below:
-      <pre class="terminal">
-      Getting users in org example-org as username<span>@</span>example.com...
+        ```
+        cf org-users ORG
+        ```
+        Where `ORG` is the name of the org for which you want to see the list of users.
+        <br>
+        <br>
+        The above command returns output similar to the example below:
+        <pre class="terminal">
+        Getting users in org example-org as username<span>@</span>example.com...
 
-      ORG MANAGER
-        username<span>@</span>example.com
+        ORG MANAGER
+          username<span>@</span>example.com
 
-      BILLING MANAGER
-        huey<span>@</span>example.com
-        dewey<span>@</span>example.com
+        BILLING MANAGER
+          huey<span>@</span>example.com
+          dewey<span>@</span>example.com
 
-      ORG AUDITOR
-        louie<span>@</span>example.com
-      </pre>
-  * To list space users, run:
+        ORG AUDITOR
+          louie<span>@</span>example.com
+        </pre>
+    * To list space users, run:
 
-      ```
-      cf space-users ORG SPACE
-      ```
-      Where:
-      <ul>
-        <li><code>ORG</code> is the name of the org that contains the space for which you want to see the list of users.</li>
-        <li><code>SPACE</code> is the name of the space for which you want to see the list of users.</li>
-      </ul>
+        ```
+        cf space-users ORG SPACE
+        ```
+        Where:
+        <ul>
+          <li><code>ORG</code> is the name of the org that contains the space for which you want to see the list of users.</li>
+          <li><code>SPACE</code> is the name of the space for which you want to see the list of users.</li>
+        </ul>
 
-      The above command returns output similar to the example below:
-      <pre class="terminal">
-      Getting users in org example-org / space example-space as username<span>@</span>example.com...
+        The above command returns output similar to the example below:
+        <pre class="terminal">
+        Getting users in org example-org / space example-space as username<span>@</span>example.com...
 
-      SPACE MANAGER
-        username<span>@</span>example.com
+        SPACE MANAGER
+          username<span>@</span>example.com
 
-      SPACE DEVELOPER
-        huey<span>@</span>example.com
-        dewey<span>@</span>example.com
+        SPACE DEVELOPER
+          huey<span>@</span>example.com
+          dewey<span>@</span>example.com
 
-      SPACE AUDITOR
-        louie<span>@</span>example.com
-      </pre>
+        SPACE AUDITOR
+          louie<span>@</span>example.com
+        </pre>
 
 For more information about the `cf org-users` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/org-users.html). For
 more information about the `cf space-users` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/space-users.html).
