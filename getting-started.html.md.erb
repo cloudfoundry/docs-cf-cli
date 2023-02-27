@@ -32,12 +32,15 @@ To log in to the cf CLI:
     ```
     cf login -a API-URL -u USERNAME -p PASSWORD -o ORG -s SPACE
     ```
+
     Where:
-    * `API-URL` is your API endpoint, <%= vars.api_endpoint %>.
-    * `USERNAME` is your username.
-    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, because it may record your password in your shell history.
-    * `ORG` is the org where you want to deploy your apps.
-    * `SPACE` is the space in the org where you want to deploy your apps.
+    <ul>
+    <li><code>API-URL</code> is your API endpoint, <%= vars.api_endpoint %>.</li>
+    <li><code>USERNAME</code> is your username.</li>
+    <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it may record your password in your shell history.</li>
+    <li><code>ORG</code> is the org where you want to deploy your apps.</li>
+    <li><code>SPACE</code> is the space in the org where you want to deploy your apps.</li>
+    </ul>
 
 When you successfully log in, you see output similar to the following example:
 
@@ -51,7 +54,6 @@ OK
 Targeted org example-org
 
 Targeted space development
-
 
 
 API endpoint:   https://api.example.com
@@ -83,10 +85,11 @@ To write a script to log in:
     cf auth USERNAME PASSWORD
     ```
     Where:
-    * `USERNAME` is your username.
-    * `PASSWORD` is your password. <%= vars.company_name %> discourages using the `-p` option, because it may record your password in your shell history.
-    <br>
-    <br>
+    <ul>
+      <li><code>USERNAME</code> is your username.</li>
+      <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it may record your password in your shell history.</li>
+    </ul>
+
     For more information about the `cf auth` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/auth.html).
 
 1. Target your org or space by running:
@@ -95,10 +98,11 @@ To write a script to log in:
     cf target -o ORG -s SPACE
     ```
     Where:
-    * `ORG` is the org you want to target.
-    * `SPACE` is the space you want to target.
-    <br>
-    <br>
+    <ul>
+      <li><code>ORG</code> is the org you want to target.</li>
+      <li><code>SPACE</code> is the space you want to target.</li>
+    </ul>
+
     For more information about the `cf target` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/target.html).
 
 After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token. If you change these settings,
@@ -206,10 +210,11 @@ To list all users in an org or a space:
       cf space-users ORG SPACE
       ```
       Where:
-      * `ORG` is the name of the org that contains the space for which you want to see the list of users.
-      * `SPACE` is the name of the space for which you want to see the list of users.
-      <br>
-      <br>
+      <ul>
+        <li><code>ORG</code> is the name of the org that contains the space for which you want to see the list of users.</li>
+        <li><code>SPACE</code> is the name of the space for which you want to see the list of users.</li>
+      </ul>
+
       The above command returns output similar to the example below:
       <pre class="terminal">
       Getting users in org example-org / space example-space as username<span>@</span>example.com...
@@ -370,11 +375,13 @@ To map a route to the app:
     cf push APP-NAME
     cf map-route APP-NAME APP-DOMAIN --hostname APP-HOSTNAME
     ```
-    Where:
-      * `APP-NAME` is the name of the app.
-      * `APP-DOMAIN` is the domain of the app.
-      * `APP-HOSTNAME` is the hostname of the app.
 
+    Where:
+    <ul>
+      <li><code>APP-NAME</code> is the name of the app.</li>
+      <li><code>APP-DOMAIN</code> is the domain of the app.</li>
+      <li><code>APP-HOSTNAME</code> is the hostname of the app.</li>
+    </ul>
 
 ## <a id='user-provided'></a> Manage User-Provided Service Instances
 
@@ -415,9 +422,13 @@ To create a new service while supplying parameters interactively:
     ```
     cf cups SERVICE -p "PARAMETER, SECOND-PARAMETER, THIRD-PARAMETER"
     ```
+
     Where:
-    * `SERVICE` is the name of the service you want to create.
-    * `PARAMETER`, `SECOND-PARAMETER`, and `THIRD-PARAMETER` are parameters such as username, password, host, port, and database name.
+    <ul>
+      <li><code>SERVICE</code> is the name of the service you want to create.</li>
+      <li><code>PARAMETER</code>, <code>SECOND-PARAMETER</code>, and <code>THIRD-PARAMETER</code> are parameters such as username, password, host, port, and database name.</li>
+    </ul>
+
 
 #### <a id='non-interactive'></a> Supply Parameters Non-Interactively
 
@@ -434,9 +445,12 @@ To create a new service while supplying parameters non-interactively:
     ```
     cf cups SERVICE -p '{"host":"HOSTNAME", "port":"PORT"}'
     ```
+
     Where:
-    * `SERVICE` is the name of the service you want to create.
-    * `HOSTNAME` and `PORT` are service parameters.
+    <ul>
+      <li><code>SERVICE</code> is the name of the service you want to create.</li>
+      <li><code>HOSTNAME</code> and <code>PORT</code> are service parameters.</li>
+    </ul>
 
 #### <a id='third-party'></a> Supply Parameters Through a Third Party
 
@@ -454,9 +468,12 @@ To create a service instance that sends data to a third party:
     ```
     cf cups SERVICE -l THIRD-PARTY-DESTINATION-URL
     ```
+
     Where:
-    * `SERVICE` is the name of the service you want to create.
-    * `THIRD-PARTY-DESTINATION-URL` is the external URL of the third-party service.
+    <ul>
+      <li><code>SERVICE</code> is the name of the service you want to create.</li>
+      <li><code>THIRD-PARTY-DESTINATION-URL</code> is the external URL of the third-party service.</li>
+    </ul>
 
 ### <a id='bind-unbind'></a> Bind and Unbind Service Instances
 

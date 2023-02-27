@@ -52,13 +52,22 @@ To place the certificate file `server.crt` into your truststore for Linux:
         ```
         cat server.crt >> /etc/pki/tls/certs/ca-bundle.crt
         ```
-    <br>
-    <br>
-    The examples above set the certificate permanently on your machine across all users and require `sudo` permissions. To set the certificate only in your current terminal or script, run one of these commands:
-    * `export SSL_CERT_FILE=PATH-TO-SERVER.crt`<br>
-      Where `PATH-TO-SERVER.crt` is the filepath of the `server.crt` certificate file.
-    * `export SSL_CERT_DIR=PATH-TO-SERVER-DIRECTORY`<br>
-      Where `PATH-TO-SERVER-DIRECTORY` is the directory of the `server.crt` certificate file.
+
+The examples above set the certificate permanently on your machine across all users and require `sudo` permissions. To set the certificate only in your current terminal or script, run one of these commands:
+
+* Option 1:
+
+    ```console
+    export SSL_CERT_FILE=PATH-TO-SERVER.crt
+    ```
+    Where `PATH-TO-SERVER.crt` is the filepath of the `server.crt` certificate file.
+
+* Option 2:
+
+    ```console
+    export SSL_CERT_DIR=PATH-TO-SERVER-DIRECTORY
+    ```
+    Where `PATH-TO-SERVER-DIRECTORY` is the directory of the `server.crt` certificate file.
 
 ### <a id="windows"></a> Install the Certificate on Windows
 
