@@ -3,76 +3,91 @@ title: Using the cf CLI with a Proxy Server
 owner: CLI
 ---
 
-<strong><%= modified_date %></strong>
+This topic describes using the Cloud Foundry Command Line Interface (cf CLI) with a proxy server.
 
-If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your Cloud Foundry API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server.
 
-The `https_proxy` environment variable holds the hostname or IP address of your
-proxy server.
+## <a id='overview'></a> Overview
 
-`https_proxy` is a standard environment variable.
-Like any environment variable, the specific steps you use to set it depends on
-your operating system.
+If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of your proxy server.
 
-## <a id="format"></a>Format of https_proxy ##
+`https_proxy` is a standard environment variable. Like any environment variable, the specific steps you use to set it depends on your operating system.
 
-`https_proxy` is set with hostname or IP address of the proxy server in URL
-format: `https_proxy=http://proxy.example.com`
 
-If the proxy server requires a user name and password, include the credentials:
-`https_proxy=http://username:password@proxy.example.com`
+## <a id="format"></a> Format of https_proxy
 
-If the proxy server uses a port other than 80, include the port number:
-`https_proxy=http://username:password@proxy.example.com:8080`
+`https_proxy` is set with hostname or IP address of the proxy server in URL format, as in the example below:
 
-If the proxy server is a SOCKS5 proxy, specify the SOCKS5 protocol in the URL: 
-`https_proxy=socks5://socks_proxy.example.com`
+```
+https_proxy=http://proxy.example.com
+```
 
-<p class="note"><strong>Note</strong>: <code>cf ssh</code> does not work through a SOCKS5 proxy.</p>
+If the proxy server requires a username and password, you must include the credentials, as in the example below:
 
-## <a id="mac-linux"></a>Setting https_proxy in Mac OS or Linux ##
+```
+https_proxy=http://username:password@proxy.example.com
+```
 
-Set the `https_proxy` environment variable using the command specific to your
-shell.
-For example, in bash, use the `export` command.
+If the proxy server uses a port other than 80, you must include the port number, as in the example below:
 
-Example:
-<pre class=terminal>
-$ export https_proxy=http:/<span>/</span>my.proxyserver.com:8080
-</pre>
+```
+https_proxy=http://username:password@proxy.example.com:8080
+```
 
-To make this change persistent, add the command to the appropriate profile file
-for the shell.
-For example, in bash, add a line like the following to your `.bash_profile` or
-`.bashrc` file:
+If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in the URL, as in the example below:
 
-<pre class="detect-script"t>
-  https_proxy=http://username:password@hostname:port
-  export $https_proxy
-</pre>
+```
+https_proxy=socks5://socks_proxy.example.com
+```
 
-## <a id="windows"></a>Setting https_proxy in Windows ##
+<p class="note"><strong>Note:</strong> The <code>cf ssh</code> command for cf CLI v7 does not work through a SOCKS5 proxy.</p>
 
-1. Open the Start menu. Right-click **Computer** and select **Properties**.
 
-    <%= image_tag("./images/properties.png") %>
+## <a id="mac-linux"></a> Set https_proxy in Mac OS or Linux
 
-1. In the left pane of the System window, click **Advanced system settings**.
+To set the `https_proxy` environment variable in Mac OS or Linux:
 
-    <%= image_tag("./images/adv-settings.png") %>
+1. Use the command specific to your shell. For example, in bash, use the `export` command, as in the example below:
 
-1. In the System Properties window, select the **Advanced** tab, then click
-**Environment Variables**.
+    ```
+    export https_proxy=http://my.proxyserver.com:8080
+    ```
 
-    <%= image_tag("./images/env-var.png") %>
+1. To make this change persistent, add the command to the appropriate profile file for the shell. For example, in bash, add a line like example below to your `.bash_profile` or `.bashrc` file:
 
-1. In the Environment Variables window, under User variables, click **New**.
+    ```
+    https_proxy=http://username:password@hostname:port
+    export $https_proxy
+    ```
 
-    <%= image_tag("./images/new.png") %>
 
-1. In the Variable name field, input `https_proxy`.
-In the Variable value field, input your proxy server information.
+## <a id="windows"></a> Set https_proxy in Windows
 
-    <%= image_tag("./images/proxy.png") %>
+To set the `https_proxy` environment variable in Windows:
+
+1. Open the **Start** menu.
+
+1. Right-click **Computer** and select **Properties**.
+
+    <%= image_tag("./images/properties.png", :alt => "An arrow points to 'Properties' as the last item of the right-click menu.") %>
+
+1. In the left pane of the **System** window, click **Advanced system settings**.
+
+    <%= image_tag("./images/adv-settings.png", :alt => "An arrow points to'Advanced system settings', which is the last item in the Control Panel Home.") %>
+
+1. In the **System Properties** window:
+    1. Select **Advanced**.
+    1. Click **Environment Variables**.
+
+    <%= image_tag("./images/env-var.png", :alt => "Two arrows. One points to the advanced tab, which is the third item from the left. Another arrow points to the 'Environment Variables' button, which is the last button in the body.") %>
+
+1. Under **User variables**, click **New**.
+
+    <%= image_tag("./images/new.png", :alt => "An arrow points to the 'New' button, which is the first button under the user variables table.") %>
+
+1. For **Variable name**, enter `https_proxy`.
+
+1. For **Variable value**, enter your proxy server information.
+
+    <%= image_tag("./images/proxy.png", :alt => "Variable name text field has 'https_proxy' entered. Variable value text field has 'http://my.proxyserver.com:8080 entered.") %>
 
 1. Click **OK**.
