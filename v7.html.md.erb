@@ -287,7 +287,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 				<li><strong>[Removed flag]:</strong> <code>--route-path</code>. You can use the <code>routes</code> property in the manifest instead.</li>
 				<li><strong>[Removed flag]:</strong> <code>-d</code> for domain. You can use the <code>routes</code> property in the manifest instead.</li>
 			  <li><strong>[Removed flag]:</strong> <code>--no-hostname</code>. You can use the <code>routes</code> property in the manifest instead.</li>
-			  <li><strong>[Removed flag]:</strong> <code>--hostname</code>. You can use the <code>routes</code> property in the manifest instead.</li>
+			  <li><strong>[Removed flags]:</strong> <code>--hostname</code> and <code>-n</code>. You can use the <code>routes</code> property in the manifest instead. For example: you might replace <code>push my-app -n my-host</code> with <code>push -f manifest.yml --var host=my-host</code></li>
 			  <li><strong>[Added flag]:</strong> <code>--strategy</code>. You can deploy an app without causing downtime using <code>cf push app_name --strategy rolling</code>. Exits when at least one instance of each process is healthy.</li>
 				<li><strong>[Added flag]:</strong> <code>--no-wait</code>. When used, the command exits when the one instance one process becomes healthy.</li>
 				<li><strong>[Added flag]:</strong> <code>--endpoint</code>. Required if you set health check type to <code>http</code> when pushing an app.</li>
