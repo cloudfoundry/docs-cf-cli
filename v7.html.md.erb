@@ -14,7 +14,7 @@ The cf CLI development team aims to provide:
 
 * A seamless upgrade experience from cf CLI v6. Changes have been kept to a minimum. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience.
 
-* Details about breaking potential breaking changes and alternative workflows for scripting environments.
+* Details about potential breaking changes and alternative workflows for scripting environments.
 
 To understand the differences between specific commands, see [Command Differences](#differences) below.
 
@@ -294,6 +294,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 				<li><strong>[Updated flag]:</strong> <code>--health-check-type none</code> is removed in favor of <code>--health-check-type process</code>.</li>
 				<li><strong>[Updated flag]:</strong> <code>--no-route</code> no longer unbinds all existing routes associated with the app.</li>
 			  <li><strong>[Updated flag]:</strong> <code>-t</code> now has a long form <code>--app-start-timeout</code>. All short-form flags now have long-form equivalents.</li>
+			  <li><strong>[Deprecated app manifest feature]</strong> Previously, you could declare top-level attributes, which are also known as global attributes. For example, you could move an attribute above the applications block, where it need appear only once. Top-level attributes are deprecated in favor of YAML aliases. Note that using <code>cd push -f manifest.yml</code> with a top-level services attribute defined will not generate a warning. For details, see the [Cloud Foundry documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#deprecated).</li>
 			</ul>
 		</td>
 	</tr>
