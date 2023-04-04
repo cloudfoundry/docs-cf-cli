@@ -357,8 +357,7 @@ start command:   bundle exec rackup config.ru -p $PORT -o 0.0.0.0
 
 ### <a id='new-route'></a> Map a Route to an App
 
-You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form
-`APP-NAME.DOMAIN`, where `APP-NAME` is the name of your app and `DOMAIN` is your default domain.
+You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form `APP-NAME.DOMAIN`, where `APP-NAME` is the name of your app and `DOMAIN` is your default domain. The route definition is included in the `manifest.yml` file.
 
 For information about mapping a route to your app, see [Routes and Domains](../devguide/deploy-apps/routes-domains.html).
 
@@ -373,8 +372,7 @@ To map a route to the app:
 1. Push and map a route by running:
 
     ```
-    cf push APP-NAME
-    cf map-route APP-NAME APP-DOMAIN --hostname APP-HOSTNAME
+    cf push -f manifest.yml --var host=APP-HOSTNAME
     ```
 
     Where:
@@ -550,5 +548,5 @@ ALIAS:
 
 OPTIONS:
    -f       Force deletion without confirmation
-   -r       Also delete any mapped routes
+   -r       Also delete any mapped routes (only deletes routes mapped to a single app)
 </pre>
