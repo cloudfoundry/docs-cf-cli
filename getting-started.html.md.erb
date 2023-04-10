@@ -355,6 +355,8 @@ start command:   bundle exec rackup config.ru -p $PORT -o 0.0.0.0
 #0   running   2022-09-16T01:54:29Z   0.0%   0 of 0   0 of 0   0/s of 0/s
 </pre>
 
+<p class="note important"><strong>Important</strong>: To avoid security exposure, verify that you migrate your apps and custom buildpacks to use the <code>cflinuxfs4</code> stack based on Ubuntu 22.04 LTS (Jammy Jellyfish). The <code>cflinuxfs3</code> stack is based on Ubuntu 18.04 (Bionic Beaver), which reaches end of standard support in April 2023. </p>
+
 ### <a id='new-route'></a> Map a Route to an App
 
 You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form `APP-NAME.DOMAIN`, where `APP-NAME` is the name of your app and `DOMAIN` is your default domain. The route definition is included in the `manifest.yml` file.
