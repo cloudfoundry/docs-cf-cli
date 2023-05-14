@@ -68,6 +68,7 @@ Some of these changes are:
 
 * Style changes, including changes in the order or wording of the output.
 * cf CLI v8 uses CAPI V3 to make requests related to services. CAPI V3 creates asynchronous jobs. If you want to continue to create jobs synchronously, use the new `--wait` flag.
+* JSON response changes such as additional elements or nesting.
 
 
 ### <a id="table"></a> Table of Differences
@@ -180,6 +181,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
     <td>
       <ul>
         <li><strong>[Update]:</strong> Displays information about <code>last operation</code> and <code>message</code> as new columns.</li>
+        <li><strong>[Response]:</strong> All JSON response elements from v7 are now wrapped into an additional element named <code>credentials</code>.</li>
       </ul>
     </td>
   </tr>
