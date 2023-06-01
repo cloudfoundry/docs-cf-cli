@@ -1,12 +1,8 @@
 ---
-title: Developing cf CLI Plug-ins
+title: Developing cf CLI plug-ins
 owner: CLI
 ---
 
-This topic describes creating and installing Cloud Foundry Command Line Interface (cf CLI) plug-ins.
-
-
-## <a id='overview'></a> Overview
 
 You can create and install cf CLI plug-ins to provide custom commands. You can submit and share these plug-ins to the [CF Community repository](https://plugins.cloudfoundry.org/).
 
@@ -16,16 +12,16 @@ You can create and install cf CLI plug-ins to provide custom commands. You can s
 To use plug-ins, you must use cf CLI v7 or later. For information about downloading, installing, and uninstalling tcf CLI commands, see [Installing the Cloud Foundry Command Line Interface](install-go-cli.html).
 
 
-## <a id='install-arch'></a> Installing the Architecture
+## <a id='install-arch'></a> Creating a plug-in
 
 To prepare to create a plug-in:
 
-1. Implement the predefined plug-in interface from [plugin.go ](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go) in the Cloud Foundry CLI repository on GitHub.
+1. Implement the predefined plug-in interface from [plugin.go](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin.go) in the Cloud Foundry CLI repository on GitHub.
 
 1. Clone the [Cloud Foundry CLI repository](https://github.com/cloudfoundry/cli) from GitHub. To create a plug-in, you need the [basic GO plugin](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/basic_plugin.go).
 
 
-## <a id='initialize'></a> Initializing the Plug-in
+## <a id='initialize'></a> Initializing the plug-in
 
 To initialize a plug-in:
 
@@ -37,7 +33,7 @@ To initialize a plug-in:
     The `plugin.Start(...)` function requires a new reference to the `struct` that implements the defined interface.
 
 
-## <a id='invoke'></a> Invoking cf CLI Commands
+## <a id='invoke'></a> Invoking cf CLI commands
 
 To invoke cf CLI commands,
 
@@ -54,7 +50,7 @@ The output is returned as a slice of strings. The error occurs if the call to th
 For more information, see [Plugin API](https://github.com/cloudfoundry/cli/blob/master/plugin/plugin_examples/DOC.md) in the Cloud Foundry CLI repository on GitHub.
 
 
-## <a id='install-plugin'></a> Installing a Plug-in
+## <a id='install-plugin'></a> Installing a plug-in
 
 To install a plug-in:
 

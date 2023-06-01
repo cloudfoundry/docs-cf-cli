@@ -1,16 +1,12 @@
 ---
-title: Using a cf CLI Plug-in
+title: Using a cf CLI plug-in
 owner: CLI
 ---
 
-This topic describes using Cloud Foundry Command Line Interface (cf CLI) plug-ins.
 
+The Cloud Foundry CLI (cf CLI) includes plug-in capability. The plug-in allows you to add custom commands to the cf CLI.
 
-## <a id='overview'></a> Overview
-
-The cf CLI includes plug-in capabilitylity. The plug-in allows you to add custom commands to the cf CLI.
-
-You can install and use the plug-in that Cloud Foundry developers and thirdparty developers create. For a current list of community-supported plug-ins, see the [Cloud Foundry Community CLI Plug-in page](https://plugins.cloudfoundry.org). For information about submitting your own plugin, see the [Cloud Foundry CLI Plugin Repository (CLIPR)](https://github.com/cloudfoundry-incubator/cli-plugin-repo) repository on GitHub.
+You can install and use the plug-in that Cloud Foundry developers and third-party developers create. For a current list of community-supported plug-ins, see the [Cloud Foundry Community CLI Plug-in page](https://plugins.cloudfoundry.org). For information about submitting your own plug-in, see the [Cloud Foundry CLI Plugin Repository (CLIPR)](https://github.com/cloudfoundry-incubator/cli-plugin-repo) repository on GitHub.
 
 <p class='note warning'><strong>Caution:</strong> Plug-in's are not vetted, including for security or function. Use plug-ins at your own risk.</p>
 
@@ -19,16 +15,16 @@ The cf CLI identifies a plug-in by binary filename, its developer defined plug-i
 <p class="note"><strong>Note:</strong> The cf CLI uses case sensitive commands, but plug in management commands accept plug-in and repository names irrespective of their casing.</p>
 
 
-## <a id="plugin-directory"></a> Changing the Plug-in Directory
+## <a id="plugin-directory"></a> Changing the plug-in directory
 
 By default, the cf CLI stores plug-ins on your workstation in `$CF_HOME/.cf/plugins`, which defaults to `$HOME/.cf/plugins`.
 
 To change the root directory of this path from `$CF_HOME`, you must set the `CF_PLUGIN_HOME` environment variable.
 
-The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plug ins in that location. For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plugins in `/my-folder/.cf/plugins`.
+The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plug ins in that location. For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plug-ins in `/my-folder/.cf/plugins`.
 
 
-## <a id="plugin-install"></a> Installing a Plug-in
+## <a id="plugin-install"></a> Installing a plug-in
 
 To install a plug-in:
 
@@ -41,12 +37,12 @@ To install a plug-in:
     cf install-plugin BINARY-FILENAME
     ```
     Where `BINARY-FILENAME` is the path to and name of your binary file.
-    <p class="note"><strong>Note:</strong> You cannot install a plugin that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.</p>
+    <p class="note"><strong>Note:</strong> You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.</p>
     <p class="note"><strong>Note:</strong> The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.</p>
 
 For more information, see [install-plugin](http://cli.cloudfoundry.org/en-US/cf/install-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
-## <a id="plugin-run-cmd"></a> Managing Plugins and Running Plug-in Commands
+## <a id="plugin-run-cmd"></a> Managing plug-ins and running plug-in commands
 
 Use the contents of the `cf help` **CLI plug-in management** and **Commands offered by installed plug-ins** sections to manage plug-ins and run plug-in commands.
 
@@ -66,7 +62,7 @@ To manage plug-ins and run plug-in commands:
     Where `PLUGIN-COMMAND` is the plug-in command you ran.
 
 
-## <a id="plugins-outdated"></a> Checking for Plug-in Updates
+## <a id="plugins-outdated"></a> Checking for plug-in updates
 
 To check all registered plug-in repositories for newer versions of currently installed plug-ins:
 
@@ -88,7 +84,7 @@ To check all registered plug-in repositories for newer versions of currently ins
 For more information about the `cf plugins` command, see [cf plugins](http://cli.cloudfoundry.org/en-US/cf/plugins.html) in the _Cloud Foundry CLI Reference Guide_.
 
 
-## <a id="plugin-uninstall"></a> Uninstalling a Plug-in
+## <a id="plugin-uninstall"></a> Uninstalling a plug-in
 
 To uninstall a plug-in:
 
@@ -103,12 +99,12 @@ To uninstall a plug-in:
     ```
     cf uninstall-plugin PLUGIN-NAME
     ```
-    Where `PLUGIN-NAME` is the name of the plugin you want to uninstall.
-    <p class='note'><strong>Note:</strong> You must use the name of the plugin to uninstall it, not the binary filename.</p>
+    Where `PLUGIN-NAME` is the name of the plug-in you want to uninstall.
+    <p class='note'><strong>Note:</strong> You must use the name of the plug-in to uninstall it, not the binary filename.</p>
 
 For more information, see [uninstall-plugin](http://cli.cloudfoundry.org/en-US/cf/uninstall-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
-## <a id="adding-plugin-repo"></a> Adding  a Plug-in Repository
+## <a id="adding-plugin-repo"></a> Adding a plug-in repository
 
 To add a plug-in repository:
 
@@ -122,7 +118,7 @@ To add a plug-in repository:
 For more information, see [add-plugin-repo](http://cli.cloudfoundry.org/en-US/cf/add-plugin-repo.html) in the _Cloud Foundry CLI Reference Guide_.
 
 
-## <a id="listing-plugin-repo"></a> Viewing  available Plug-in Repositories
+## <a id="listing-plugin-repo"></a> Viewing available plug-in repositories
 
 To view your available plug-in repositories:
 
@@ -135,7 +131,7 @@ To view your available plug-in repositories:
 For more information, see [list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) in the _Cloud Foundry CLI Reference Guide_.
 
 
-## <a id="listing-plugin-repo"></a> Listing all Plug-ins by Repository
+## <a id="listing-plugin-repo"></a> Listing all plug-ins by repository
 
 To show all plug-ins from all available repositories:
 
@@ -152,11 +148,11 @@ For more information, see [repo-plugins](http://cli.cloudfoundry.org/en-US/cf/re
 
 The cf CLI provides the following error messages to help you troubleshoot installation and usage issues. Third party plug-ins provide their own error messages.
 
-### <a id='permission-denied'></a> Permission Denied
+### <a id='permission-denied'></a> Permission denied
 
 If you receive a `permission denied` error message, you lack required permissions to the plug-in. You must have `read` and `execute` permissions to the plug-in binary file.
 
-### <a id='plugin-command-collision'></a> Plug-in Command Collision
+### <a id='plugin-command-collision'></a> Plug-in command collision
 
 Plug-in names and commands must be unique. The CLI displays an error message if you attempt to install a plug-in with a non unique name or command.
 

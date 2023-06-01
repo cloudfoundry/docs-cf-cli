@@ -3,12 +3,7 @@ title: Upgrading to cf CLI v8
 owner: CLI
 ---
 
-This topic describes the major changes between Cloud Foundry Command Line Interface (cf CLI) v7 and cf CLI v8.
-
-
-## <a id="overview"></a> Overview
-
-You can use cf CLI v8 is to interact with Cloud Foundry API (CAPI) V3.
+You can use Cloud Foundry Command Line Interface (cf CLI) v8 to interact with Cloud Foundry API (CAPI) V3. This article describes the major changes between cf CLI v7 and cf CLI v8.
 
 The cf CLI development team aims to provide:
 
@@ -16,13 +11,13 @@ The cf CLI development team aims to provide:
 
 * Details about breaking potential breaking changes and alternative workflows for scripting environments.
 
-To understand the differences between specific commands, see [Command Differences](#differences) below.
+To understand the differences between specific commands, see [Command differences](#differences) below.
 
 For more information about CAPI V3, see the [CAPI V3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction).
 
 For more information about cf CLI v8, see [v8.0.0](https://github.com/cloudfoundry/cli/releases/tag/v8.0.0) in GitHub.
 
-## <a id="new-workflows"></a> New Workflows Supported by cf CLI v8
+## <a id="new-workflows"></a> New workflows supported by cf CLI v8
 
 Some key new features available through the cf CLI v8 are:
 
@@ -46,21 +41,21 @@ This version of cf-deployment contains CAPI release v1.109.0, which provides the
 
 For more information, see the cf CLI [Versioning and Support Policy](https://github.com/cloudfoundry/cli/wiki/Versioning-and-Support-Policy) on GitHub.
 
-## <a id="differences"></a> Command Differences
+## <a id="differences"></a> Command differences
 
 These sections describe changes in commands from cf CLI v7 to cf CLI v8. They also provide important information for those who use the cf CLI in scripts.
 
-For information about possible breaking changes, see the [Table of Differences](#table) below. This table includes removed flag options, updated output, and removed or changed argument requirements.
+For information about possible breaking changes, see the [Table of differences](#table) below. This table includes removed flag options, updated output, and removed or changed argument requirements.
 
 
-### <a id="manifests"></a> Manifest Differences
+### <a id="manifests"></a> Manifest differences
 
 When you apply a manifest by running `cf push`, cf CLI v8 does not provide a manifest diff through the V3 manifest diff endpoint.
 This new endpoint supports version 1 manifests only.
 For more information, see [Create a manifest diff for a space (experimental)](https://v3-apidocs.cloudfoundry.org/version/3.102.0/index.html#create-a-manifest-diff-for-a-space-experimental) in the CAPI documentation.
 
 
-### <a id="scripting"></a> About Scripting
+### <a id="scripting"></a> About scripting
 
 If you have scripts that rely on the cf CLI, this section describes possible changes in cf CLI v8 that might affect scripts.
 
@@ -71,7 +66,7 @@ Some of these changes are:
 * JSON response changes such as additional elements or nesting.
 
 
-### <a id="table"></a> Table of Differences
+### <a id="table"></a> Table of differences
 
 The table below summarizes how commands differ between cf CLI v7 and cf CLI v8.
 
