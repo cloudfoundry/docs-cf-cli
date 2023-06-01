@@ -3,12 +3,8 @@ title: Upgrading to cf CLI v7
 owner: VAT
 ---
 
-This topic describes the major changes between Cloud Foundry Command Line Interface (cf CLI) v6 and cf CLI v7.
 
-
-## <a id="overview"></a> Overview
-
-The main goal of cf CLI v7 and CAPI V3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows) below. These workflows were previously limited by CAPI V2.
+The main goal of Cloud Foundry CLI (cf CLI) v7 and CAPI V3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows) below. These workflows were previously limited by CAPI V2.
 
 The cf CLI development team aims to provide:
 
@@ -20,7 +16,7 @@ To understand the differences between specific commands, see [Command Difference
 
 For more information about CAPI V3, see the [CAPI V3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction). For more information about CAPI V2, see the [CAPI V2 documentation](http://apidocs.cloudfoundry.org/).
 
-## <a id="new-workflows"></a> New Workflows Supported by cf CLI v7
+## <a id="new-workflows"></a> New workflows supported by cf CLI v7
 
 cf CLI v7 uses CAPI V3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CAPI V3 also includes new resources such as sidecars, manifests, deployments.
 
@@ -54,13 +50,13 @@ Not all commands run correctly.
 For example, `cf apps` does not work.
 
 
-## <a id="differences"></a> Command Differences
+## <a id="differences"></a> Command differences
 
 These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts.
 
 For information about possible breaking changes, see the [Table of Differences](#table) below. This table includes removed flag options, removed commands, and removed or changed argument requirements.
 
-### <a id="scripting"></a> About Scripting
+### <a id="scripting"></a> About scripting
 
 If you have scripts that rely on the cf CLI, this section describes possible changes in cf CLI v7 which might affect scripts.
 
@@ -76,7 +72,7 @@ Some of these changes are:
 
 * Single-quote resource names appear in error cases.
 
-### <a id="table"></a> Exit Codes
+### <a id="table"></a> Exit codes
 
 cf CLI v7 attempts to consistently apply the principles of idempotency across all commands which require it. For more information, see [General Principles](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) in _CF CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
 
@@ -84,7 +80,7 @@ cf CLI v7 attempts to consistently apply the principles of idempotency across al
 
 * If the `create-buildpack` command fails to create a buildpack, the command exits with `1` instead of `0`, which is the current cf CLI v6 behavior.
 
-### <a id="table"></a> Table of Differences
+### <a id="table"></a> Table of differences
 
 The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 
