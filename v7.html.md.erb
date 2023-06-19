@@ -6,8 +6,6 @@ owner: VAT
 
 The main goal of Cloud Foundry CLI (cf CLI) v7 and CAPI V3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows) below. These workflows were previously limited by CAPI V2.
 
-<p class='note warning'><strong>Caution:</strong> Important change: If the services attribute is declared at the top-level of the manifest.yml file, cf CLI v6 generates a warning, but in cf CLI v7, there is no warning and the app is still pushed.</p>
-
 The cf CLI development team aims to provide:
 
 * A seamless upgrade experience from cf CLI v6. Changes have been kept to a minimum. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience.
@@ -73,6 +71,8 @@ Some of these changes are:
 * Key-value and table column headers are displayed in lowercase.
 
 * Single-quote resource names appear in error cases.
+
+<p class='note warning'><strong>Caution:</strong> If the services attribute is declared at the top-level of the manifest.yml file, cf CLI v6 generates a warning, but in cf CLI v7, there is no warning and the app is still pushed.</p>
 
 ### <a id="table"></a> Exit codes
 
