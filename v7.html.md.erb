@@ -72,6 +72,8 @@ Some of these changes are:
 
 * Single-quote resource names appear in error cases.
 
+<p class='note warning'><strong>Caution:</strong> If the services attribute is declared at the top-level of the manifest.yml file, cf CLI v6 generates a warning, but in cf CLI v7, there is no warning and the app is still pushed.</p>
+
 ### <a id="table"></a> Exit codes
 
 cf CLI v7 attempts to consistently apply the principles of idempotency across all commands which require it. For more information, see [General Principles](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) in _CF CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
