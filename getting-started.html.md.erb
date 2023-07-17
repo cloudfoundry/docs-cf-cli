@@ -31,7 +31,7 @@ To log in to the cf CLI:
     <ul>
     <li><code>API-URL</code> is your API endpoint, <%= vars.api_endpoint %>.</li>
     <li><code>USERNAME</code> is your username.</li>
-    <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it may record your password in your shell history.</li>
+    <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it records your password in your shell history.</li>
     <li><code>ORG</code> is the org where you want to deploy your apps.</li>
     <li><code>SPACE</code> is the space in the org where you want to deploy your apps.</li>
     </ul>
@@ -82,7 +82,7 @@ To write a script to log in:
     Where:
     <ul>
       <li><code>USERNAME</code> is your username.</li>
-      <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it may record your password in your shell history.</li>
+      <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it records your password in your shell history.</li>
     </ul>
 
     For more information about the `cf auth` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/auth.html).
@@ -125,7 +125,7 @@ The cf CLI supports these languages:
 
 For more information about the `cf config --locale` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/config.html).
 
-<p class='note'><strong>Note:</strong> Localizing the cf CLI affects only messages that the cf CLI generates.</p>
+<p> Localizing the cf CLI affects only messages that the cf CLI generates.</p>
 
 To set the language of the cf CLI:
 
@@ -260,8 +260,9 @@ Assigning role OrgManager to user huey<span>@</span>example.com in org example-o
 OK
 </pre>
 
-<p class='note'><strong>Note:</strong> If you are not an admin, you see this message when you try to run these commands: <code>error code: 10003, message: You
-  are not authorized to perform the requested action</code></p>
+<p class="note important">
+<span class="note__title">Important</span>  If you are not an admin, you see this message when you try to run these commands: <code>error code: 10003, message: You
+are not authorized to perform the requested action</code></p>
 
 ### <a id='multi-origin'></a> Manage roles for users with identical usernames in multiple origins
 
@@ -301,7 +302,7 @@ To push an app:
 
 ### <a id='push-path'></a> Push an app using a manifest
 
-You can provide a path to a manifest file when you push an app. The manifest file may include information such as the name of the app, disk limit, and number
+You can provide a path to a manifest file when you push an app. The manifest file includes information such as the name of the app, disk limit, and number
 of instances. You can use a manifest file rather than adding flags to the `cf push` command.
 
 `cf push` locates the `manifest.yml` file in the current working directory by default. Alternatively, you can provide a path to the manifest with the `-f`
@@ -309,9 +310,10 @@ flag.
 
 For more information about the `-f` flag, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
 
-<p class='note'><strong>Note:</strong> When you provide an app name at the command line, <code>cf push</code> uses that app name regardless of whether there
-  is a different app name in the manifest. If the manifest configures multiple apps, you can push a single app by providing its name at the command line; the
-  cf CLI does not push the others. Use these behaviors for testing.</p>
+<p class="note">
+<span class="note__title">Note</span>  When you provide an app name at the command line, theb <code>cf push</code> command uses that app
+name regardless of whether there is a different app name in the manifest. If the manifest configures multiple apps, you can push a
+single app by providing thenname at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
 
 ### <a id='push-buildpack'></a> Push an app with a buildpack
 
@@ -349,7 +351,10 @@ start command:   bundle exec rackup config.ru -p $PORT -o 0.0.0.0
 #0   running   2022-09-16T01:54:29Z   0.0%   0 of 0   0 of 0   0/s of 0/s
 </pre>
 
-<p class="note important"><strong>Important</strong>: To avoid security exposure, verify that you migrate your apps and custom buildpacks to use the <code>cflinuxfs4</code> stack based on Ubuntu 22.04 LTS (Jammy Jellyfish). The <code>cflinuxfs3</code> stack is based on Ubuntu 18.04 (Bionic Beaver), which reaches end of standard support in April 2023. </p>
+<p class="note important">
+<span class="note__title"> Important</span> To avoid security exposure, verify that you migrate your apps and custom
+buildpacks to use the <code>cflinuxfs4</code> stack based on Ubuntu 22.04 LTS (Jammy Jellyfish). The <code>cflinuxfs3</code> stack is
+based on Ubuntu 18.04 (Bionic Beaver), which reaches end of standard support in April 2023.</p>
 
 ### <a id='new-route'></a> Map a route to an app
 
@@ -399,7 +404,8 @@ You can provide these parameters in the following ways:
 
 * With third-party log management software as described in RFC 6587. For more information, see [Supply Parameters Through a Third Party](#third-party) below
 and [RFC 6587](http://tools.ietf.org/html/rfc6587).
-    <p class='note'><strong>Note:</strong> When used with third-party logging, data is sent formatted according to RFC 5424. For more information, see
+
+<p> When used with third-party logging, data is sent formatted according to RFC 5424. For more information, see
       <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a>.</p>
 
 #### <a id='interactive'></a> Supply parameters interactively
@@ -493,7 +499,7 @@ To update one or more of the parameters for an existing user-provided service in
 For more information about the `cf update-user-provided-service` and `cf uups` commands, see the [Cloud Foundry CLI Reference
 Guide](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html).
 
-<p class="note"><strong>Note:</strong> The <code>cf uups</code> command does not update any parameter values that you do not supply.</p>
+<p> The <code>cf uups</code> command does not update any parameter values that you do not supply.</p>
 
 
 ## <a id='return-codes'></a> Retrieve cf CLI return codes
