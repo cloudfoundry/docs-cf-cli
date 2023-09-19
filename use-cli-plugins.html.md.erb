@@ -12,7 +12,9 @@ You can install and use the plug-in that Cloud Foundry developers and third-part
 
 The cf CLI identifies a plugin by its binary filename, its developer-defined plugin name, and the commands that the plugin provides. You use the binary filename only to install a plugin. You use the plugin name or a command for any other action.
 
-<p class="note"><strong>Note:</strong> The cf CLI uses case-sensitive commands, but plugin management commands accept plugin and repository names irrespective of their casing.</p>
+<p class="note important">
+<span class="note__title">Important</span>
+The cf CLI uses case-sensitive commands, but plug-in management commands accept plug-in and repository names irrespective of their casing.</p>
 
 
 ## <a id="plugin-directory"></a> Changing the plug-in directory
@@ -28,8 +30,7 @@ The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify a
 
 To install a plugin:
 
-1. Download a binary or the source code for a plugin from a trusted provider.
-    <p class="note"><strong>Note:</strong> The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.</p>
+1. Download a binary or the source code for a plugin from a trusted provider. The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.
 
 1. Run:
 
@@ -37,8 +38,12 @@ To install a plugin:
     cf install-plugin BINARY-FILENAME
     ```
     Where `BINARY-FILENAME` is the path to and name of your binary file.
-    <p class="note"><strong>Note:</strong> You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.</p>
-    <p class="note"><strong>Note:</strong> The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.</p>
+
+Additional notes:
+
+* You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you try this, you are prompted to uninstall the existing plugin.
+
+* The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the `cf push` command, the cf CLI halts the installation.
 
 For more information, see [install-plugin](http://cli.cloudfoundry.org/en-US/cf/install-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
