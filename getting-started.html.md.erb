@@ -254,7 +254,7 @@ Assigning role OrgManager to user huey<span>@</span>example.com in org example-o
 OK
 </pre>
 
-<p class="note"><strong>Note:</strong> If you are not an admin, you see this message when you try to run these commands: <code>error code: 10003, message: You are not authorized to perform the requested action</code></p>
+If you are not an admin, you see this message when you try to run these commands: `error code: 10003, message: You are not authorized to perform the requested action`
 
 ### <a id='multi-origin'></a> Manage roles for users with identical usernames in multiple origins
 
@@ -298,7 +298,9 @@ You can provide a path to a manifest file when you push an app. The manifest fil
 
 For more information about the `-f` flag, see [push](http://cli.cloudfoundry.org/en-US/cf/push.html) in the _Cloud Foundry CLI Reference Guide_.
 
-<p class="note"><strong>Note:</strong> When you provide an app name at the command line, <code>cf push</code> uses that app name whether or not there is a different app name in the manifest. If the manifest describes multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
+<p class="note important">
+<span class="note__title">Important</span>
+When you provide an app name at the command line, <code>cf push</code> uses that app name whether or not there is a different app name in the manifest. If the manifest describes multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
 
 ### <a id='push-buildpack'></a> Push an app with a buildpack
 
@@ -336,7 +338,7 @@ buildpack: ruby_buildpack
 
 <p class="note important">
 <span class="note__title">Important</span>
-To avoid security exposure, verify that you migrate your apps and custom buildpacks to use the <code>cflinuxfs4</code> stack based on Ubuntu 22.04 LTS (Jammy Jellyfish). The <code>cflinuxfs3</code> stack is based on Ubuntu 18.04 (Bionic Beaver), which reaches end of standard support in April 2023. </p>
+To avoid security exposure, verify that you migrate your apps and custom buildpacks to use the <code>cflinuxfs4</code> stack based on Ubuntu 22.04 LTS (Jammy Jellyfish). The <code>cflinuxfs3</code> stack is based on Ubuntu 18.04 (Bionic Beaver), which reaches end of standard support in April 2023.</p>
 
 ### <a id='new-route'></a> Map a route to an app
 
@@ -381,7 +383,10 @@ You can provide these parameters in these ways:
 * Non-interactively. For more information, see [Supply Parameters Non-Interactively](#non-interactive).
 
 * With third-party log management software as described in RFC 6587. For more information, see [Supply Parameters Through a Third Party](#third-party) and [RFC 6587](http://tools.ietf.org/html/rfc6587).
-    <p class="note"><strong>Note:</strong> When used with third-party logging, the cf CLI sends data formatted according to RFC 5424. For more information, see [RFC 5424](http://tools.ietf.org/html/rfc5424).</p>
+    
+class="note">
+<span class="note__title">Note</span>
+When used with third-party logging, the cf CLI sends data formatted according to RFC 5424. For more information, see [RFC 5424](http://tools.ietf.org/html/rfc5424).</p>
 
 #### <a id='interactive'></a> Supply parameters interactively
 
