@@ -124,7 +124,9 @@ The cf CLI supports these languages:
 
 For more information about the `cf config --locale` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/config.html).
 
-<p class='note'><strong>Note:</strong> Localizing the cf CLI affects only messages that the cf CLI generates.</p>
+<p class="note">
+<span class="note__title">Note</span>
+Localizing the cf CLI affects only messages that the cf CLI generates.</p>
 
 To set the language of the cf CLI:
 
@@ -259,8 +261,8 @@ Assigning role OrgManager to user huey<span>@</span>example.com in org example-o
 OK
 </pre>
 
-<p class='note'><strong>Note:</strong> If you are not an admin, you see this message when you try to run these commands: <code>error code: 10003, message: You
-  are not authorized to perform the requested action</code></p>
+If you are not an admin, you see this message when you try to run these commands: `error code: 10003, message: You
+are not authorized to perform the requested action`
 
 ### <a id='multi-origin'></a> Manage roles for users with identical usernames in multiple origins
 
@@ -308,9 +310,10 @@ flag.
 
 For more information about the `-f` flag, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
 
-<p class='note'><strong>Note:</strong> When you provide an app name at the command line, <code>cf push</code> uses that app name regardless of whether there
-  is a different app name in the manifest. If the manifest configures multiple apps, you can push a single app by providing its name at the command line; the
-  cf CLI does not push the others. Use these behaviors for testing.</p>
+<p class="note important">
+<span class="note__title">Important</span>
+When you provide an app name at the command line, <code>cf push</code> uses that app name regardless of whether there
+is a different app name in the manifest. If the manifest configures multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
 
 ### <a id='push-buildpack'></a> Push an app with a buildpack
 
@@ -402,8 +405,11 @@ You can provide these parameters in the following ways:
 
 * With third-party log management software as described in RFC 6587. For more information, see [Supply Parameters Through a Third Party](#third-party) below
 and [RFC 6587](http://tools.ietf.org/html/rfc6587).
-    <p class='note'><strong>Note:</strong> When used with third-party logging, data is sent formatted according to RFC 5424. For more information, see
-      <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a>.</p>
+
+    <p class="note">
+    <span class="note__title">Note</span>
+    When used with third-party logging, data is sent formatted according to RFC 5424. For more information, see
+    <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a>.</p>
 
 #### <a id='interactive'></a> Supply parameters interactively
 
