@@ -1,13 +1,10 @@
 ---
-title: Using the cf CLI with a Self-Signed Certificate
+title: Using the cf CLI with a self-signed certificate
 owner: CLI
 ---
 
 This topic describes how developers can use the Cloud Foundry Command Line Interface (cf CLI)
 to communicate securely with a Cloud Foundry deployment with a self-signed certificate.
-
-
-## <a id='overview'></a> Overview
 
 You can use the cf CLI to communicate securely with a Cloud Foundry deployment without
 specifying `--skip-ssl-validation` under these circumstances:
@@ -19,15 +16,15 @@ specifying `--skip-ssl-validation` under these circumstances:
 <%= vars.self_signed %>
 
 
-## <a id="install-local"></a> Install the Certificate on Local Machines
+## <a id="install-local"></a> Installing the certificate on physical machines
 
 The certificates you must insert into your local truststore vary depending on the configuration of your deployment.
 
-* If the deployment uses a self-signed certificate, the you must insert the self-signed certificate into your local truststore.
+* If the deployment uses a self-signed certificate, you must insert the self-signed certificate into your local trust store.
 
-* If the deployment uses a certificate that is signed by a self-signed CA, or a certificate signed by a certificate that is signed by a self-signed CA, you must insert the self-signed certificate and any intermediate certificates into your local truststore.
+* If the deployment uses a certificate that is signed by a self-signed CA, or a certificate signed by a certificate that is signed by a self-signed CA, you must insert the self-signed certificate and any intermediate certificates into your local trust store.
 
-### <a id="macosx"></a> Install the Certificate on Mac OS X
+### <a id="macosx"></a> Installing  the certificate on Mac OS X
 
 To place the certificate file `server.crt` into your local truststore for Mac OS X:
 
@@ -37,11 +34,11 @@ To place the certificate file `server.crt` into your local truststore for Mac OS
     sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain server.crt
     ```
 
-### <a id="linux"></a> Install the Certificate on Linux
+### <a id="linux"></a> Installing the certificate on Linux
 
 To place the certificate file `server.crt` into your truststore for Linux:
 
-1. Run one of these commands, depending on your Linux distrubution:
+1. Run one of the following commands, depending on your Linux distribution:
     * For Debian, Ubuntu, or Gentoo, run:
 
         ```
@@ -69,7 +66,7 @@ The examples above set the certificate permanently on your machine across all us
     ```
     Where `PATH-TO-SERVER-DIRECTORY` is the directory of the `server.crt` certificate file.
 
-### <a id="windows"></a> Install the Certificate on Windows
+### <a id="windows"></a> Installing the certificate on Windows
 
 To place the certificate file `server.crt` into your local truststore for Windows:
 
