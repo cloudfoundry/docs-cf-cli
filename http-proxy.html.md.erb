@@ -35,21 +35,21 @@ If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in t
 https_proxy=socks5://socks_proxy.example.com
 ```
 
-<p> The <code>cf ssh</code> command for cf CLI v7 does not work through a SOCKS5 proxy.</p>
+The <code>cf ssh</code> command for cf CLI v7 does not work through a SOCKS5 proxy.
 
 
 ## <a id="mac-linux"></a> Set https_proxy in Mac OS or Linux
 
 To set the `https_proxy` environment variable in Mac OS or Linux:
 
-1. Use the command specific to your shell. For example, in bash, use the `export` command, as in the followingn example:
+1. Use the command specific to your shell. For example, in bash, use the `export` command, as in the following example:
 
     ```
     export https_proxy=http://my.proxyserver.com:8080
     ```
 
 1. To make this change persistent, add the command to the appropriate profile file for the shell. For example, in bash, add a
-line like the followingn example to your `.bash_profile` or `.bashrc` file:
+line like the following example to your `.bash_profile` or `.bashrc` file:
 
     ```
     https_proxy=http://username:password@hostname:port

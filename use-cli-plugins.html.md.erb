@@ -33,18 +33,18 @@ To install a plug-in:
 
 1. Download a binary or the source code for a plug-in from a trusted provider.
 
-<p> The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.</p>
+   The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.
 
-1. Run:
+2. Run:
 
     ```
     cf install-plugin BINARY-FILENAME
     ```
     Where `BINARY-FILENAME` is the path to and name of your binary file.
 
-    <p> You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.</p>
+    You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.
 
-    <p> The cf CLI prohibits you from implementing any plug-in that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.</p>
+    The cf CLI prohibits you from implementing any plug-in that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.
 
 For more information, see [install-plugin](http://cli.cloudfoundry.org/en-US/cf/install-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
@@ -107,7 +107,7 @@ To uninstall a plug-in:
     ```
     Where `PLUGIN-NAME` is the name of the plug-in you want to uninstall.
 
-    <p> You must use the name of the plug-in to uninstall it, not the binary filename.</p>
+    You must use the name of the plug-in to uninstall it, not the binary filename.
 
 For more information, see [uninstall-plugin](http://cli.cloudfoundry.org/en-US/cf/uninstall-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
 
