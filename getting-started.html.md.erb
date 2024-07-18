@@ -326,16 +326,22 @@ OK
 App started
 ...
 
-requested state: started
-instances: 1/1
-usage: 1G x 1 instances
-urls: awesome-app.example.com
-last uploaded: Wed Jun 8 23:43:15 UTC 2016
-stack: cflinuxfs3
-buildpack: ruby_buildpack
+name:              awesome-app
+requested state:   started
+routes:            awesome-app.example.com
+last uploaded:     Wed 17 Jul 22:57:04 UTC 2024
+stack:             cflinuxfs3
+buildpacks:
+	name             version   detect output   buildpack name
+	ruby_buildpack   1.8.58    ruby            ruby
 
-     state     since                    cpu    memory    disk      details
-#0   running   2016-06-08 04:44:07 PM   0.0%   0 of 1G   0 of 1G
+type:            web
+sidecars:
+instances:       1/1
+memory usage:    1024M
+start command:   bundle exec rackup config.ru -p $PORT -o 0.0.0.0
+     state     since                  cpu    memory        disk           logging         cpu entitlement   details
+#0   running   2024-07-17T22:57:22Z   0.3%   49.5M of 1G   130.2M of 1G   0B/s of 16K/s   2.4%
 </pre>
 
 <p class="note important">
