@@ -56,7 +56,7 @@ Org:            example-org
 Space:          development
 </pre>
 
-Alternatively, you can write a script to log in and set your target using the non-interactive [cf api](http://cli.cloudfoundry.org/en-US/cf/api.html), [cf auth](http://cli.cloudfoundry.org/en-US/cf/auth.html), and [cf target](http://cli.cloudfoundry.org/en-US/cf/target.html) commands. See [UAAC](https://github.com/cloudfoundry/cf-uaac/blob/master/README.md) for setting up `client_id` and `client_secret`.
+Alternatively, you can write a script to log in and set your target using the non-interactive `cf api`, `cf auth`, and `cf target` commands. See [UAAC](https://github.com/cloudfoundry/cf-uaac/blob/master/README.md) for setting up `client_id` and `client_secret`.
 
 ## <a id='login'></a> Log in with the API
 
@@ -72,7 +72,7 @@ To write a script to log in:
     Where `API-URL` is your API endpoint, <%= vars.api_endpoint %>.
     <br>
     <br>
-    For more information about the `cf api` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/api.html).
+    For more information about the `cf api` command, use `cf api --help`.
 
 1. Authenticate by running:
 
@@ -85,7 +85,7 @@ To write a script to log in:
       <li><code>PASSWORD</code> is your password. <%= vars.company_name %> discourages using the <code>-p</code> option, because it records your password in your shell history.</li>
     </ul>
 
-    For more information about the `cf auth` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/auth.html).
+    For more information about the `cf auth` command, use `cf auth --help`.
 
 1. Target your org or space by running:
 
@@ -98,7 +98,7 @@ To write a script to log in:
       <li><code>SPACE</code> is the space you want to target.</li>
     </ul>
 
-    For more information about the `cf target` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/target.html).
+    For more information about the `cf target` command, use `cf target --help`.
 
 After you log in, the cf CLI saves a `config.json` file that contains your API endpoint, org, space values, and access token. If you change these settings,
 the `config.json` file is updated accordingly.
@@ -123,7 +123,7 @@ The cf CLI supports these languages:
 *  Portuguese (Brazil): `pt-BR`
 *  Spanish: `es-ES`
 
-For more information about the `cf config --locale` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/config.html).
+For more information about the `cf config --locale` command, use `cf config --help`.
 
 Localizing the cf CLI affects only messages that the cf CLI generates.
 
@@ -225,21 +225,21 @@ To list all users in an org or a space:
           louie<span>@</span>example.com
         </pre>
 
-For more information about the `cf org-users` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/org-users.html). For
-more information about the `cf space-users` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/space-users.html).
+For more information about the `cf org-users` command, use `cf org-users --help`. For
+more information about the `cf space-users` command, use `cf space-users --help`.
 
 ### <a id='managing-roles'></a> Manage roles
 
 You use the commands listed below to manage roles in the cf CLI. These commands require admin permissions and take `username`, `org` or `space`, and `role` as
 arguments:
 
-* `cf set-org-role`<br>For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/set-org-role.html).
+* `cf set-org-role`<br>For more information, use `cf set-org-role --help`.
 
-* `cf unset-org-role`<br>For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/unset-org-role.html).
+* `cf unset-org-role`<br>For more information, use `cf unset-org-role --help`.
 
-* `cf set-space-role`<br>For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/set-space-role.html).
+* `cf set-space-role`<br>For more information, use `cf set-space-role --help`.
 
-* `cf unset-space-role`<br>For more information, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/unset-space-role.html).
+* `cf unset-space-role`<br>For more information, use `cf unset-space-role --help`.
 
 The available roles are:
 
@@ -280,7 +280,7 @@ To resolve this ambiguity, you can construct a `curl` command that uses the API 
 
 These sections describe how to use the `cf push` command to push a new app or sync changes to an existing app.
 
-For more information about the `cf push` command, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
+For more information about the `cf push` command, use `cf push --help`.
 
 ### <a id='push-procedure'></a> Push a new app or push changes to an app
 
@@ -309,7 +309,7 @@ of instances. You can use a manifest file rather than adding flags to the `cf pu
 `cf push` locates the `manifest.yml` file in the current working directory by default. Alternatively, you can provide a path to the manifest with the `-f`
 flag.
 
-For more information about the `-f` flag, see the [Cloud Foundry CLI Reference Guide](http://cli.cloudfoundry.org/en-US/cf/push.html).
+For more information about the `-f` flag, see the `cf push --help` output.
 
 <p class="note">
 <span class="note__title"><strong>Note</strong></span>
@@ -393,8 +393,7 @@ These sections describe how to create or update a service instance.
 ### <a id='user-cups'></a> Create a service instance
 
 To create a new service instance, use the `cf create-user-provided-service` or `cf cups` commands. For more information about the
-`cf create-user-provided-service` and `cf cups` commands, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/create-user-provided-service.html).
+`cf create-user-provided-service` and `cf cups` commands, use `cf create-user-provided-service --help`.
 
 To create or update a user-provided service instance, you must supply basic parameters. For example, a database service might require a username, password,
 host, port, and database name.
@@ -483,24 +482,19 @@ To create a service instance that sends data to a third party:
 
 After you create a user-provided service instance, you can:
 
-* Bind the service to an app with `cf bind-service`. For more information, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/bind-service.html).
+* Bind the service to an app with `cf bind-service`. For more information, use `cf bind-service --help`.
 
-* Unbind the service with `cf unbind-service`. For more information, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/unbind-service.html).
+* Unbind the service with `cf unbind-service`. For more information, use `cf unbind-service --help`.
 
-* Rename the service with `cf rename-service`. For more information, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/rename-service.html).
+* Rename the service with `cf rename-service`. For more information, use `cf rename-service --help`.
 
-* Delete the service with `cf delete-service`. For more information, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/delete-service.html).
+* Delete the service with `cf delete-service`. For more information, use `cf delete-service --help`.
 
 ### <a id='user-uups'></a> Update a service instance
 
 To update one or more of the parameters for an existing user-provided service instance, use `cf update-user-provided-service` or `cf uups`.
 
-For more information about the `cf update-user-provided-service` and `cf uups` commands, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html).
+For more information about the `cf update-user-provided-service` and `cf uups` commands, use `cf create-user-provided-service --help`.
 
 The <code>cf uups</code> command does not update any parameter values that you do not supply.
 
@@ -534,10 +528,9 @@ If the command succeeds, the exit code is `0`.
 
 ## <a id='help'></a> View CLI help output
 
-The `cf help` command lists the cf CLI commands and a brief description of each. For more information, see the [Cloud Foundry CLI Reference
-Guide](http://cli.cloudfoundry.org/en-US/cf/help.html).
+The `cf help` command lists the cf CLI commands and a brief description of each..
 
-To list detailed help for any cf CLI command, add the `-h` flag to the command.
+To list detailed help for any cf CLI command, add the `--help` or `-h` flag to the command.
 
 The example below shows detailed help output for the `cf delete` command:
 
