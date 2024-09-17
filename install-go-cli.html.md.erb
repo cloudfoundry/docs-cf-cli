@@ -39,8 +39,8 @@ To install the cf CLI on Debian and Ubuntu-based Linux distributions:
 
 1. Add the Cloud Foundry Foundation public key and package repository to your system by running:
 
-		wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-		echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+		sudo wget -q -O /usr/share/keyrings/cli.cloudfoundry.org.gpg https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key
+		echo "deb [signed-by=/usr/share/keyrings/cli.cloudfoundry.org.key] https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 
 1. Update your local package index by running:
 
