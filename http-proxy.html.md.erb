@@ -4,32 +4,35 @@ owner: CLI
 ---
 
 
-If you have an HTTP or SOCKS5 proxy server on your network between a host running the cf CLI and your API endpoint, you must set `https_proxy` with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of your proxy server.
+If you have an HTTP or SOCKS5 proxy server on your network between a host running the Cloud Foundry Command Line Interface (cf CLI) and your API endpoint, you must
+set the `https_proxy` variable with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of the
+proxy server.
 
-The `https_proxy` is a standard environment variable. As with any environment variable, the specific steps you use to set it depends on your operating system.
+The `https_proxy` variable is a standard environment variable. As with any environment variable, the specific steps used to set it depends on your operating
+system.
 
 
 ## <a id="format"></a> Format of https_proxy
 
-The `https_proxy` variable is set with hostname or IP address of the proxy server in URL format, as in the following example:
+The `https_proxy` variable is set with hostname or IP address of the proxy server in URL format, as shown in the following example:
 
 ```
 https_proxy=http://proxy.example.com
 ```
 
-If the proxy server requires a username and password, you must include the credentials, as in the following example:
+If the proxy server requires a username and password, you must include the credentials, as shown in the following example:
 
 ```
 https_proxy=http://username:password@proxy.example.com
 ```
 
-If the proxy server uses a port other than 80, you must include the port number, as in the following example:
+If the proxy server uses a port other than 80, you must include the port number, as shown in the following example:
 
 ```
 https_proxy=http://username:password@proxy.example.com:8080
 ```
 
-If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in the URL, as in the following example:
+If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in the URL, as shown in the following example:
 
 ```
 https_proxy=socks5://socks_proxy.example.com
@@ -38,18 +41,18 @@ https_proxy=socks5://socks_proxy.example.com
 The <code>cf ssh</code> command for cf CLI v7+ does not work through a SOCKS5 proxy.
 
 
-## <a id="mac-linux"></a> Set https_proxy in Mac OS or Linux
+## <a id="mac-linux"></a> Set https_proxy in macOS or Linux
 
-To set the `https_proxy` environment variable in Mac OS or Linux:
+To set the `https_proxy` environment variable in macOS or Linux:
 
-1. Use the command specific to your shell. For example, in bash, use the `export` command, as in the followingn example:
+1. Use the command specific to your shell. For example, in bash, use the `export` command, as shown in the following example:
 
     ```
     export https_proxy=http://my.proxyserver.com:8080
     ```
 
 1. To make this change persistent, add the command to the appropriate profile file for the shell. For example, in bash, add a
-line like the followingn example to your `.bash_profile` or `.bashrc` file:
+line similar to the following example to your `.bash_profile` or `.bashrc` file:
 
     ```
     https_proxy=http://username:password@hostname:port
