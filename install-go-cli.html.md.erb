@@ -3,7 +3,8 @@ title: Installing the cf CLI
 owner: CLI
 ---
 
-The cf CLI is the official command line client for Cloud Foundry.
+The Cloud Foundry Command Line Interface (cf CLI) is the official command line client for Cloud Foundry. Use the cf CLI to interact with Cloud Foundry applications
+and services.
 
 The following procedures describe how to install the cf CLI on your operating system. You can install the cf CLI with a package manager, an installer, or a compressed binary.
 
@@ -16,7 +17,7 @@ There are currently two major versions of the cf CLI: v7 and v8. See [the README
 
 ## <a id="prerequisites"></a> Prerequisites
 
-If you previously used the cf CLI Ruby gem, you must uninstall the gem before installing the cf CLI.
+If you have previously used the cf CLI Ruby gem, you must uninstall it before installing the cf CLI.
 
 To uninstall the gem:
 
@@ -29,7 +30,7 @@ To uninstall the gem:
 
 ## <a id="pkg"></a> Install the cf CLI using a package manager
 
-These sections describe how to install the cf CLI using a package manager. You can install the cf CLI using a package manager on Mac OS X and Linux operating systems.
+These sections describe how to install the cf CLI using a package manager. You can install the cf CLI using a package manager on macOS X and Linux operating systems.
 
 ### <a id='pkg-linux'></a> Linux installation
 
@@ -71,11 +72,11 @@ To install the cf CLI on Enterprise Linux and Fedora RHEL6/CentOS6 and later dis
 
     This also downloads and adds the public key to your system.
 
-### <a id='pkg-mac'></a> Mac OS X installation
+### <a id='pkg-mac'></a> macOS X installation
 
-You can install the cf CLI on Mac OS X operating systems using the Homebrew package manager.
+You can install the cf CLI on macOS X operating systems using the Homebrew package manager.
 
-To install the cf CLI for Mac OS X using Homebrew:
+To install the cf CLI for macOS X using Homebrew:
 
 1. Install Homebrew. For instructions, see [Install Homebrew](http://brew.sh/) on the Homebrew website.
 
@@ -95,12 +96,12 @@ To install the cf CLI for Mac OS X using Homebrew:
 
 ## <a id="bin"></a> Install the cf CLI using a compressed binary
 
-You can install the cf CLI using a compressed binary on Windows, Mac OS X, and Linux operating systems.
-In cases where security concerns are paramount, using this method can be a better option than installing from a repository.
+You can install the cf CLI using a compressed binary on Windows, macOS X, and Linux operating systems.
+This method can be a more secure option compared to installing from a repository, especially in environments where security is a primary concern.
 
 <p class="note">
 <span class="note__title"><b>Note </b></span>
-As of CF CLI 8.4.0 and CF CLI 7.5.0, the Apple ARM architecture is now supported for installation of CF CLI. This is possible on newer MACs that use M1 and M2 processors. For systems running the M1 processor, CF CLI can now be installed without use of an emulator.
+As of cf CLI 8.4.0 and cf CLI 7.5.0, the Apple ARM architecture is now supported for installation of cf CLI. This is possible on newer MACs that use M1 and M2 processors. For systems running the M1 processor, cf CLI can now be installed without use of an emulator.
 </p>
 
 For more information about downloading and installing a compressed binary for cf CLI v7 or cf CLI v8, see [Installers and compressed binaries](https://github.com/cloudfoundry/cli/wiki/V8-CLI-Installation-Guide#installers-and-compressed-binaries).
@@ -109,7 +110,7 @@ For more information about downloading and installing a compressed binary for cf
 
 To verify the installation of the cf CLI:
 
-1. Close and reopen the command prompt. Or, open a new tab in the command prompt.
+1. Close and reopen the command prompt, or open a new tab in the command prompt terminal.
 
 1. Run:
 
@@ -130,7 +131,7 @@ If you installed the cf CLI with a package manager, follow the instructions spec
 
 If you installed the cf CLI with an installer, follow the procedure in this section that is specific to your operating system.
 
-To uninstall the cf CLI on Mac OS X:
+To uninstall the cf CLI on macOS X:
 
 1. Delete the binary `/usr/local/bin/cf`.
 
