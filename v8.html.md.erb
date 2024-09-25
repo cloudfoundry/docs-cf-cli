@@ -3,13 +3,14 @@ title: Upgrading to cf CLI v8
 owner: CLI
 ---
 
-You can use Cloud Foundry Command Line Interface (cf CLI) v8 to interact with Cloud Foundry API (CAPI) V3. This topic describes the major changes between cf CLI v7 and cf CLI v8.
+You can use Cloud Foundry Command Line Interface (cf CLI) v8 to interact with Cloud Foundry API (CAPI) V3. This topic describes the major changes between cf CLI v7
+and cf CLI v8.
 
 The cf CLI development team aims to provide:
 
 * A seamless upgrade experience from cf CLI v7. Changes are minimal. Where there are changes, the team has incorporated feedback from the community to simplify the cf CLI user experience.
 
-* Details about breaking potential breaking changes and alternative workflows for scripting environments.
+* Details about potential breaking changes and alternative workflows for scripting environments.
 
 To understand the differences between specific commands, see [Command differences](#differences) below.
 
@@ -30,7 +31,7 @@ To install cf CLI v8, see the [README](https://github.com/cloudfoundry/cli#downl
 It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v8 beta is tested against.
 
 In cf CLI v8, Golang has been updated from v1.13 to v1.16.
-If you target a foundation that does not have a SAN, you might encounter errors because the common name field is deprecated in Golang v1.15 and later.
+When targeting a foundation that does not have a SAN, you might encounter errors because the common name field is deprecated in Golang v1.15 and later.
 For more information, see [X.509 CommonName deprecation](https://golang.org/doc/go1.15#commonname) in the Golang v1.15 release notes.
 
 ### <a id="prerequisites"></a> Prerequisites
@@ -63,6 +64,7 @@ Some of these changes are:
 
 * Style changes, including changes in the order or wording of the output.
 * cf CLI v8 uses CAPI V3 to make requests related to services. CAPI V3 creates asynchronous jobs. If you want to continue to create jobs synchronously, use the new `--wait` flag.
+* JSON response changes such as additional elements or nesting, which may impact parsing in existing scripts.
 
 
 ### <a id="table"></a> Table of differences

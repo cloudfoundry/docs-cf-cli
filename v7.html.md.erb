@@ -4,7 +4,9 @@ owner: VAT
 ---
 
 
-The main goal of Cloud Foundry CLI (cf CLI) v7 and CAPI V3 is to unlock new app developer workflows for users who require granular control of their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows) below. These workflows were previously limited by CAPI V2.
+The main goal of Cloud Foundry Command Line Interface (cf CLI) v7 and CAPI V3 is to unlock new app developer workflows for users who require granular control of
+their apps and other advanced deployment strategies. For more information, see [New Workflows Supported](#new-workflows) below. These workflows were previously
+limited by CAPI V2.
 
 The cf CLI development team aims to provide:
 
@@ -18,7 +20,7 @@ For more information about CAPI V3, see the [CAPI V3 documentation](https://v3-a
 
 ## <a id="new-workflows"></a> New workflows supported by cf CLI v7
 
-cf CLI v7 uses CAPI V3, which offers developers more granular control over their apps. It enables new workflows by exposing packages, droplets, builds, and processes. CAPI V3 also includes new resources such as sidecars, manifests, deployments.
+cf CLI v7 uses CAPI V3, which offers developers more granular control over their apps. It activates new workflows by exposing packages, droplets, builds, and processes. CAPI V3 also includes new resources, for example, sidecars, manifests, and deployments.
 
 Some key new features available through the cf CLI v7 are:
 
@@ -30,7 +32,7 @@ Some key new features available through the cf CLI v7 are:
 
 * [Pushing Apps with Sidecar Processes](../devguide/sidecars.html): Run additional processes in the same container as your app.
 
-* [Using Metadata](../adminguide/metadata.html): Add metadata to objects such as spaces and apps. This can help with operating, monitoring, and auditing.
+* [Using Metadata](../adminguide/metadata.html): Add metadata to objects, for example, spaces, and apps. This aids in operations, monitoring, and auditing.
 
 
 ## <a id="install"></a> Install cf CLI v7
@@ -54,7 +56,7 @@ For example, `cf apps` does not work.
 
 These sections describe changes in commands from cf CLI v6 to cf CLI v7. They also provide important information for those who use the cf CLI in scripts.
 
-For information about possible breaking changes, see the [Table of Differences](#table) below. This table includes removed flag options, removed commands, and removed or changed argument requirements.
+For information about potential breaking changes, see the [Table of Differences](#table) below. This table includes removed flag options, removed commands, and removed or changed argument requirements.
 
 ### <a id="scripting"></a> About scripting
 
@@ -66,7 +68,7 @@ Some of these changes are:
 
 * cf CLI v7 commands output errors and warnings to `stderr` rather than `stdout` to simplify debugging.
 
-* Style changes including flavor text updates. For more information, see [Colors](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors) in _CF CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub.
+* Style changes including flavor text updates. For more information, see [Colors](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#colors) in _cf CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub.
 
 * Key-value and table column headers are displayed in lowercase.
 
@@ -78,7 +80,7 @@ If the services attribute is declared at the top-level of the manifest.yml file,
 
 ### <a id="table"></a> Exit codes
 
-cf CLI v7 attempts to consistently apply the principles of idempotency across all commands which require it. For more information, see [General Principles](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) in _CF CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
+cf CLI v7 attempts to consistently apply the principles of idempotency across all commands which require it. For more information, see [General Principles](https://github.com/cloudfoundry/cli/wiki/CF-CLI-Style-Guide#general-principles) in _cf CLI Style Guide_ in the Cloud Foundry CLI repository on GitHub. Commands now exit `0` if the outcome a user expresses when running a specific command is unchanged after the command is executed. Examples include:
 
 * Attempting to delete a resource which does not exist, such as a space. Commands such as `delete-route` and `delete-space` return `0` in those cases.
 
@@ -197,7 +199,7 @@ The table below summarizes how commands differ between cf CLI v7 and cf CLI v6.
 		<td style="vertical-align:top"><code>cf create-user</code></td>
 		<td>
 			<ul>
-				<li><strong>[Added flag]:</strong> <code>--password-prompt</code>. This option enhances security by removing the requirement to type your password on the command line.</li>
+				<li><strong>[Added flag]:</strong> <code>--password-prompt</code>. This option enhances security by eliminating the need to enter your password directly on the command line.</li>
 			</ul>
 		</td>
 	</tr>
