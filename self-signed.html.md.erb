@@ -3,15 +3,15 @@ title: Using the cf CLI with a self-signed certificate
 owner: CLI
 ---
 
-This topic describes how developers can use the Cloud Foundry Command Line Interface (cf CLI)
-to communicate securely with a Cloud Foundry deployment with a self-signed certificate.
+This topic describes how developers use the Cloud Foundry Command Line Interface (cf CLI)
+to communicate securely with a Cloud Foundry deployment that uses a self-signed certificate.
 
 You can use the cf CLI to communicate securely with a Cloud Foundry deployment without
 specifying `--skip-ssl-validation` under these circumstances:
 
 * The deployment uses a self-signed certificate.
 
-* The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or a certificate signed by a certificate that is signed by a self-signed CA.
+* The deployment uses a certificate that is signed by a self-signed certificate authority (CA), or by an intermediate certificate that is also signed by a self-signed CA.
 
 <%= vars.self_signed %>
 
@@ -22,11 +22,11 @@ The certificates you must insert into your local truststore vary depending on th
 
 * If the deployment uses a self-signed certificate, you must insert the self-signed certificate into your local trust store.
 
-* If the deployment uses a certificate that is signed by a self-signed CA, or a certificate signed by a certificate that is signed by a self-signed CA, you must insert the self-signed certificate and any intermediate certificates into your local trust store.
+* If the deployment uses a certificate signed by a self-signed CA, or a certificate signed by a certificate that is signed by a self-signed CA, you must insert the self-signed certificate and any intermediate certificates into your local trust store.
 
-### <a id="macosx"></a> Installing  the certificate on Mac OS X
+### <a id="macosx"></a> Installing the Certificate on macOS X
 
-To place the certificate file `server.crt` into your local truststore for Mac OS X:
+To place the certificate file `server.crt` into your local trust store for macOS X:
 
 1. Run:
 
