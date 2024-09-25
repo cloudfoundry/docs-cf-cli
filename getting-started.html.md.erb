@@ -4,7 +4,7 @@ owner: CLI
 ---
 
 
-The cf CLI is the official command line client for Cloud Foundry. You can use the cf CLI to manage apps, service instances, orgs, spaces, and users in your environment.
+The Cloud Foundry Command Line Interface (cf CLI) is the official command line client for Cloud Foundry. You can use the cf CLI to manage apps, service instances, orgs, spaces, and users in your environment.
 
 
 ## <a id='prerequisite'></a> Prerequisite
@@ -301,9 +301,11 @@ You can provide a path to a manifest file when you push an app. The manifest fil
 
 For more information about the `-f` flag, see [push](http://cli.cloudfoundry.org/en-US/cf/push.html) in the _Cloud Foundry CLI Reference Guide_.
 
-<p class="note important">
-<span class="note__title">Important</span>
-When you provide an app name at the command line, <code>cf push</code> uses that app name whether or not there is a different app name in the manifest. If the manifest describes multiple apps, you can push a single app by providing its name at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
+<p class="note">
+<span class="note__title"><strong>Note</strong></span>
+When you provide an app name at the command line, the <code>cf push</code> command uses that app
+name instead of any app name provided in the manifest. If the manifest configures multiple apps, you can push a
+single app by providing thenname at the command line; the cf CLI does not push the others. Use these behaviors for testing.</p>
 
 ### <a id='push-buildpack'></a> Push an app with a buildpack
 
@@ -351,7 +353,9 @@ To avoid security exposure, verify that you migrate your apps and custom buildpa
 
 ### <a id='new-route'></a> Map a route to an app
 
-You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form `APP-NAME.DOMAIN`, where `APP-NAME` is the name of your app and `DOMAIN` is your default domain.
+You can provide a hostname for your app when you push the app. If you do not provide a hostname, the `cf push` command routes your app to a URL of the form
+`APP-NAME.DOMAIN`, where `APP-NAME` is the name of your app and `DOMAIN` is the default domain configured in the Cloud Foundry environment. The route definition is
+included in the `manifest.yml` file.
 
 For information about mapping a route to your app, see [Routes and domains](../devguide/deploy-apps/routes-domains.html).
 
@@ -501,7 +505,7 @@ To view a cf CLI exit code:
     ```
 
 1. To check that the login was successful, run one of these commands, depending on your OS:
-    * For Mac OS, run:
+    * For macOS, run:
 
         ```
         echo $?
