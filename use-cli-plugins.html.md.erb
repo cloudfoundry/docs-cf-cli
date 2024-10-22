@@ -46,7 +46,7 @@ Additional notes:
 
 * The cf CLI prohibits you from implementing any plugin that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the `cf push` command, the cf CLI halts the installation.
 
-For more information, see [install-plugin](http://cli.cloudfoundry.org/en-US/cf/install-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information, use `cf install-plugin --help`.
 
 ## <a id="plugin-run-cmd"></a> Managing plug-ins and running plug-in commands
 
@@ -87,7 +87,7 @@ To check all registered plugin repositories for newer versions of currently inst
     Use 'cf install-plugin' to update a plugin to the latest version.
     </pre>
 
-For more information about the `cf plugins` command, see [cf plugins](http://cli.cloudfoundry.org/en-US/cf/plugins.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information about the `cf plugins` command, use `cf plugins --help`.
 
 
 ## <a id="plugin-uninstall"></a> Uninstalling a plug-in
@@ -109,7 +109,7 @@ To uninstall a plugin:
 
     You must use the name of the plug-in, not the binary filename, to uninstall it.
 
-For more information, see [uninstall-plugin](http://cli.cloudfoundry.org/en-US/cf/uninstall-plugin.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information, use `cf uninstall-plugin --help`.
 
 ## <a id="adding-plugin-repo"></a> Adding a plug-in repository
 
@@ -122,7 +122,7 @@ To add a plugin repository:
     ```
     Where `REPOSITORY-NAME-URL` is the URL of the plug-in repository that you want to add.
 
-For more information, see [add-plugin-repo](http://cli.cloudfoundry.org/en-US/cf/add-plugin-repo.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information, use `cf add-plugin-repo --help`.
 
 
 ## <a id="listing-plugin-repo"></a> Viewing available plug-in repositories
@@ -135,7 +135,7 @@ To view your available plugin repositories:
     cf list-plugin-repos
     ```
 
-For more information, see [list-plugin-repos](http://cli.cloudfoundry.org/en-US/cf/list-plugin-repos.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information, use `cf list-plugin-repos --help`.
 
 
 ## <a id="listing-plugin-repo"></a> Listing all plug-ins by repository
@@ -148,7 +148,7 @@ To show all plugins from all available repositories:
     cf repo-plugins
     ```
 
-For more information, see [repo-plugins](http://cli.cloudfoundry.org/en-US/cf/repo-plugins.html) in the _Cloud Foundry CLI Reference Guide_.
+For more information, use `cf repo-plugins --help`.
 
 
 ## <a id="troubleshoot"></a> Troubleshooting
