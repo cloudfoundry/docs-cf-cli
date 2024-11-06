@@ -133,7 +133,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     <td style="vertical-align:top"><code>cf map-route</code></td>
     <td>
       <ul>
-        <li><strong>[Added flag]:</strong> Use <code>--destination-protocol</code> to use HTTP/2 protocol to communicate with apps. By default, if destination-protocol is not set, HTTP/1 protocol is used for HTTP route.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--app-protocol</code> to use HTTP/2 protocol to communicate with apps. By default, if app-protocol is not set, HTTP/1 protocol is used for HTTP route.</li>
       </ul>
     </td>
   </tr>
@@ -222,7 +222,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     <td style="vertical-align:top"><code>cf upgrade-service</code></td>
     <td>
       <ul>
-        <li><strong>[Removed flag]:</strong> <code>--force</code>. There is no longer user interaction required on this command.</li>
+        <li><strong>[Added flag]:</strong> <code>--force</code>. There is no longer user interaction required on this command.</li>
       </ul>
     </td>
   </tr>
