@@ -130,10 +130,19 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
+    <td style="vertical-align:top"><code>cf create-route</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf map-route</code></td>
     <td>
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--app-protocol</code> to use HTTP/2 protocol to communicate with apps. By default, if app-protocol is not set, HTTP/1 protocol is used for HTTP route.</li>
+        <li><strong>[Added flag]:</strong> Use <code>--option</code> to specify per-route options for non-existent routes in key-value format, e.g. <code>option_name=option_value</code>.</li>
       </ul>
     </td>
   </tr>
@@ -146,10 +155,27 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
+    <td style="vertical-align:top"><code>cf apps</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf app</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf route</code></td>
     <td>
       <ul>
         <li><strong>[New]:</strong> New command for viewing details about a route and its destinations.</li>
+        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
       </ul>
     </td>
   </tr>
@@ -158,6 +184,17 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     <td>
       <ul>
         <li><strong>[Update]:</strong> Added <code>service instance</code> column to output.</li>
+        <li><strong>[Update]:</strong> Added <code>options</code> column to output.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf update-route</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> New command for managing route-specific options.</li>
+        <li><strong>[New flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
+        <li><strong>[New flag]:</strong> Use <code>--remove-option</code> to specify a per-route option to delete, e.g. <code>option_name</code>.</li>
       </ul>
     </td>
   </tr>
