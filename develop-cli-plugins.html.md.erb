@@ -1,15 +1,15 @@
 ---
-title: Developing cf CLI plug-ins
+title: Developing Tanzu cf CLI plug-ins
 owner: CLI
 ---
 
 
-You can create and install Cloud Foundry Command Line Interface (cf CLI) plug-ins to provide custom commands. You can submit and share these plug-ins to the [CF Community repository](https://plugins.cloudfoundry.org/).
+You can create and install Tanzu cf CLI plug-ins to provide custom commands. You can submit and share these plug-ins to the [CF Community repository](https://plugins.cloudfoundry.org/).
 
 
 ## <a id='prerequisite'></a> Prerequisite
 
-To use plug-ins, you must use cf CLI v7 or later. For information about downloading, installing, and uninstalling cf CLI commands, see [Installing the Cloud Foundry Command Line Interface](../operating/cf-cli/install-cf-cli.html).
+For information about downloading, installing, and uninstalling Tanzu cf CLI commands, see [Installing the Tanzu cf CLI](../operating/cf-cli/install-cf-cli.html).
 
 
 ## <a id='install-arch'></a> Creating a plug-in
@@ -33,9 +33,9 @@ To initialize a plug-in:
     The `plugin.Start(...)` function requires a new reference to the `struct` that implements the defined interface.
 
 
-## <a id='invoke'></a> Invoking cf CLI commands
+## <a id='invoke'></a> Invoking Tanzu cf CLI commands
 
-To invoke cf CLI commands,
+To invoke Tanzu cf CLI commands:
 
 1. From within the `Run(...)` method of your plug-in, call:
 
