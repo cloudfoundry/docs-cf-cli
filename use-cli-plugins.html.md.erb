@@ -1,10 +1,10 @@
 ---
-title: Using a cf CLI plug-in
+title: Using a Tanzu cf CLI plug-in
 owner: CLI
 ---
 
 
-The Cloud Foundry CLI (cf CLI) includes plug-in capability. Plug-ins allow you to add custom commands to the cf CLI.
+The Tanzu cf CLI includes plug-in capability. Plug-ins allow you to add custom commands to the Tanzu cf CLI.
 
 You can install and use the plug-in that Cloud Foundry developers and third-party developers create. For a current list of community-supported plug-ins, see the [Cloud Foundry Community CLI Plug-in page](https://plugins.cloudfoundry.org). For information about submitting your own plug-in, see the [Cloud Foundry CLI Plugin Repository (CLIPR)](https://github.com/cloudfoundry-incubator/cli-plugin-repo) repository on GitHub.
 
@@ -12,19 +12,19 @@ You can install and use the plug-in that Cloud Foundry developers and third-part
 <span class="note__title"><strong>Important</strong></span>
 Plug-ins are not vetted for security or function. Use plug-ins at your own risk.</p>
 
-The cf CLI identifies a plug-in by binary filename, its developer defined plug-in name, and the commands that the plug-in provides. Use the binary filename only to install a plug-in. You use the plug-in name or a command for any other action.
+The Tanzu cf CLI identifies a plug-in by binary filename, its developer defined plug-in name, and the commands that the plug-in provides. Use the binary filename only to install a plug-in. You use the plug-in name or a command for any other action.
 
-The cf CLI uses case-sensitive commands, but plug-in management commands accept plug-in and repository names
+The Tanzu cf CLI uses case-sensitive commands, but plug-in management commands accept plug-in and repository names
 irrespective of their casing.
 
 
 ## <a id="plugin-directory"></a> Changing the plug-in directory
 
-By default, the cf CLI stores plug-ins on your workstation in `$CF_HOME/.cf/plugins`, which defaults to `$HOME/.cf/plugins`.
+By default, the Tanzu cf CLI stores plug-ins on your workstation in `$CF_HOME/.cf/plugins`, which defaults to `$HOME/.cf/plugins`.
 
 To change the root directory of this path from `$CF_HOME`, you must set the `CF_PLUGIN_HOME` environment variable.
 
-The cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plug ins in that location. For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, cf CLI stores plug-ins in `/my-folder/.cf/plugins`.
+The Tanzu cf CLI appends `.cf/plugins` to the `CF_PLUGIN_HOME` path that you specify and stores plug ins in that location. For example, if you set `CF_PLUGIN_HOME` to `/my-folder`, Tanzu cf CLI stores plug-ins in `/my-folder/.cf/plugins`.
 
 
 ## <a id="plugin-install"></a> Installing a plug-in
@@ -33,7 +33,7 @@ To install a plug-in:
 
 1. Download a binary or the source code for a plug-in from a trusted provider.
 
-   The cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.
+   The Tanzu cf CLI requires a binary file compiled from source code written in Go. If you download source code, you must compile the code to create a binary.
 
 2. Run:
 
@@ -44,7 +44,7 @@ To install a plug-in:
 
     You cannot install a plug in that has the same name or that uses the same command as an existing plugin. If you attempt to do so, you are prompted to uninstall the existing plugin.
 
-    The cf CLI prohibits you from implementing any plug-in that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.
+    The Tanzu cf CLI prohibits you from implementing any plug-in that uses a native cf CLI command name or alias. For example, if you attempt to install a third-party plugin that includes the <code>cf push</code> command, the cf CLI halts the installation.
 
 For more information, use `cf install-plugin --help`.
 
@@ -153,7 +153,7 @@ For more information, use `cf repo-plugins --help`.
 
 ## <a id="troubleshoot"></a> Troubleshooting
 
-The cf CLI provides the following error messages to help you troubleshoot installation and usage issues. Third-party plug-ins provide their own error messages.
+The Tanzu cf CLI provides the following error messages to help you troubleshoot installation and usage issues. Third-party plug-ins provide their own error messages.
 
 ### <a id='permission-denied'></a> Permission denied
 
@@ -165,4 +165,4 @@ Plug-in names and commands must be unique. The CLI displays an error message if 
 
 If the plug-in has the same name or command as a currently installed plug-in, you must uninstall the existing plug-in to install the new plug-in.
 
-If the plug-in has a command with the same name as a native cf CLI command or alias, you cannot install the plug-in.
+If the plug-in has a command with the same name as a native Tanzu cf CLI command or alias, you cannot install the plug-in.

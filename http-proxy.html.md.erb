@@ -1,10 +1,10 @@
 ---
-title: Using the cf CLI with a proxy server
+title: Using the Tanzu cf CLI with a proxy server
 owner: CLI
 ---
 
 
-If you have an HTTP or SOCKS5 proxy server on your network between a host running the Cloud Foundry Command Line Interface (cf CLI) and your API endpoint, you must
+If you have an HTTP or SOCKS5 proxy server on your network between a host running the Tanzu cf CLI and your API endpoint, you must
 set the `https_proxy` variable with the hostname or IP address of the proxy server. The `https_proxy` environment variable holds the hostname or IP address of the
 proxy server.
 
@@ -37,9 +37,6 @@ If the proxy server is a SOCKS5 proxy, you must specify the SOCKS5 protocol in t
 ```
 https_proxy=socks5://socks_proxy.example.com
 ```
-
-The <code>cf ssh</code> command for cf CLI v7+ does not work through a SOCKS5 proxy.
-
 
 ## <a id="mac-linux"></a> Set https_proxy in macOS or Linux
 
