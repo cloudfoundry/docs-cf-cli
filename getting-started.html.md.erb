@@ -109,62 +109,6 @@ the `config.json` file is updated accordingly.
 By default, `config.json` is located in the `~/.cf` directory. You can relocate the `config.json` file using the `CF_HOME` environment variable.
 
 
-## <a id='i18n'></a> Localize the cf CLI (v6 only)
-
-The cf CLI translates terminal output into the language that you select. The default language is `en-US`.
-
-The cf CLI supports these languages:
-
-*  Chinese (simplified): `zh-Hans`
-*  Chinese (traditional): `zh-Hant`
-*  English: `en-US`
-*  French: `fr-FR`
-*  German: `de-DE`
-*  Italian: `it-IT`
-*  Japanese: `ja-JP`
-*  Korean: `ko-KR`
-*  Portuguese (Brazil): `pt-BR`
-*  Spanish: `es-ES`
-
-For more information about the `cf config --locale` command, use `cf config --help`.
-
-Localizing the cf CLI affects only messages that the cf CLI generates.
-
-To set the language of the cf CLI:
-
-1. In a terminal window, log in to the cf CLI:
-
-    ```
-    cf login
-    ```
-
-1. Run:
-
-    ```
-    cf config --locale LANGUAGE
-    ```
-    Where `LANGUAGE` is code of the language you want to set. Valid values are `zh-Hans`, `zh-Hant`, `en-US`, `fr-FR`, `de-DE`, `it-IT`, `ja-JP`, `ko-KR`,
-    `pt-BR`, and `es-ES`.
-
-1. Confirm the language change by running:
-
-    ```
-    cf help
-    ```
-    The above command returns output similar to the example below:
-    <pre class="terminal">
-    NOME:
-       cf - Uma ferramenta de linha de comando para interagir com Cloud Foundry
-
-    USO:
-       cf [opções globais] comando [argumentos...] [opções de comando]
-
-    VERSÃO:
-       6.14.1
-       ...
-    </pre>
-
-
 ## <a id='user-roles'></a> Manage users and roles
 
 The cf CLI includes commands that list users and assign roles in orgs and spaces.
