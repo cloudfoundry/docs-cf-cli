@@ -2,16 +2,26 @@
 
 This is a guide to the cf CLI for Cloud Foundry developers and users. The cf CLI runs on your local machine to direct a CF deployment in a cloud infrastructure.
 
-The contents of this guide used to be in the GitHub repo subdirectory cloudfoundry/docs-dev-guide/cf-cli.
+This is a content repository in the [Cloud Foundry documentation set](https://github.com/cloudfoundry/docs-book-cloudfoundry).
 
-This repo is one of several doc repositories that go into a complete documentation set.
+## Published location
 
-The contents here are structured as a topic repository intended to be compiled
-into a larger document with
-[Bookbinder](http://github.com/cloudfoundry-incubator/bookbinder).
+This content is published at https://docs.cloudfoundry.org/cf-cli/.
 
-See the [docs-book-cloudfoundry](http://github.com/cloudfoundry/docs-book-cloudfoundry)
-repo for the complete list of open source documentation repositories, as well as
-information about the publishing process.
+## Branch
 
+This repository uses only the `master` branch for the Cloud Foundry OSS documentation.
 
+## Template variables
+
+Template variables for this content are defined in the `docs-book-cloudfoundry` repository at [`config/template_variables.yml`](https://github.com/cloudfoundry/docs-book-cloudfoundry/blob/master/config/template_variables.yml). Update that file to change variables that appear across this content.
+
+## Contributing
+
+1. Fork this repository.
+2. Create a branch from `master`, make your changes, and submit a pull request to `master`.
+
+Only the CFF Docs WG lead can merge pull requests, build to staging, and publish the documentation.
+
+* **Staging site:** https://docs-staging.cloudfoundry.org/
+* **Published site:** https://docs.cloudfoundry.org/
