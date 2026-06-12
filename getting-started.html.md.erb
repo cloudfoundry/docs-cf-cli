@@ -90,6 +90,20 @@ To write a script to log in:
 
     For more information about the `cf auth` command, use `cf auth --help`.
 
+    Alternatively, you can authenticate using a client ID and client secret:
+
+    ```
+    cf auth CLIENT-ID CLIENT-SECRET --client-credentials
+    ```
+
+    Where:
+    <ul>
+      <li><code>CLIENT-ID</code> is your UAA client ID.</li>
+      <li><code>CLIENT-SECRET</code> is your UAA client secret.</li>
+    </ul>
+
+    You can also authenticate by passing a user token or client token directly. For more information, use `cf auth --help`.
+
 1. Target your org or space by running:
 
     ```
@@ -189,7 +203,7 @@ name:              awesome-app
 requested state:   started
 routes:            awesome-app.example.com
 last uploaded:     Wed 17 Jul 22:57:04 UTC 2024
-stack:             cflinuxfs3
+stack:             cflinuxfs4
 buildpacks:
 	name             version   detect output   buildpack name
 	ruby_buildpack   1.8.58    ruby            ruby
