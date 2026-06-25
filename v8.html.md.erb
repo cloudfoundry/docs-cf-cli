@@ -4,7 +4,7 @@ owner: CLI
 ---
 
 You can use Cloud Foundry Command Line Interface (cf CLI) v8 to interact with Cloud Foundry API (CAPI) V3. This topic describes the major changes between cf CLI v7
-and cf CLI v8.
+and cf CLI v8, and subsequent improvements added through later v8 releases.
 
 The cf CLI development team aims to provide:
 
@@ -16,7 +16,7 @@ To understand the differences between specific commands, see [Command difference
 
 For more information about CAPI V3, see the [CAPI V3 documentation](https://v3-apidocs.cloudfoundry.org/index.html#introduction).
 
-For more information about cf CLI v8, see [v8.0.0](https://github.com/cloudfoundry/cli/releases/tag/v8.0.0) in GitHub.
+For the full list of cf CLI v8 releases, see [Releases](https://github.com/cloudfoundry/cli/releases) in the Cloud Foundry CLI repository on GitHub.
 
 ## <a id="new-workflows"></a> New workflows supported by cf CLI v8
 
@@ -27,18 +27,11 @@ Some key new features available through the cf CLI v8 are:
 
 ## <a id="install"></a> Install cf CLI v8
 
-To install cf CLI v8, see the [README](https://github.com/cloudfoundry/cli#downloads) in the Cloud Foundry CLI repository on GitHub.
-It includes instructions for downloading the latest CAPI release candidate, which is what the cf CLI v8 beta is tested against.
-
-In cf CLI v8, Golang has been updated from v1.13 to v1.16.
-When targeting a foundation that does not have a SAN, you might encounter errors because the common name field is deprecated in Golang v1.15 and later.
-For more information, see [X.509 CommonName deprecation](https://golang.org/doc/go1.15#commonname) in the Golang v1.15 release notes.
+To install cf CLI v8, see [Installing the cf CLI](install-go-cli.html).
 
 ### <a id="prerequisites"></a> Prerequisites
 
 The cf CLI v8 requires [cf-deployment](https://github.com/cloudfoundry/cf-deployment) v16.11.0 or later.
-
-This version of cf-deployment contains CAPI release v1.109.0, which provides the CAPI V3 API v3.99.0.
 
 For more information, see the cf CLI [Versioning and Support Policy](https://github.com/cloudfoundry/cli/wiki/Versioning-and-Support-Policy) on GitHub.
 
@@ -69,7 +62,7 @@ Some of these changes are:
 
 ### <a id="table"></a> Table of differences
 
-The following table summarizes how commands differ between cf CLI v7 and cf CLI v8.
+The following table summarizes how commands differ between cf CLI v7 and cf CLI v8, including improvements added in later v8 releases.
 
 <table class="table">
 <thead>
@@ -79,10 +72,36 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
   </tr>
   </thead>
   <tr>
+    <td style="vertical-align:top"><code>cf auth</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update] (v8.12.0):</strong> Now supports token-based authentication in addition to username/password. Use <code>--client-credentials</code> with a client ID and secret, or pass a user or client token directly.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf app</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
+        <li><strong>[Update] (v8.16.0):</strong> Each process instance now shows a <code>ready</code> indicator.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf apps</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf bind-service</code></td>
     <td>
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the bind operation to complete.</li>
+        <li><strong>[Added flag] (v8.18.0):</strong> Use <code>--strategy</code> to specify the binding strategy.</li>
       </ul>
     </td>
   </tr>
@@ -92,6 +111,38 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
       <ul>
         <li><strong>[Update]:</strong> Bind route operation is async by default.</li>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the bind operation to complete.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf buildpacks</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag] (v8.14.0):</strong> Use <code>--lifecycle</code> to filter buildpacks by lifecycle type (for example, <code>buildpack</code> or <code>cnb</code>).</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf cleanup-outdated-service-bindings</code></td>
+    <td>
+      <ul>
+        <li><strong>[New command] (v8.18.0):</strong> Removes service bindings that no longer have a corresponding service instance. Useful for cleaning up orphaned bindings after service instances are deleted out of band.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf create-buildpack</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag] (v8.14.0):</strong> Use <code>--lifecycle</code> to specify the lifecycle type for the buildpack (for example, <code>buildpack</code> or <code>cnb</code>).</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf create-route</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
       </ul>
     </td>
   </tr>
@@ -113,6 +164,14 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
+    <td style="vertical-align:top"><code>cf delete-buildpack</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag] (v8.14.0):</strong> Use <code>--lifecycle</code> to specify the lifecycle type when deleting a buildpack (for example, <code>buildpack</code> or <code>cnb</code>).</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf delete-service</code></td>
     <td>
       <ul>
@@ -130,19 +189,12 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
-    <td style="vertical-align:top"><code>cf create-route</code></td>
-    <td>
-      <ul>
-        <li><strong>[Added flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
     <td style="vertical-align:top"><code>cf map-route</code></td>
     <td>
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--app-protocol</code> to use HTTP/2 protocol to communicate with apps. By default, if app-protocol is not set, HTTP/1 protocol is used for HTTP route.</li>
         <li><strong>[Added flag]:</strong> Use <code>--option</code> to specify per-route options for non-existent routes in key-value format, e.g. <code>option_name=option_value</code>.</li>
+        <li><strong>[Added flag] (v8.18.0):</strong> Use <code>--destination-port</code> to set the port on the destination app to which traffic is routed.</li>
       </ul>
     </td>
   </tr>
@@ -155,18 +207,10 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
-    <td style="vertical-align:top"><code>cf apps</code></td>
+    <td style="vertical-align:top"><code>cf push</code> (with <code>--strategy</code>)</td>
     <td>
       <ul>
-        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top"><code>cf app</code></td>
-    <td>
-      <ul>
-        <li><strong>[New]:</strong> Added <code>per-route options</code> to output.</li>
+        <li><strong>[Update] (v8.16.0):</strong> When using a rolling or canary deployment strategy, scaling flags (<code>-i</code>, <code>-m</code>, <code>-k</code>) now apply only to new instances being created by the deployment. Running instances are not restarted before the deployment begins. For more information, see <a href="../devguide/deploy-apps/rolling-deploy.html#scaling">Scaling with Deployments</a>.</li>
       </ul>
     </td>
   </tr>
@@ -189,16 +233,6 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
-    <td style="vertical-align:top"><code>cf update-route</code></td>
-    <td>
-      <ul>
-        <li><strong>[New]:</strong> New command for managing route-specific options.</li>
-        <li><strong>[New flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
-        <li><strong>[New flag]:</strong> Use <code>--remove-option</code> to specify a per-route option to delete, e.g. <code>option_name</code>.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
     <td style="vertical-align:top"><code>cf service</code></td>
     <td>
       <ul>
@@ -208,6 +242,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
         <li><strong>[Update]:</strong> The <code>service broker</code> field is renamed to <code>broker</code>.</li>
         <li><strong>[Update]:</strong> The <code>dashboard</code> field is renamed to <code>dashboard url</code>.</li>
         <li><strong>[Update]:</strong> Minor changes to the ordering and wording of each block of information.</li>
+        <li><strong>[Update] (v8.18.0):</strong> Enhanced to display information about multiple service bindings when an app has more than one binding to the same service instance.</li>
       </ul>
     </td>
   </tr>
@@ -217,6 +252,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
       <ul>
         <li><strong>[Update]:</strong> Displays information about <code>last operation</code> and <code>message</code> as new columns.</li>
         <li><strong>[Response]:</strong> All JSON response elements from v7 are now wrapped into an additional element named <code>credentials</code>.</li>
+        <li><strong>[Added flag] (v8.18.0):</strong> Use <code>--json</code> to return the service key output as JSON.</li>
       </ul>
     </td>
   </tr>
@@ -226,6 +262,15 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--no-apps</code> to not retrieve bound apps information.</li>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the operation to complete.</li>
+        <li><strong>[Update] (v8.18.0):</strong> Duplicate app names are no longer shown in the bound apps column when an app has multiple bindings to the same service instance.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf stacks</code></td>
+    <td>
+      <ul>
+        <li><strong>[Update] (v8.18.0):</strong> Output now includes a <code>state</code> column showing the lifecycle state of each stack (<code>ACTIVE</code>, <code>DEPRECATED</code>, <code>RESTRICTED</code>, or <code>DISABLED</code>).</li>
       </ul>
     </td>
   </tr>
@@ -234,6 +279,7 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     <td>
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the unbind operation to complete.</li>
+        <li><strong>[Update] (v8.18.0):</strong> Can now handle apps with multiple bindings to the same service instance.</li>
       </ul>
     </td>
   </tr>
@@ -247,11 +293,37 @@ The following table summarizes how commands differ between cf CLI v7 and cf CLI 
     </td>
   </tr>
   <tr>
+    <td style="vertical-align:top"><code>cf update-buildpack</code></td>
+    <td>
+      <ul>
+        <li><strong>[Added flag] (v8.14.0):</strong> Use <code>--lifecycle</code> to specify the lifecycle type when updating a buildpack (for example, <code>buildpack</code> or <code>cnb</code>).</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf update-route</code></td>
+    <td>
+      <ul>
+        <li><strong>[New]:</strong> New command for managing route-specific options.</li>
+        <li><strong>[New flag]:</strong> Use <code>--option</code> to specify per-route options in key-value format, e.g. <code>option_name=option_value</code>.</li>
+        <li><strong>[New flag]:</strong> Use <code>--remove-option</code> to specify a per-route option to delete, e.g. <code>option_name</code>.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align:top"><code>cf update-service</code></td>
     <td>
       <ul>
         <li><strong>[Added flag]:</strong> Use <code>--wait</code> to wait for the update operation to complete.</li>
-        <li><strong>[Removed flag]:</strong> <code>--upgrade</code>. Use new command <code>cf upgrade-service</code> to upgrade a plan.</li>
+        <li><strong>[Removed flag]:</strong> <code>--upgrade</code>. Use the <code>cf upgrade-service</code> command to upgrade a plan.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top"><code>cf update-stack</code></td>
+    <td>
+      <ul>
+        <li><strong>[New command] (v8.18.0):</strong> Manages the lifecycle state of a stack. Use <code>--state</code> to set the state (<code>active</code>, <code>deprecated</code>, <code>restricted</code>, or <code>disabled</code>) and <code>--reason</code> to provide a human-readable explanation shown to developers during <code>cf push</code> or <code>cf restage</code>. For more information, see <a href="../adminguide/managing-stacks.html">Managing Stack Lifecycle</a>.</li>
       </ul>
     </td>
   </tr>
