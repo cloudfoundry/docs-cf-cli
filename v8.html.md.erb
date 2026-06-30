@@ -24,6 +24,13 @@ Some key new features available through the cf CLI v8 are:
 
 * **Asynchronous service operations**: All service-related operations are now asynchronous by default. This includes manipulating service keys and route bindings.
 
+* **Identity-aware routing (route policies)**: cf CLI v8 includes commands for managing route policies used with identity-aware domains. These commands allow Space Developers to control which apps can reach a route on an identity-aware (mTLS) domain:
+  * `cf add-route-policy` — Add a policy allowing a named caller to reach a route.
+  * `cf route-policies` — List policies for routes on a domain, with optional filters.
+  * `cf remove-route-policy` — Remove a policy from a route.
+
+  For full usage and examples, see [Configuring identity-aware routing](../devguide/deploy-apps/identity-aware-routing.html).
+
 
 ## <a id="install"></a> Install cf CLI v8
 
